@@ -1,0 +1,1043 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+% \usepackage{natbib}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\addbibresource{ref.bib}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{threeparttable}   % for threeparttable and tablenotes
+\captionsetup{font=scriptsize, labelfont=bf, position=top, skip=3pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+
+% Page layout
+\geometry{
+    left=0.8in,
+    right=0.6in,
+    top=0.6in,
+    bottom=0.8in
+}
+\newcommand{\ts}{\mathrm{TS}}
+\newcommand{\jsd}{\mathrm{JSD}}
+\newcommand{\tsw}{\mathrm{TS_{wild}}}
+\newcommand{\inm}{\mathrm{Infl}}
+\newcommand{\adj}{\mathrm{Adj}}
+\newcommand{\K}[1]{{\color{red}[[\textbf{K: }#1]]}}
+\newcommand{\E}[1]{{\color{blue}#1}}
+\newcommand{\facin}{f(\mathrm{act/inh})}
+\newcommand{\ewnum}{\mathrm{EW_{num}}}
+\newcommand{\tsten}{\mathrm{Toggle Switch (10N,100E)}}
+\newcommand{\tstwo}{\mathrm{Toggle Switch (10N,80E)}}
+\newcommand{\tsfour}{\mathrm{Toggle Switch (10N,60E)}}
+\newcommand{\tssix}{\mathrm{Toggle Switch (10N,40E)}}
+\newcommand{\tseight}{\mathrm{Toggle Switch (10N,20E)}}
+\newcommand{\emttwosix}{\mathrm{EMT (23N,89E)}}
+\newcommand{\emtrac}{\mathrm{EMT (17N,62E)}}
+\newcommand{\gonad}{\mathrm{Gonadal (18N,74E)}}
+\newcommand{\siltwo}{\mathrm{Silviera (18N,37E)}}
+\newcommand{\sil}{\mathrm{Silviera (16N,30E)}}
+\newcommand{\sclc}{\mathrm{SCLC (33N,357E)}}
+\newcommand{\tennode}{\mathrm{NRF2 + OVOL (8N,19E)}}
+\newcommand{\twenode}{\mathrm{NRF2 + GRHL2 + OVOL (11N,28E)}}
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+        \setcounter{section}{0}
+        \renewcommand{\thesection}{S\arabic{section}}%
+     }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Regulatory stochasticity drives opposing phenotypic outcomes in cell-fate decision networks\\
+
+}
+
+\author{Kishore Hari$^1$, Abhay Gupta$^2$, Lakshmi Malvadi$^3$, Prakash Kulkarni$^{4~\&~5}$, Ravi Salgia$^4$, \\ Mohit Kumar Jolly$^3$, Herbert Levine$^1$}
+
+
+
+\begin{document}
+
+
+\maketitle
+\begin{center}
+    $^1$ Center for Theoretical Biological Physics \& Department of Physics, Northeastern University, Boston, MA, USA\\
+    $^2$ Indian Institute of Science Education and Research Mohali, Mohali, PB, India\\
+    $^3$ Department of Bioengineering, Indian Institute of Science, Bengaluru, KA, India \\
+    $^4$ Department of Medical Oncology and Therapeutics Research, Hope National Medical Center, Duarte, CA, USA
+    $^5$ Department of Systems Biology, City of Hope National Medical Center, Duarte, CA, USA 
+\end{center}
+\begin{center}
+    \small \textbf{Current address:} Abhay Gupta - Department of Biology, University of Virginia, Charlottesville, USA\\
+    \small \textbf{Current Address:} Lakshmi Malvadi - Department of Physics, University of California Merced, Merced, USA\\
+\end{center}
+\begin{abstract}
+Models of gene regulatory networks (GRNs) underlying cell-fate decision systems treat regulatory parameters as fixed quantities, although transcription-factor efficacy varies with molecular context. We asked how temporal fluctuations in interaction strength, rather than molecular abundance, alter phenotype occupancy in multistable regulatory networks. We applied three stochastic update rules to fold-change parameters—independent fluctuations anchored to their initial values, a bounded additive random walk, and a bounded multiplicative random walk—across RACIPE ensembles of mutually inhibitory circuits, and tested analogous perturbations in Boolean models of epithelial–mesenchymal plasticity and gonadal-fate determination. Anchored fluctuations largely preserved deterministic occupancies of network states. Additive fluctuations increased occupancy of all-high co-expression states, particularly in multistable regimes and when high expression was readily accessible; this effect extended to hybrid team-expression states in both biological networks. Multiplicative fluctuations biased inhibitory fold changes toward stronger repression and favored single-high states in a topology-dependent manner. Fixed-parameter controls sampled from the same noise-induced distributions did not fully reproduce the additive effect or the multiplicative effect in several circuits. Our analysis traced the additional additive bias to an asymmetry between unconditional derepression and conditional repression. Thus, temporally evolving regulatory parameters can redistribute phenotype occupancy in ways not predicted from static parameter ensembles, with outcomes jointly determined by fluctuation dynamics and network topology.
+\end{abstract}
+
+\section{Introduction}\label{sec:Intro}
+
+GRNs are biological regulatory circuits that constitute a complex collection of molecular regulators including transcription factors (TFs), signaling molecules, and DNA segments that interact to regulate gene expression. They determine the spatiotemporal patterns of gene expression involved in determining cellular development, identity, and environmental responses. They also play a central role in determining the organism’s body plan, which is central to evolutionary developmental biology \cite{Davidson2005, Davidson2006, Maizels2026}. GRNs are conventionally modeled as deterministic systems with fixed interaction parameters although it is clear that the effective strength of any regulatory interaction is subject to continuous fluctuation in vivo. Nonetheless, an overwhelming fraction (~90\%) of TFs are intrinsically disordered proteins (IDPs) \cite{Staby2017} with significant disordered regions \cite{Ferrie2022Structure-functionRegulation, Holehouse2023TheRegions}. These disordered regions mediate conformationally heterogeneous, post-translational modification (PTM)-sensitive contacts with DNA and co-factors, causing regulatory affinities to vary dynamically rather than assume a fixed value . Therefore, understanding IDP conformational noise is paramount for understanding cell-fate specification. Although the individual conformers in an IDP ensemble are in fast exchange, certain conformations are stabilized by specific PTMs, especially phosphorylation, that exist with half-lives that range from minutes to hours, contributing to ``conformational noise'' \cite{Kulkarni2022, Kulkarni2019}. Non-specific TF binding to genomic decoy sites further modulates the effective regulatory signal in an affinity- and abundance-dependent manner \cite{Dey2020EnhancementSites, Burger2012InfluenceExpression}. Enhancer dynamics and transcriptional bursting add a third layer, coupling stochastic TF occupancy at cis-regulatory elements directly to fluctuations in target gene activation \cite{Raj2006StochasticCells, Fukaya2016EnhancerBursting}. The availability of TF binding sites can also vary over the course of transcription, due to noise in chromatin folding states \cite{Gamble2025}. Collectively, these mechanisms argue that the parameters governing regulatory interactions are not static; instead, they are stochastic quantities. Consequently, the impact of such regulatory noise—temporal stochasticity in these parameters—on the dynamics of multistable GRN motifs underlying cell-fate decisions remains poorly understood.
+
+
+This question is especially relevant in the context of cancer, where genetic instability, aberrant chromatin remodeling, and rewired signaling cascades collectively amplify both intrinsic gene expression noise and extrinsic cell-to-cell variability \cite{Brock2009Non-geneticTumours, Landau2014LocallyLeukemia, Hanahan2026HallmarksBeyond}. Non-genetic heterogeneity — stable phenotypic variation within a clonal population arising from gene expression noise and network multi-stability — is now recognized as a major contributor to drug tolerance and tumor progression \cite{Hanahan2026HallmarksBeyond, Franca2024CellularContinuum, Shaffer2017RareResistance}. In this setting, the parameters of regulatory interactions that govern the dynamics of non-genetic heterogeneity cannot be considered fixed: PTM landscapes, co-factor availability, and chromatin accessibility to TFs all fluctuate, effectively introducing stochasticity into the fold-change parameters that govern network behavior. 
+
+
+Perhaps a natural starting point to studying how regulatory noise propagates through GRNs is the toggle switch — a simple mutually repressive circuit between two master regulators that is among the most commonly occurring and extensively characterized motifs for binary cell-fate decisions \cite{gardner2000construction}. The toggle switch exhibits bistability under a broad range of kinetic parameters, and noise-induced switching between its two attractors has been studied in detail in both synthetic and natural contexts \cite{tian2006stochastic}. Many biological decisions, however, are not binary. For example, T helper cell differentiation, haematopoietic lineage commitment, and epithelial–mesenchymal–hybrid state transitions all involve three or more stable phenotypes. The addition of self-activation to the toggle switch (TSSA, toggle switch with self-activation) stabilizes the intermediate phenotype --- corresponding to hybrid phenotypes in EMT and progenitor states in differentiation cascades --- where both nodes co-are expressed simultaneously\cite{Lu2013}. Three nodes connected to each other via a toggle switch, forming the toggle triad (TT) enables three distinct cell states, each defined by one node being highly expressed and the other two repressed \cite{doi:10.1098/rsif.2020.0631}. we will laso have occasion to study 4-node toggle tetramers (see below). Importantly although GRNs underlying cell-fate decision systems often involve a larger number of TFs than accounted for in these motifs, TFs corresponding to a phenotype often form teams such that nodes belonging to the same team activate each other. These teams mutually inhibit each other, thereby forming higher order forms of the motifs listed above. These higher order motifs have similar qualitative behavior as their small motif counterparts such as a two team network promoting bistability with a small fraction of intermediate states, similar to TSSA. 
+
+
+The effect of stochasticity on toggle switch dynamics has been studied extensively, though almost exclusively through noise applied to molecular copy numbers rather than interaction parameters. Early work established that intrinsic noise — arising from the discreteness of protein and mRNA molecules — can drive spontaneous switching between the attractors of a multistable circuit, with switching rates that decrease exponentially with copy number and increase with noise magnitude \cite{tian2006stochastic, Wang2007Noise-inducedSwitch}. Analytical treatments using the Chemical Langevin Equation and mean first-passage time theory have characterized how the depth and asymmetry of the potential wells governing each attractor determine residence times and transition rates \cite{Wang2010TheDifferentiation, Strasser2012StabilityExpression, Xu2014SwitchSwitch}. A key finding across these studies is that noise type — not only noise magnitude — shapes attractor occupancy: additive and multiplicative noise applied to the same deterministic system produce different effective potential landscapes and therefore different stationary probability distributions \cite{Jaruszewicz2013ToggleGene}. Extending beyond Gaussian noise, Lévy noise models have shown that heavy-tailed fluctuations can induce coherent switching at substantially lower intensities than Gaussian noise requires, by enabling large jumps that entirely overcome the potential barrier  \cite{Xu2016TheNoise}. At the network level, toggle switch dynamics has been studied under coupled and multicellular settings, where intracellular multiplicative noise can induce synchronized switching across cell populations via quorum-sensing pathways \cite{Wang2007Noise-inducedSwitch}. More recently, the sRACIPE framework demonstrated that expression-level (state) noise merges bistable clusters at high intensity, while static parametric variation across the model ensemble instead broadens clusters without destabilizing them \cite{Kohar2018RoleCircuits}. In both cases, however, the kinetic parameters themselves remain fixed once sampled; neither treats the parameter as a time-evolving stochastic process, which is the gap that our regulatory noise framework addresses. Stochastic analysis of the toggle triad and related tristable motifs has received comparatively little attention, with existing studies focused primarily on deterministic bifurcation structure and attractor geometry \cite{doi:10.1098/rsif.2020.0631, Duddu2025DistinctNetworks} rather than noise-driven state transitions. Whether the richer transition topology of the toggle triad — permitting direct switching between all three attractor pairs — confers qualitatively different susceptibility to regulatory noise compared to the toggle switch remains an open question.
+
+
+In this manuscript, we study how regulatory noise – that is, the fluctuations of the parameters governing the interactions in GRNs – systematically shapes the dynamics of these motifs. We focus on the fold-change parameter \cite{Huang2017}, which describes the change in the production rate of a target node due to an upstream transcription factor. We couple stochastic fold-change perturbations with the Random Circuit Perturbation (RACIPE) framework \cite{Huang2017}. RACIPE generates large ensembles of ODE models with randomly sampled kinetic parameters, enabling topology-level inferences that are robust to parameter uncertainty. By superimposing continuous stochastic noise on the fold-change parameters of these ensembles, we successfully isolated the effect of regulatory noise from parameter-set-specific idiosyncrasies and characterized how mean residence times and switching frequencies depend on noise magnitude, noise mode, and attractor stability class. Our results reveal that regulatory noise is sufficient to induce state transitions that are inaccessible in the deterministic limit, and that bistable and tristable parameter regimes differ qualitatively in their susceptibility to such noise. Therefore, our results demonstrate that the type of regulatory noise, not just its magnitude, is a key determinant of phenotypic plasticity in cell-fate circuits.
+
+\section{Results}
+
+\subsection{Simulating regulatory noise in GRN motifs underlying cell-fate decision}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig1.jpg}
+    \caption{
+    \textbf{RACIPE network topologies and the stochastic simulation framework.}. 
+    \textbf{(A)} Network topology diagrams for the four base circuits used throughout this study: (i) TS (toggle switch), (ii) TSSA (toggle switch with self-activation), (iii) TT (toggle triad), (iv) TTSA (toggle triad with self-activation). Red circles denote nodes; bar-headed edges denote inhibitory interactions; curved arrows denote self-activation.
+    \textbf{(B)} (i) Schematic of the RACIPE parameter-sampling framework: production, degradation, and interaction-strength parameters are randomly sampled within a bounded parameter space, generating an ensemble of models with varying dynamical behavior. (ii) Steady-state expression of node A vs. node B (log scale) across the RACIPE parameter ensemble for the TS network. Dashed red lines mark each gene's discretization threshold (mean of its expression in log scale across all steady states); quadrants are labeled with the corresponding discrete state, (A, B).
+    \textbf{(C)} Frequency of the 10 most frequent discrete attractors found by RACIPE for each network (TS, TSSA, TT, TTSA), expressed as the fraction of parameter sets that map onto these attractors. States are represented in short-hand form, with the key given inside the plot. Compound labels (e.g.\ ``A\_B'') denote multistable parameter sets. Because TT and TTSA support many more distinct multistable combinations than TS/TSSA, the top-10 bars shown capture only part of the full ensemble: 100\%, 99.2\%, 77.5\%, and 46.2\% of all parameter sets for TS, TSSA, TT, and TTSA respectively (out of 9, 12, 97, and 119 total distinct attractor combinations found).
+    \textbf{(D)} Simulated trajectories of the fold-change parameter $\lambda(t)$ under the three stochastic noise-update rules used in this study (Stationary, Multiplicative, Additive), shown for an inhibitory-edge-range parameter ($\lambda \in [0,1]$, $\lambda_0 = 0.2$). Thin black dashed lines show 5 representative individual trajectories (sampled once per time unit for legibility); the colored line and shaded ribbon show the mean $\pm$ SD across 100 simulated trajectories.}
+    \label{fig:1}
+\end{figure}
+
+We begin by analyzing the binary and tertiary cell-fate decision motifs --- the toggle switch (TS) and the toggle triad (TT) and their extensions that include self-activation edges (TSSA and TTSA). A toggle switch consists of two mutually inhibiting transcription factors (Figure~\ref{fig:1}A(i-ii)), whereas a toggle triad consists of three mutually inhibiting transcription factors (Figure~\ref{fig:1}A(iii-iv)). TS represents the core motif underlying binary cell-fate decision networks. The phenotypic landscape emergent from TS is dominated by two states with mutually exclusive expression patterns - one of the nodes has low expression while the other is high - $(0,1)$ or $(1,0)$. Under appropriate parametric conditions, the toggle switch also exhibits bistability, enabling transitions between $(1,0)$ and $(0,1)$ states \cite{gardner2000construction}. The addition of self-activation (TSSA) stabilizes the $(1,1)$ state in which both nodes are co-expressed. This co-expression state, often referred to as a ``hybrid'' state, has been associated with stemness in development \cite{Roeder2006TowardsPU.1} and with high plasticity and pro-metastatic features in cancer \cite{jolly2015implications,jolly2018hybrid,Pastushenko2019EMTMetastasis}.
+
+While binary cell-fate decision systems dominate biology owing to their stability and robustness to internal and external perturbations \cite{harlapur2022functional, Shyam2025MutuallyNetworks}, some instances of tertiary cell-fate systems --- such as T-cell differentiation --- employ a toggle triad architecture. A toggle triad consists of three mutually inhibiting transcription factors (Figure~\ref{fig:1}A(iii)) and permits three differentiated, single-high states where one of the three nodes has a high expression while the other two have low expression ($(0,0,1)$, $(1,0,0)$, and $(0,1,0)$) as well as three hybrid, double-high states with two out of three nodes having high expression (e.g.\ $(1,1,0)$). Parameter sweeps of the toggle triad result predominantly in monostable and bistable configurations, with a relatively smaller fraction exhibiting tristability. Single network architectures that allow the co-existence of four or more mutually exclusive states are not currently known\cite{Bv2026GeneDecisions}.
+
+We model these networks using a Hill-equation kinetics-based ODE system (Equation~\ref{eq:ode}, \ref{eq:hill}, Section~\ref{sec:RACIPE}). 
+\begin{equation}
+\frac{dX}{dt} = g_X \prod_{i \in P} \frac{H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i})}{\lambda_{Y_i}} \prod_{i \in N} H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) - d_X X
+\label{eq:ode}
+\end{equation}
+\begin{equation}
+H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) = \lambda_{Y_i} \frac{Y_i^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}} + \frac{Y_{i0}^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}}
+\label{eq:hill}
+\end{equation}
+Briefly, these equations combine transcription and translation into a single production term and a first-order degradation term representing mRNA and protein turnover. The production term consists of a rate constant ($g_X$) representing polymerization of RNA and protein, together with a combination of shifted Hill functions that formalize transcriptional regulation by input nodes. Input nodes change the production rate via the fold-change parameter $\lambda$: for inhibitory inputs, $\lambda < 1$, so that the presence of the regulator reduces the production rate; for activating inputs, $\lambda > 1$. The $\lambda$ of inhibitory links is bounded between 0.01 (strongest inhibition) and 1 (no inhibition) and that of the activating links is bounded between 100.0 (strongest activation) and 1.0 (no activation). 
+%The shifted Hill functions are formulated such that the maximum production rate of any node is always $g_X$, making the maximum achievable expression $g_X/d_X$.  The fold-change parameter thus represents the regulatory efficacy of an input node, making it a natural target for studying structural stochasticity. 
+
+We first simulated these networks deterministically using RACIPE~\cite{Huang2017}, a tool that allows us to explore the different configurations that the emergent phenotypic landscape can take across a large parameter space. RACIPE generates a large ensemble of ODE models by sampling multiple parameter sets (Figure~\ref{fig:1}B) and simulates each ODE model from multiple initial conditions until steady states are reached, resulting in an ensemble of steady states. We discretized expression of each node in each steady state into high (1) or low (0) based on the node's log-average expression across the ensemble of steady states (Figure~\ref{fig:1S1}B).  Threshold values for each network are given in Table~\ref{tb:Thresholds}. The models generated by RACIPE can be classified as monostable or bistable based on the number of discrete steady states they support, and further subdivided by the specific attractor configuration (see Table~\ref{tb:Attractors}). For the toggle switch, the dominant attractors were $(0,1)$, $(1,0)$, and the bistable $(0,1)\text{--}(1,0)$, as expected (Figure~\ref{fig:1}C, i). Although a small fraction of models do permit $(1,1)$ as a steady state, the corresponding fold-change parameters are always close to 1, rendering inhibitions ineffective~\cite{hari_assessing_2023}. TSSA enhances bistability in the parameter space, with the other dominant attractors being $(0,1)$ and $(1,0)$. Additionally, TSSA also supports tristability with $(0,1)$ and $(1,0)$ and either $(0, 0)$ or $(1, 1)$. The $(0, 0)$ state was accessed by a very small number of initial conditions, while $(1, 1)$ was more accessible (Figure~\ref{fig:1}C, ii). TT and TTSA support single-high (one of the nodes has a high expression - $(0, 0, 1)$ etc.) and double-high (two of the nodes have high expression - $(0, 1, 1)$ etc.) nearly equally. TTSA enhances multistability over TT, often exhibiting a tristable attractor with three single-high states (Figure~\ref{fig:1}C, iii, iv).
+
+We explored three noise modes, described by the equations below: 
+\begin{equation}
+\begin{aligned}
+\text{Additive:} \quad & \lambda(t+dt) = \lambda(t) + \mathcal{N}(0, \sigma_{\text{eff}}^2) \\
+\text{Multiplicative:} \quad & \lambda(t+dt) = \lambda(t)\left(1 + \mathcal{N}(0, \sigma_{\text{eff}}^2)\right) \\
+\text{Stationary:} \quad & \lambda(t+dt) = \lambda(0) + \mathcal{N}(0, \sigma_{\text{eff}}^2) \\
+\sigma_{\text{eff}} = \sigma*\lambda_{\text{max}}
+\label{eq:lambda}
+\end{aligned}
+\end{equation}
+Networks were simulated at eight levels of $\sigma$ : 0.0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5 and 1.0, scaled by the upper bound of $\lambda$ (Eq.~\ref{eq:lambda}, $\lambda_{max} = 1.0$ for inhibitory edges and $\lambda_{max} = 100.0$ for excitatory edges). The $\sigma$ values were chosen to ensure a larger coverage of the low to moderate noise region ($\sigma \leq 0.1$), as that region likely represents the underlying biology better than unrealistically high noises that span 50 or 100\% of the parameter range ($\sigma \in [0.5, 1.0]$). The higher $\sigma$ values serve a more theoretical purpose in helping us understand the effect of stochastic simulations. The three noise modes produce qualitatively distinct trajectories of $\lambda$ over time. Stationary noise models normally distributed fluctuations around the initial value of $\lambda$ (Figure~\ref{fig:1}C, i, \ref{fig:1S1}B, i). Additive noise models a constrained random walk of $\lambda$ bounded by the corresponding limits for activating and inhibiting $\lambda$ values. The resultant stationary distribution has a mean of 0.5 for inhibitory links and 50 for activatory links (Figure~\ref{fig:1}C, ii, \ref{fig:1S1}B, ii). Multiplicative noise scales $\sigma$ by the current $\lambda$ value, such that lower noise values show lower deviation and higher noise values show higher deviation (Figure~\ref{fig:1}C, iii, \ref{fig:1S1}B, iii). The consequences of these distinct $\lambda$ trajectories for network state dynamics are explored in the following sections.
+
+
+We sampled monostable and bistable models separately from RACIPE, weighted by the relative frequencies of each attractor configuration. We then performed stochastic simulations of these networks by periodically perturbing $\lambda$. For each parameter set, we generated 100 stochastic trajectories starting from randomly chosen initial conditions. We use the RACIPE ensemble-derived thresholds (Figure~\ref{fig:1}B, ii, \ref{tb:Thresholds}) to discretize the stochastic trajectories as well. Based on the number of discretized steady states allowed by a given parameter set in the deterministic simulations, each parameter set was characterized as monostable (single steady state), bistable, tristable and so on. For each network, we sampled 100 parameter sets per stability class and for each parameter set, we performed 100 stochastic simulations each to estimate the statistics. 
+
+
+
+\subsection{High levels of stationary noise pushes the system towards hybrid states}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Fig2.jpg}
+    \caption{\textbf{Effect of stationary noise on toggle switch and toggle triad networks}. 
+    \textbf{(A)} Representative single-parameter trajectory for the TS network: (i) node A and (ii) node B expression over time (log$_2$), with the deterministic (noise-free) segment at negative time and the stochastic segment at positive time. Gray lines show all sampled initial conditions; the black line highlights one representative trajectory (the one whose switch count is closest to the population median); dashed horizontal line marks each node's discretization threshold $\theta$.
+    \textbf{(B)} Discrete-state trace of the same parameter, colored by state for the highlighted trajectory (gray for all other initial conditions). Crosshatched region marks the discarded transient-dominated window of the stochastic segment. 
+    \textbf{(C)} MRT of each state across noise levels. Each panel corresponds to the state indicated by its label. Grey lines show individual parameter-set trajectories; the black dashed line shows their mean. Darker or apparently solid grey segments result from the overlap of multiple trajectories and do not denote a separate category.
+    \textbf{(D--F)} MRT vs.\ noise level for TSSA (D), TT (E), and TTSA (F) bistable parameter sets, colored by state (top 4 states shown for TSSA, top 7 for TT/TTSA), mean $\pm$ SD across parameter sets. 
+}
+    \label{fig:2}
+\end{figure}
+
+Stationary noise mimics the classical assumption underlying GRN models, that the fitted parameters are the mean of a distribution whose variance does not significantly change the emergent phenotypic landscape from what the mean alone predicts. Thus, we started with analyzing the stochastic simulations under stationary noise to evaluate the validity of the deterministic representation of regulatory parameters. We analyzed the stochastic trajectories by first discretizing them using the RACIPE ensemble threshold values (Figure~\ref{fig:2}A). The resultant discrete state trajectories are then used to calculate the residence time of each state, defined as the fraction of time steps a given trajectory sees that state. An average of the residence time over 100 trajectories, the mean residence time (MRT) is used to evaluate the occurrence of a state for a given parameter set under a given noise type and noise level (Figure~\ref{fig:2}B). Note that we use the same MRT calculation for deterministic simulations here on (e.g., $\sigma = 0$). As deterministic simulations reach steady state by the burnin period (shaded in criss-crossed lines in Figure~\ref{fig:2}B), the MRT measures the relative size of the basin of attraction. For monostable parameters, MRT in deterministic simulations will always be 1, while multistable parameters will see fractional MRT corresponding to the basin size of the specific steady state in the attractor. 
+
+As expected, the dominant states for a toggle switch remain as $(0, 1)$ and $(1, 0)$ for low to moderate $\sigma$ values under stationary noise. However, as the $\sigma$ increases to 0.5 and above (i.e., the noise scales as 50\% of the allowed range of $\lambda$), we see a drop in the MRT of the (0,1) and (1, 0) states and a corresponding increase in the MRT of the (1, 1) state - which represents a co-expression of both nodes that normally inhibit each other (Figure~\ref{fig:2}C). Note that a similar increase is not seen in the MRT of the (0, 0) state (Figure~\ref{fig:2S1}A), an asymmetric outcome despite the symmetry of the stationary noise. We further studied TSSA, TT and TTSA under stationary noise and found them behaving similarly. TSSA, in absence of noise enables bistability in a larger fraction of parameter space than TS ($\approx 20\%$ in TS vs $>50\%$ in TSSA). TSSA also enables ~14\% of the state space to be tristable, with access to either $(0, 0)$ or $(1, 1)$ state in addition to the dominant $(0, 1)$ and $(1, 0)$ states. However, the basin size of $(0, 0)$ state, is negligibly small, making $(0, 1) - (1, 0)-(1, 1)$ the only real tristable configuration (Figure~\ref{fig:2S1}B - tristable parameters at $\sigma = 0$). Similar to TS, TSSA maintains the characteristics of its phenotypic landscape under stationary noise - dominant $(0,1)$ and $(1,0)$ states in monostable and bistable parameter sets, and dominant $(1, 1)$ state in tristable parameter sets for realistic values of noise, i.e., $\sigma \leq 0.1$ (Figure~\ref{fig:2}D). For higher $\sigma$, we see a dominance of the $(1, 1)$ state. 
+
+Toggle triad (TT) and toggle triad with self-activation (TTSA) dominantly enable two classes of steady states - single-high states ($(0, 0, 1); (0, 1, 0)$ and $(1, 0, 0)$ and double-high states ($(0, 1, 1); (1, 0, 1) and (1, 1, 0)$). Previous studies have shown that the toggle triad motif is more susceptible to various perturbations due to the inherent frustration in the network~\cite{harlapur2022functional, doi:10.1098/rsif.2020.0631}. Here, we see that the MRT distribution of TT starts to change for $\sigma > 0.01$, showing a higher sensitivity to noise than TS and TSSA motifs (Figure~\ref{fig:2}E, F, Figure~\ref{fig:2S1}C-D). At $0.01 \leq \sigma \leq 0.1$, the MRT of single-high states starts to go down and that of double-high states starts to come up, still qualitatively retaining the properties of the phenotypic landscape. However, $\sigma \geq 0.5$ leads to an increase in the MRT of the all-high state ($(1, 1, 1)$) in both TT and TTSA, similar to that of TS and TSSA, with no emergence of the all-low state ($(0, 0, 0)$). Overall, we find that the phenotypic landscape of both binary and tertiary cell-fate GRNs remains robust to stationary noise of low to moderate levels of $\sigma$. The response to larger noise can be better understood based on our analysis of additive noise given in the next section. 
+
+
+\subsection{Additive noise reshapes the phenotypic landscape toward high-expression states, modulated by reachability and threshold margin}
+
+Unlike stationary noise, additive noise starts to change the phenotypic landscape even at low $\sigma$ values. For the toggle switch across a majority of the parameters, we see a decrease in the MRT of single-high states ($(0, 1)$ and $(1, 0)$) and an increase in the hybrid all-high ($(1, 1)$) state MRT (Figure~\ref{fig:3}A). The mean MRT of all-high state crosses 0.5 for $\sigma > 0.001$ (0.1\% of the $\lambda$ range) and stabilizes at 0.75 for $\sigma > 0.1$. Given the biological relevance of hybrid states showing co-expression of all nodes in developmental and pathological contexts, this shift in the phenotypic landscape of cell-fate decision motifs is a very significant finding. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Fig3.jpg}
+    \caption{\textbf{Effect of Additive noise on the phenotypic landscape of cell-fate decision networks}
+    \textbf{(A)} MRT of $(1, 1)$ and $(1, 0)$ states vs.\ noise level for the TS network, individual parameter-set trajectories (gray) with population mean (dashed).
+    \textbf{(B)} MRT boxplots for the TS network, monostable vs.\ bistable parameter sets, all-high vs.\ single-high states, with paired Wilcoxon significance brackets; ``*'' $p-value<0.05$, ``ns'' not significant. 
+    \textbf{(C)} Reachability scatter for TS monostable parameter sets at $\sigma = 0.1$: each node's (max expression $-$ threshold) margin on the x/y axes, colored by MRT of the (1,1) state.
+    \textbf{(D)} Spearman correlation between the minimum reachability margin across nodes and MRT of the (1,1) state, across four noise levels (0.001, 0.01, 0.1, 1), TS monostable parameter sets.
+    \textbf{(E)} MRT vs.\ noise level for TT and TTSA, single-high $\to$ double-high $\to$ all-high state classes shown as Mean $\pm$ SD across all parameters, with paired Wilcoxon significance brackets between adjacent classes; ``*'' $p-value<0.05$, ``ns'' not significant. 
+    \textbf{(F)} Heatmap of the Spearman correlation between minimum reachability margin and MRT of the all-high state, across networks (TS, TSSA, TT, TTSA), noise levels, and stability class (monostable vs.\ multistable); ``*'' $p-value<0.05$, ``ns'' not significant.
+}
+    \label{fig:3}
+\end{figure}
+
+Interestingly, we note that while most parameters gravitate towards a high MRT for the all-high state for $\sigma \geq 0.01$, a smaller fraction of the parameters also show a significantly lower MRT of all-high state (Figure~\ref{fig:3}A). When we separately studied the parameter sets based on their multistability characteristics under deterministic dynamics, we found that monostable states always had a lower MRT for all-high states under additive noise as compared to that of multistable parameter sets (Figure~\ref{fig:3}B). Given how readily bistable parameters converge to the all-high state, we hypothesized that the reduced MRT for monostable states could possibly arise because the all-high state is not accessible to some monostable parameter sets.  The upper limit of node expression in the ODE models we simulated is the ratio of the corresponding production and degradation rates. As we use a threshold derived from the ensemble steady state expression levels, it is possible that some parameter sets are sampled such that the upper limit of expression for one of the nodes defined by the production and degradation rates is lower than the threshold. Since the bistable parameters consist of two single-high states, bistable parameter sets never have this shortcoming. 
+
+Thus, we wanted to understand whether it really is the case that some of the sampled monostable parameters rtefecy systems that cannot access the all-high state and in turn, if the access to all-high state is sufficient for the additive noise to push the system towards all-high state. To do this, we plotted the sampled parameter sets on the axes of ``reachability'' defined by the difference between the upper limit of a node's expression level and the threshold used to discretize that node. Reachability was satisfied across all sampled parameters — the production/degradation-derived expression ceiling exceeded threshold in every case. The observed variation in all-high MRT among monostable parameter sets therefore cannot be attributed to reachability itself (Figure~\ref{fig:3}C, \ref{fig:3S1}A). However, we see that the MRT of the all-high state increases with increasing distance between the maximum allowed value of the nodes and the corresponding thresholds. Across $\sigma$ values, the MRT of the all-high state correlated strongly positively with the smallest of the two difference values (Figure~\ref{fig:3}D). 
+
+TSSA showed a similar increase in hybrid (all-high) state MRT under additive noise. At low to moderate $\sigma$, TS and TSSA showed very similar MRT distributions. At high $\sigma$ values, TSSA monostable parameter sets showed a higher MRT of all-high states compared to TS (Figure~\ref{fig:3S1}B, i). This increase can be attributed to the inherent affinity TSSA has towards all-high state as discussed earlier. For TT and TTSA, we observed a transition of states from single-high to double-high to all-high, suggesting that while additive noise does push the system towards the all-high state, the transformation can become more gradual as the network size increases (Figure~\ref{fig:3}E, \ref{fig:3S1}B, ii, iii). TT and TTSA have similar MRT distributions for low to moderate values of $\sigma$, with similar average MRT of all-high and double-high states. But at high values of $\sigma$, TTSA showed a higher MRT of the all-high state, with the double-high state average MRT approaching 0. TT on the other hand maintains a non-zero average MRT of double-high states even at higher $\sigma$ values (average MRT across all parameter sets - all-high 0.7 vs double-high 0.3 for TT vs all-high 0.9 and double-high 0.15 for TTSA). For all networks, we found a strong positive correlation between the difference quantity (max node expression minus threshold expression of the node) and the MRT of all-high states in monostable parameter sets. Multistable parameter sets showed relatively weaker correlations (Figure~\ref{fig:3}F). Overall, our analysis clearly shows that additive noise increases the MRT of hybrid, all-high states in cell-fate decision networks. 
+
+\subsection{Increased MRT of all-high states is caused by both the $\lambda$ distribution and stochasticity}
+
+Following the strong correlation we observed between parametrically determined upper bounds of node expression and the MRT of all-high state, we hypothesized that the drastic increase in the MRT of all-high states in comparison to deterministic simulations might also be explained by variation in the parameter space. Additive noise models a random walk in $\lambda$, bounded between 0.01 and 1 for inhibitory links and 1 and 100 for activating links. Any step crossing the boundary is absorbed at the boundary. For example, if $\lambda(t) + \eta(t) < 0.01$ then $\lambda(t+dt) = 0.01$. Due to the nature of random walk, the variance of $\lambda$ increases over time, unlike the stationary noise case. Furthermore, the absorbing boundaries increase the chances of $\lambda$ being at either of the borders than in the interior. The probability density of $\lambda$ at the borders increases with increasing $\sigma$, as at larger $\sigma$ values, there is a higher chance of taking larger $\lambda$ steps and correspondingly higher chances of hitting the boundaries (Figure~\ref{fig:3b}A). Same boundary conditions are applied to other noise forms as well, and we see such boundary behavior in stationary noise at high $\sigma$, where $\lambda$ localizes at either of the boundaries. While $\lambda$ closer to zero leads to a very strong inhibition by drastically reducing the net production rate, $\lambda$ closer to 1 leads to very weak inhibition and lets the production rate reach the highest values. Despite this symmetry in the emergent $\lambda$ distribution, the shift in the landscape is asymmetric towards all-high states. One potential reason could be the way the $\lambda$ parameter is sampled in RACIPE for inhibitory interactions. The fold-change parameter is first sampled between 1 and 100 and then the inverse of that number is used for inhibitory links. Thus the distribution of $\lambda$ for inhibitory links is tailed heavily towards lower values of $\lambda$ with a mean of $\approx0.05$. As the stationary distribution of $\lambda$ in additive noise has a mean of 0.5, as a simulation progresses the inhibitory links experience a significant increase in the average $\lambda$, which in turn leads to weakening of the inhibition.
+
+Given the above, we wanted to know if this shift in $\lambda$ distribution is enough to completely explain the increase in the MRT of all-high states. For each parameter set used for stochastic simulations, we sampled $\lambda$ from the additive noise stationary distribution shown in (Figure~\ref{fig:3b}A). For each such $\lambda$ combination, we simulated the networks deterministically ($\sigma = 0$) at multiple randomly sampled initial conditions and calculate the mean frequency of each discrete state across initial conditions, which is further averaged over different $\lambda$ values. While the original RACIPE parameters for TS and TT have a very small fraction of parameter sets with non-zero frequency of all-high states, the majority of resampled simulations led to a non-zero frequency of all-high states, reaching up to 0.9 in TS and up to 0.75 in TT (Figure~\ref{fig:3b}B, \ref{fig:3bS1}A). For TSSA and TTSA, which inherently stabilize the all-high states due to the self-activation links, resampled simulations still led to an increase in the frequency of all-high states for a majority of the parameter sets (Figure~\ref{fig:3b}B, \ref{fig:3bS1}A). Thus, the change in the $\lambda$ distribution does significantly contribute to increasing the MRT of all-high state. This might be relevant is a GRN is subjected to the onset of regulatory noise due to its interaction with some additional dynamical factor
+
+Interestingly, however, when we compared the MRT of all-high states in stochastic simulations and the resampled deterministic simulations, we found that the stochastic MRT was pushed even higher across a large fraction of parameters for all four networks (Figure~\ref{fig:3b}C, i, \ref{fig:3bS1}B). Furthermore, a sigmoidal relationship emerges between the stochastic MRT and the deterministic resampled frequency of all-high state (Figure~\ref{fig:3b}C, ii, \ref{fig:3bS1}C). Below a threshold value of all-high state frequency under deterministic simulations with resampled $\lambda$, stochastic MRT is lower than or equal to deterministic frequency, and vice-versa (Figure~\ref{fig:3b}C). The specific threshold MRT is network and $\sigma$ dependent (Figure~\ref{fig:3b}C, ii, \ref{fig:3bS1}C). Across all four networks and $\sigma$ values, the MRT of all-high states increased significantly from original to resampled deterministic to stochastic simulations (Figure~\ref{fig:3b}D). We further tested the effect of stochasticity by reducing the frequency of update of $\lambda$, i.e., the $dt$ value in Equation~\ref{eq:lambda}, from 0.01 to 1.0 and 10.0 (Figure~\ref{fig:3bS3}). As the frequency of update decreased, the system had more time to relax towards a steady state, thereby losing the effects of stochasticity. Correspondingly, we see a reduction in the MRT of all-high state and increase in the MRT of the native states of these networks at lower $\sigma$ values. At higher $\sigma$ values, the noise compensates for the relaxation, pushing the systems back to hybrid states. These results indicate that, while the distribution of $\lambda$ does shift the landscape towards the all-high hybrid state, the stochastic simulations serve to further enhance this shift. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figs/Fig4.jpg}
+    \caption{\textbf{The additive noise effect combines a $\lambda$-distribution shift with an additional stochastic contribution.}
+    \textbf{(A)} Distribution of $\lambda$ (Hill-function threshold) values across the parameter ensemble, for (i) inhibitory and (ii) activation-type edges, at four noise levels (Additive noise).
+    \textbf{(B)} Distribution of the resampling effect - difference in deterministic MRT after $\lambda$-resampling and the original point-$\lambda$ deterministic MRT for the all-high state, shown as violin plots across all noise levels, for TS, TSSA, TT, and TTSA.
+    \textbf{(C)} (i) Same as B, but for Stochastic effect (stochastic MRT minus resampled-$\lambda$ deterministic MRT). (ii) Scatter plot of resampled-$\lambda$ deterministic vs.\ stochastic MRT of the all-high state at $\sigma = 0.1$, for TS and TT, illustrating the underlying sigmoidal relationship the violin's signed difference alone does not show. Each point is a parameter set.
+    \textbf{(D)} All-high-state MRT (mean $\pm$ SD over all monostable and multistable parameter sets) for TS, TSSA, TT, and TTSA, comparing the original point-$\lambda$ deterministic run, the $\lambda$-resampled deterministic run, and the full stochastic simulation; faceted by stability class of the parameter sets (rows) and noise level (columns: 0.001, 0.01, 0.1), with paired Wilcoxon significance brackets; ``*'' $p-value<0.05$, ``ns'' not significant.}
+    \label{fig:3b}
+\end{figure}
+
+
+To isolate the mechanism by which regulatory ($\lambda$) noise redistributes occupancy toward high-expression states, we analyzed the toggle switch in the Boolean limit of node expression and $\lambda$ distribution, where the exact stationary distribution can be computed in closed form for both the deterministic (fixed-$\lambda$) and stochastic (fluctuating-$\lambda$) cases (see Supplementary section \ref{sec:boolean}). We noticed a crucial asymmetry in the stochastic simulations that is absent in deterministic simulations. For an inhibitory edge, the shifted Hill function entering the production term is
+\begin{equation}
+  H^{S}(x,\lambda) \;=\; H^{-}(x) \;+\; \lambda\,H^{+}(x),
+  \qquad H^{+}(x) \equiv 1 - H^{-}(x),
+  \label{eq:hshift}
+\end{equation}
+Under the extreme case of $\sigma=1$, where the $\lambda$ walk is confined to the two boundaries of its range, $\lambda\in\{\lambda_{\min},\lambda_{\max}\}$ with $\lambda_{\min}\approx 0.01$ and $\lambda_{\max}=1$. Evaluating Eq.~\eqref{eq:hshift} at these two limits exposes a structural asymmetry:
+\begin{align}
+  \lambda = 1: \quad & H^{S}(x,1) = H^{-}(x)+H^{+}(x) = 1
+    && \text{(independent of } x\text{)},\\
+  \lambda \approx 0.01: \quad & H^{S}(x,0.01) \approx H^{-}(x)
+    && \text{(depends on } x\text{)}.
+\end{align}
+The $\lambda=1$ boundary abolishes regulation \emph{unconditionally}: the target node is produced at its full rate regardless of the regulator's expression. The $\lambda\approx 0$ boundary imposes repression only \emph{conditionally}: it lowers the target's production rate only when the regulator $x$ is high, and has essentially no effect when the regulator is low ($H^{-}(x)\!\approx\!1$). An excursion toward de-repression ($\lambda=1$) therefore always ``fires,'' whereas an excursion toward repression fires only when the partner node happens to be expressed. This unconditional-up / conditional-down asymmetry is the microscopic origin of the enhancement. We see this clearly in the Boolean approximation of node expression (i.e., each node can only take two expression levels - either 1 or 0). In the extreme $\sigma$ condition, resampled deterministic simulations can only converge to the all-high state if they start from the all-high state (a frequency of 0.25). However, in stochastic simulations, asymmetry in the response of shifted Hill function ensures that a strongly repressed state is maintained only when the source node is on, or when both are off. This asymmetry leads to a higher probability (equivalent to MRT) of all-high state in the stationary distribution of the stochastic process. Even at lower values of $\sigma$, this asymmetry holds true by making the de-repressed state more easily accessible to the nodes of the network than the repressed states. Therefore, we conclude that the drift in the phenotypic landscape caused towards the all-high state caused by additive noise is a combined outcome of the shift in the parameter space and the asymmetry exploited by stochastic simulations. 
+
+
+\subsection{Multiplicative noise drives the phenotypic landscape toward single-high states - an opposite effect as that of additive noise}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Fig5.jpg}
+    \caption{Effect of multiplicative noise on the phenotypic landscape of cell-fate decision networks.
+    \textbf{(A)} MRT vs.\ noise level for the TTSA network, single-high and double-high states.
+    \textbf{(B)} Average MRT of single-high vs.\ double-high states vs.\ noise level, for TS, TSSA, TT, and TTSA.
+    \textbf{(C)} Same, for the 4-node networks TT4 and TS4.
+    \textbf{(D)} Stochastic effect (as in Fig.\ 4C(i)) for the single-high state, across noise levels, for TS, TSSA, TT, TTSA, TT4, and TT4SA.
+}
+    \label{fig:4}
+\end{figure}
+
+We then analyzed the effect of multiplicative noise in $\lambda$ on the phenotypic landscape. Briefly, multiplicative noise models a random walk in $\lambda$ with a state-dependent step size. For inhibitory interactions, the noise amplitude is smaller near $\lambda \approx 0$ and larger near $\lambda \approx 1$. This asymmetry makes $\lambda$ approach 0 over time, unlike additive noise where $\lambda$ visits both the boundaries and the intermediate values at intermediate $\sigma$ (Figure~\ref{fig:1}D). While this concentration of $\lambda$ near $0$ may seem like a deterministic behavior, we will see below that stochasticity has a strong impact on the outcome of multiplicative noise, even more so in certain cases than additive noise. 
+
+Intuitively, multiplicative noise enhances repression in the edges of toggle switch network, thereby driving the system strongly towards single-high states (Figure~\ref{fig:4S1}A, i). This does not affect the phenotypic landscape of TS, as single-high states were dominant to begin with (Figure~\ref{fig:1}C). TSSA also showed a similar gravitation towards single-high states despite TSSA also stabilizing the all-high state in absence of noise (Figure~\ref{fig:4S1}A, ii). The enhancement of single-high state by multiplicative noise is prominently seen in the case of TT and TTSA. Both these networks have a significantly high frequency of double-high state along with single-high state in the absence of noise (Figure~\ref{fig:1}C). In the presence of multiplicative noise, both these networks converge to single-high states, achieving a high MRT by $\sigma = 0.01$ (Figure~\ref{fig:4S1}A, iii,~\ref{fig:4}A). Thus, consistently across the four networks studied so far, we found that multiplicative noise promotes the frequency of single-high states (Figure~\ref{fig:4}B). At very high $\sigma$ values, TTSA shows a decrease in the frequency of single-high states with a corresponding increase in double-high state MRT. At high $\sigma$, $\lambda$ starts to approach higher values purely based on the fluctuations (Figure~\ref{fig:4S1}B). These excursions weaken enough inhibitory interactions to increase the occupancy of double-high states, but they are not sufficiently widespread to permit all nodes to be highly expressed simultaneously. We therefore observe an increase in double-high-state MRT without the emergence of the all-high state.
+
+To further validate this result, we simulated three new networks that are seen in cell-fate decision systems. The first network is an extension of TT network in the context of T cell differentiation, including the regulation of T-reg cells through the transcription factor Foxp3. The resultant four-node network is referred to as toggle tetrahedron (TT4), and is composed of four nodes mutually inhibiting each other. Previous studies have explored this network as well as its self-activation counterpart (TT4SA), our second 4-node network, as candidates for four-fate differentiation~\cite{Duddu2024MultistabilityDifferentiation} (Figure~\ref{fig:4S1}C, i, ii). However, this and other candidate networks for multi-fate systems have so far failed to support the emergence of single-high states representative of fully differentiated cell-fates. TT4 and TT4SA, specifically support only double-high steady states (Figure~\ref{fig:4S1}D). Given the properties of multiplicative noise seen so far, we wanted to study if the double-high states of TT4 and TT4SA could also be driven towards single-high states. The third network is a combination of two mutually inhibiting toggle switches that we refer to as TS4, a representation of coupled cell-fate decision systems often seen in biology~\cite{pasani2020hybrid, hari2022emergent}. TS4 also supports double-high states (Figure~\ref{fig:4S1}D). However, unlike TT4 where all six possible double-high states have equal frequency, TS4 only supports a limited number of double-high states that represent the coexistence of the two binary cell-fate systems. Unlike sequential differentiation, coupled systems are expected to have co-existing phenotypes governed by the network structure. Thus, we asked whether multiplicative noise pushes these coexisting double-high states into single-high states, irrespective of the topology. Under additive noise, all three networks lead to a consistent increase in all-high state, despite the differences in the network structure (Figure~\ref{fig:4S2}A). Under multiplicative noise, TT4 saw an increase in the single-high state MRT with $\sigma$, followed by a decrease brought on due to the boundary sampling of $\lambda$ (Figure~\ref{fig:4}C, \ref{fig:4S2}B). However, TT4SA maintained a double-high dominant landscape (Figure~\ref{fig:4S2}B). TT4SA did show a decrease in double-high state MRT as multiplicative noise increased, with a corresponding increase in the MRT of single-high states. However, this change never put single-high states in a dominant position. Furthermore, TS4 also maintained a double-high dominant landscape, with no change in the MRT with $\sigma$, preserving the behavior of internal toggle switches. Thus, unlike additive noise, the effect of multiplicative noise on the phenotypic landscape is strongly dependent on the network topology. 
+
+Given the potentially deterministic nature of multiplicative noise, we tried to dissociate the effects of the altered $\lambda$ distribution from that of stochasticity in these simulations. Thus, we generated resampled deterministic simulations similar to that of Figure~\ref{fig:3b}C. For TS and TSSA, the difference between stochastic and resampled deterministic MRT was very low, as expected (Figure~\ref{fig:4}D). However, TT, TTSA and TT4 showed large differences even at lower values of $\sigma$ (< $0.05$, Figure~\ref{fig:4}D). In comparison, additive noise simulations required higher  $\sigma$ ($\geq 0.1$) to achieve this level of difference (Figure~\ref{fig:3b}C). TT4SA and TS4 also showed minimal difference, in accordance with their MRT trends. These differences were mirrored by corresponding decreases in the MRTs of single-high states (Figure~\ref{fig:4S2}D, E). Interestingly, however, the MRTs of original deterministic simulations and resampled simulations were nearly identical (Figure~\ref{fig:4S2}F, G), indicating that this ``fixation'' towards terminal differentiation seen in multiplicative noise is entirely due to the stochasticity, unlike the additive noise where the $\lambda$ distributions also contributed to the increase in MRT of all-high states. We further tested this behavior by simulating these networks at larger dt values (Figure~\ref{fig:4S3}). Unlike additive noise, increasing dt did not reduce the excess of stochastic MRT over the resampled-deterministic MRT for multiplicative noise. Since larger dt gives node expression more time to relax toward the steady state set by the current $\lambda$ before the next update, this indicates that multiplicative noise's dynamical contribution — unlike additive noise's — is not primarily a consequence of expression lagging behind a fast-moving $\lambda$. The specific mechanism by which individual stochastic realizations of $\lambda$ produce this persistent excess remains to be characterized, but our results indicate it is distinct from the timescale-separation (non-adiabatic) effect identified for additive noise.
+
+% We wanted to further understand the nature of these transitions - which single-high states do the hybrid double-high states converge to? Can multiple single-high states be achieved from a given double-high state - i.e., if we think of the double-high state as a progenitor, can it always differentiate into multiple terminal phenotypes? We chose to do this analysis on TT4, as this network has the highest frequency of double-high and lowest frequency of single-high states, thereby giving us the cleanest signal with a large dataset. TT4 predominantly allows monostable and bistable double-high steady states. We first analyzed the monostable steady states, and found that the single-high states emergent from the application of multiplicative noise were always the closest single-high states from the double-high states, achieved by pushing the expression of one of the high expression nodes to low. Bistable states of TT4 are composed of "mirror" states, i.e., different pairs of nodes have high expression in both the states. Therefore, the bistable double-high states have access to all four of the single-high states. We further find that while all these parmeters converge to single-high states upon application of appropriate multiplicative noise, a large fraction of parameters a small fraction of parameter sets (~19\% for TT, 33\% for TT4) converge to two single-high states in different instances of simulations. We further studied the transitions observed in multiplicative noise simulations and found that the only transitions are between the double-high states and single-high states, and never between the two single-high states. Furthermore the number of transitions observed are also very small (1 in every x time steps). Since we know that the initial time steps are the most noisy in multiplicative noise, most of these transitions would have happened initially, resulting in stable terminal states achieved after long-term application of multiplicative noise. We were able to confirm these results for TT, TTSA and TT4SA. Therefore, we concluded that multiplicative noise can push the landscape of cell-fate decision systems towards single-high, terminally differentiated states. 
+
+
+\subsection{Effects of regulatory noise on the phenotypic landscape scale to larger biological networks}
+
+While the toggle switch and TSSA are well-studied representatives of binary cell-fate decision systems, the regulatory circuits underlying real cell-fate transitions are rarely small or as isolated. Phenotypes emerge from coordinated expression across tens to hundreds of genes, many of which function as transcription factors that individually regulate transitions between phenotypes. It is therefore important to ask whether the noise-driven dynamics observed in small motifs generalize to larger, more complex GRNs. To address this, we asked whether biological GRNs governing two well-studied cell-fate decisions -- epithelial-mesenchymal plasticity~\cite{hari2022landscape} and Gonadal cell-fate decision~\cite{rios2015boolean} -- behave similarly to our studied examples.
+
+Large-scale GRNs underlying binary cell-fate decisions often share a common coarse-grained structure: nodes can be partitioned into two ``teams'', with intra-team interactions predominantly activating and inter-team interactions predominantly inhibitory (Figure~\ref{fig:5S1}). At a coarse-grained level, this structure is analogous to a TSSA, with each super-node representing the collective of genes defining one phenotype. The biological GRNs adhere to this structure at a coarse-grained level as well. One specific EMT model, a 23-node network underlying the epithelial-mesenchymal transition (EMT)~\cite{Huang2017}, has two teams of nodes corresponding to the epithelial and mesenchymal phenotypes respectively. In fact, we previously showed that many large-scale EMT GRNs constructed to date could be coarse-grained into two mutually inhibiting teams, and that the presence of these teams gives rise to a robust, low-dimensional phenotypic landscape despite the size of these networks~\cite{hari2022landscape,tripathi2023minimal,hari2023low}. We also showed that these teamed networks are robust to noise in the network state, and extensive mutations disrupting the network of positive feedback present in these GRNs are required to stabilize what is otherwise a weakly stable hybrid phenotype~\cite{rashid2022network, Hari2025APlasticity}. The 19-node gonadal network, governing cell-fate decisions between Sertoli and Granulosa fates that are upstream of male and female development respectively~\cite{rios2015boolean}, has two teams of nodes corresponding to Sertoli and Granulosa phenotypes, and carries the advantages of team structure across simulation formalisms~\cite{Hari2025LowNetworks, Shyam2025MutuallyNetworks}.
+
+Given the size of these networks, exploration of regulatory noise using similar ODE based models as with small-scale networks earlier would be computationally infeasible. Hence, we utilized a threshold-based Boolean formulation to analyze these networks instead \cite{FontClos2018}. In this formalism, each node is allowed to take either -1 (low) or +1 (high) expression levels. The edges of the network are given a weight of +1 (activation) or -1 (inhibition). The state of the network is updated asynchronously, based on an Ising-model-inspired, additive rule (see Methods). The binary state vectors ($S \in \{0, 1\}^N$) were converted into team scores --- the fraction of nodes in each team that are active --- and a phenotypic score defined as the difference between the two team scores. Values near $\pm 1$ indicate terminal phenotypes (epithelial/mesenchymal or Sertoli/Granulosa), while values near 0 indicate hybrid states. Under deterministic conditions, the phenotypic landscape is largely concentrated in regions corresponding to terminal states with team scores $\pm$ 1. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Figure4.jpg}
+    \caption{\textbf{Regulatory noise in large-network Boolean models} A) Representative trajectories of the phenotypic score for EMT network (i) and Gonadal network (ii) at additive noise of 0.05 magnitude. B) Density of team scores across the representative trajectory of the EMT network, with frequency represented on a scale from low (blue) to high (yellow). WT represents the frequency of team score configurations obtained from the steady states of the unperturbed network, while Rand represents that of the simulations corresponding to the trajectories in A. C) Relative frequency (equivalent to MRT) of different phenotypic scores across 1000 simulation trajectories of additive noise over simulation time for (i) EMT network, (ii) Gonadal network. D) Same as C, but for Multiplicative and Stationary noise for EMT network.}
+    \label{fig:5}
+\end{figure}
+
+Under additive noise, both biological networks show behavior consistent with the small network analysis. Trajectories initiated from terminal phenotypes of the unperturbed network rapidly migrate to hybrid phenotypic scores and remain there throughout the simulation, regardless of initial condition (Figure~\ref{fig:5}A). The transition occurs sharply: even at $\sigma = 0.001$, terminal state frequencies are markedly reduced (Figure~\ref{fig:5}B), and by $\sigma = 0.005$ the phenotypic score distribution has saturated into a stable hybrid-dominated configuration that changes little with further increases in noise (Figure~\ref{fig:5}C, \ref{fig:5S2}A). Multiplicative and stationary noise produce minimal disruption to the phenotypic landscape, with trajectories retaining high terminal state frequency similar to the unperturbed network across all noise levels tested (Figure~\ref{fig:5}C, \ref{fig:5S2}B, C).
+
+The two networks differ, however, in the characteristics of their hybrid states. In the EMT network, the hybrid phenotypic score distribution retains some polarization toward $\pm 0.5$--$0.75$, reflecting a tendency for one team to remain more active than the other even in the hybrid regime (Figure~\ref{fig:5}C(i), B). In the Gonadal network, the distribution collapses tightly to near zero, indicating near-equal team expression with no residual polarization (Figure~\ref{fig:5}C(ii)). Both networks have similar densities and team structures to each other, suggesting that network size and specific wiring topology beyond the team structure are likely contributors to this difference. A full characterization of the structural features that determine the degree of polarization within the hybrid regime remains an open question. Overall, our results indicate that regulatory noise can have a significant impact on the phenotypic landscape, with the direction of the impact determined by the nature and the magnitude of the noise. While additive noise can drive the cell-fate decision system up towards an undifferentiated phenotype, multiplicative noise can drive the system down towards a terminally differentiated state (Figure~\ref{fig:schematic}). 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Schematic.png}
+    \caption{\textbf{Schematic representation of regulatory-noise-induced remodeling of the phenotypic landscape.} The landscapes reimagine Waddington’s phenotypic landscape \cite{waddington1953} in the context of the toggle triad. In the deterministic (WT) system (center), hybrid (double-high) and terminally differentiated (single-high) states constitute stable attractors. Additive noise (left) reshapes the landscape by stabilizing an undifferentiated all-high state, whereas multiplicative noise (right) drives the transitions from hybrid states to terminally differentiated states. Colored sectors indicate the nodes expressed in each state.}
+    \label{fig:schematic}
+\end{figure}
+
+\section{Discussion}
+
+Historically, regulatory interactions in gene networks models have been remarkably successful at predicting cell-fate outcomes from EMT circuits to Boolean perturbation frameworks. Nonetheless, stochasticity in kinetic parameters is unavoidable. Therefore, here, we introduced regulatory noise into GRN models by allowing the fold-change parameter governing regulatory efficacy of a TF to be a stochastic process. We found that regulatory noise can significantly alter the phenotypic landscape, with qualitatively different outcomes depending upon the \emph{mode} of regulatory noise. Across cell-fate decision motifs, additive noise drove networks toward hybrid co-expression states, multiplicative noise favored single-high terminal states, and stationary noise largely preserved the deterministic landscape at low-to-moderate noise. These effects were reproduced qualitatively in two well-characterized biological GRNs, namely namely EMT and gonadal cell-fate determination, suggesting that regulatory stochasticity can act not merely as a perturbation around a fixed landscape, but as a determinant of which regions of that landscape are occupied.
+
+% \paragraph{Regulatory noise can cloud the inference of network topology.}
+Prior theoretical work has shown that noise can alter the effective bistable range of regulatory circuits and generate switch-like population distributions even in deterministically monostable systems~\cite{OchabMarcinek2010w}. Our results extend this idea to stochasticity in the regulatory interactions themselves. The $(1, 1)$ co-expression state, negligible in the deterministic toggle-switch landscape, becomes dominant under additive noise, whereas multiplicative noise can generate single-high states in networks such as the toggle tetrahedron where these states are not stable deterministically. Thus, similar population-level expression patterns can arise from different combinations of network topology and regulatory-noise regime. A positive correlation between two genes, for example, need not imply mutual activation if stochasticity of mutual inhibition can generate the same pattern. Inferring regulatory wiring from steady-state expression data without accounting for regulatory stochasticity may therefore attribute noise-induced phenotypes to structural features that are not actually present.
+
+% \paragraph{Regulatory noise exposes a hierarchy of molecular timescales.}
+The three noise modes studied here can be viewed most usefully not as literal descriptions of individual molecular mechanisms, but as phenomenological limits of how fluctuations in regulatory efficacy evolve in time. This distinction is particularly relevant for intrinsically disordered TFs, for which regulatory function emerges from conformational ensembles spanning a hierarchy of timescales. Rapid conformational fluctuations may be effectively averaged over by the slower transcriptional response, whereas post-translational modifications can stabilize particular conformers for minutes to hours~\cite{Kulkarni2022, Kulkarni2019}. Still slower processes, including chromatin remodeling and epigenetic feedback, can provide cellular memory across timescales much longer than that of an individual binding event.
+
+Stationary noise represents the regime closest to the conventional deterministic approximation: regulatory parameters fluctuate around a preferred set of values and therefore retain memory of its underlying interaction strength. At low-to-moderate noise, such fluctuations have little effect on phenotype occupancy, consistent with a separation of timescales in which sufficiently rapid or sufficiently constrained molecular fluctuations are averaged into an effective deterministic parameter. Only at high noise does boundary sampling appreciably reshape the landscape.
+
+Additive noise represents the opposite limit. Here, $\lambda$ undergoes a bounded random walk whose long-term distribution loses memory of its initial value. For inhibitory interactions, this progressively increases access to weakly repressive configurations and drives the system toward hybrid co-expression states. A possible molecular analogue is unconstrained sampling of an IDP conformational ensemble or regulatory configurations generated by non-specific binding, in which successive changes in effective regulatory strength are only weakly anchored to the previous interaction state~\cite{Ferrie2022Structure-functionRegulation, Holehouse2023TheRegions}. Importantly, our $\Delta t$ analysis shows that the resulting phenotype shift depends on the relative timescales of parameter fluctuation and expression relaxation. When $\lambda$ changes rapidly enough that expression cannot fully relax to the instantaneous landscape, additive noise produces an additional hybrid-state enrichment beyond that predicted by the stationary $\lambda$ distribution alone. Thus, the ratio between the correlation time of regulatory fluctuations and the response time of the downstream GRN may itself be an important determinant of cellular plasticity.
+
+Multiplicative noise produces a qualitatively different outcome because the magnitude of each perturbation depends on the current value of $\lambda$. For inhibitory interactions this creates a self-reinforcing drift toward stronger repression and consequently toward single-high states. PTM-mediated stabilization of particular IDP conformers provides one possible conceptual analogue: phosphorylation and other modifications can stabilize particular conformational substates over timescales substantially longer than rapid conformational exchange~\cite{Kulkarni2022, Kulkarni2019}, allowing past molecular states to influence future regulatory efficacy. We do not interpret multiplicative noise as a direct model of any specific modification process; rather, it captures the qualitative consequences of introducing state-dependent memory into the evolution of regulatory strength. Notably, its excess stochastic effect persists even when parameter updates are slowed, indicating a dynamical mechanism distinct from the non-adiabatic expression lag that contributes to the additive-noise phenotype.
+
+This timescale perspective also clarifies why the stochastic simulations cannot be reduced to parameter resampling. Deterministic simulations sampled from the noise-induced $\lambda$ distributions reproduced only part of the observed phenotype redistribution. Both additive and multiplicative noise produced state occupancies beyond those predicted by their stationary parameter distributions, demonstrating that the temporal ordering and persistence of regulatory states matter in addition to the values sampled. Regulatory noise is therefore characterized by at least three quantities: its magnitude, its dependence on the current regulatory state, and its timescale relative to gene-expression dynamics.
+
+% \paragraph{The effect generalizes to biological cell-fate networks.}
+The additive-noise phenotype generalized from small motifs to the 23-node EMT and 19-node gonadal cell-fate networks despite the change from an ODE to a Boolean formalism. In both networks, additive noise sharply reduced terminal-state occupancy and generated hybrid-dominated landscapes, whereas stationary and multiplicative noise caused comparatively little disruption. The specific hybrid states nevertheless differed: the EMT network retained partial polarization toward one of its two regulatory teams, whereas the gonadal network approached approximately equal activation of both teams. Thus, the tendency of additive noise to increase phenotypic mixing appears robust across network scales, while the particular hybrid configurations accessed remain constrained by network structure.
+
+This result is especially relevant to epithelial--mesenchymal plasticity. Hybrid epithelial/mesenchymal (E/M) states are associated with stemness, collective migration, metastatic competence, and therapy resistance~\cite{Pastushenko2019EMTMetastasis, jolly2015implications, pasani2020hybrid, Sahoo2021}. Our results identify fluctuations in regulatory efficacy as one possible route to their enrichment: additive-like noise is sufficient to shift both an isolated bistable motif and a full EMT network toward hybrid phenotypes without changing network topology. Mutations affecting intrinsically disordered regions may therefore alter phenotype distributions not only through conventional gain- or loss-of-function effects, but also by changing the magnitude, persistence, or correlation structure of fluctuations in regulatory activity~\cite{Kulkarni2023IntrinsicallyLater}.
+
+% \paragraph{Chromatin state may control the transition from exploration to locking.}
+The connection between regulatory noise and phenotype is likely to extend beyond TF conformational dynamics to the chromatin environment in which regulatory interactions occur. Pluripotent and progenitor cells maintain relatively open, dynamic chromatin and broadly accessible transcriptional programs~\cite{Meshorer2006HyperdynamicCells, Efroni2008GlobalCells}. Recent work further suggests that fluctuations in chromatin accessibility can actively enable ectopic or multi-lineage-like transcriptional programs~\cite{Gamble2025}. Such a permissive chromatin state increases the number of genomic configurations accessible to TFs and may therefore enhance fluctuations in effective regulatory strength. At a coarse-grained level, this resembles the additive-noise regime: regulatory interactions explore a broader range of efficacies, weakening the confinement imposed by the deterministic network and increasing access to hybrid states.
+
+Differentiation, however, is accompanied not simply by reduced transcriptional heterogeneity but by progressive stabilization of regulatory programs through chromatin remodeling and epigenetic feedback. This introduces a much slower form of memory than IDP conformational fluctuations. A useful example comes from EMT, where epigenetic feedback has been shown theoretically and experimentally to make phenotype transitions increasingly difficult to reverse. In earlier work on the miR-200/ZEB EMT circuit, prolonged TGF-$\beta$ exposure progressively reduced the ability of cells to revert toward the epithelial state following withdrawal of the inducing signal, consistent with epigenetic feedback stabilizing the mesenchymal program \cite{Jia2019, Jia2020EpigeneticEMT}. Such ``locking'' changes the problem from one of fluctuations around a regulatory state to one in which the history of the system progressively reshapes its future transition probabilities.
+
+This suggests a hierarchy of regulatory dynamics. Fast IDP conformational fluctuations can continuously perturb interaction strengths; intermediate-timescale modifications can bias the conformational ensemble and introduce regulatory memory; and slower chromatin or epigenetic changes can stabilize the resulting transcriptional state. The same GRN may therefore behave differently without any change in topology depending on which timescale dominates. An open, rapidly exploring regulatory environment may favor additive-like dynamics and hybrid-state accessibility, whereas progressively correlated or self-reinforcing regulatory changes may reduce that exploration and facilitate commitment. Epigenetic locking can then consolidate the selected attractor over still longer timescales.
+
+% \paragraph{A two-stage view of cell-fate determination.}
+These observations suggest a two-stage picture of differentiation. In the first stage, \emph{fate selection}, extracellular signals and the structure of the GRN bias a plastic or lineage-primed population toward particular regions of phenotype space. Regulatory variability need not oppose this process; in an open chromatin environment, additive-like fluctuations may facilitate exploration of multiple lineage-associated programs and maintain the hybrid states from which alternative fates remain accessible.
+
+In the second stage, \emph{fate resolution}, the selected lineage must be converted from a bias into a stable terminal phenotype. Our results suggest that this step need not require the instructive signal to specify every component of the final state. A shift away from broadly exploratory regulatory dynamics toward state-dependent reinforcement can itself favor single-high terminal configurations. Slower chromatin remodeling and epigenetic feedback can subsequently lock the resulting transcriptional program, making reversal progressively more difficult. Thus, an external signal may primarily determine \emph{which} fate is selected, while changes in regulatory-noise regime and epigenetic memory determine \emph{whether and how robustly} that choice is resolved.
+
+This division provides a possible reconciliation of instructive and stochastic views of differentiation~\cite{Enver1998DoDice, Safina2024NewGenomics}. Stochastic regulatory dynamics may dominate the exploratory phase, signals can bias the available alternatives, and state-dependent or epigenetic feedback can stabilize the resulting choice. The relevant control parameter would then not simply be the magnitude of molecular noise, but the evolution of its correlation time and state dependence as the cell progresses from plasticity to commitment.
+
+% \paragraph{Limitations and future directions.}
+Despite the novelty and the promising potential, the present study, like any other theoretical endeavour, does have some limitations. For instance, the present framework is deliberately phenomenological, and therefore does not establish a one-to-one mapping between the three noise modes and specific molecular processes. Relating these modes quantitatively to IDP conformational dynamics, chromatin-accessibility fluctuations, and slower epigenetic feedback will require experimental measurements and more mechanistically explicit models. A second limitation is that we consider regulatory-parameter noise independently of conventional expression-level noise. Because these two forms of stochasticity act on different components of the dynamical system, their combined effects may differ from either mechanism in isolation and warrant systematic investigation. Finally, our analysis focuses primarily on inhibition-dominated cell-fate decision networks. Whether the contrasting effects of additive and multiplicative regulatory noise extend to activation-rich networks, such as many signaling, metabolic, or protein--protein interaction networks, remains to be determined.
+% The present framework is deliberately phenomenological, and several steps are required to test this timescale-based interpretation directly. First, the three noise modes should be mapped onto experimentally measurable quantities such as IDP conformational correlation times, TF residence times, PTM lifetimes, chromatin-accessibility fluctuations, and the timescale of epigenetic memory. The most direct prediction is that phenotype occupancy should depend on the ratio between these regulatory timescales and the relaxation times of the downstream GRN, not simply on noise variance. Perturbations that change fluctuation timescale while leaving mean regulatory activity approximately constant would therefore provide a particularly informative test.
+
+% Second, explicit chromatin and epigenetic variables are absent from the current model. Incorporating a slow feedback variable that modifies $\lambda$ according to transcriptional history would allow the proposed transition from regulatory exploration to epigenetic locking to be tested directly and compared with EMT hysteresis experiments. Such a model could ask whether additive-like fluctuations facilitate initial access to hybrid states while slower feedback subsequently stabilizes one branch of the landscape, and whether the resulting dynamics reproduce the dependence of reversibility on stimulus duration observed experimentally.
+
+% Third, fold-change noise should be compared systematically with conventional expression-level noise and with deterministic multilevel-state models. These mechanisms can all increase access to states absent from a simpler deterministic model, but they do so through different routes: expression noise perturbs position within a landscape, state-space granularity changes the deterministic landscape, and fold-change noise continuously deforms the interactions that generate the landscape. A sensitivity-matched comparison will be necessary to determine when these mechanisms are distinguishable experimentally.
+
+% Finally, our treatment of multiplicative noise, particularly for activating interactions, remains incomplete; large networks were studied only in a Boolean formalism; and noise was applied uniformly to all regulatory edges even though IDP mutations, PTMs, and chromatin changes are likely to affect restricted subsets of interactions. Future work should therefore examine edge-specific noise, the relationship between noisy-edge identity and network structure, and the way multistability modifies susceptibility to different fluctuation modes. Extending the framework to include slow epigenetic feedback would provide a natural next step toward a multiscale model in which fast molecular fluctuations generate plasticity, regulatory memory resolves cell fate, and chromatin remodeling locks that choice over longer timescales.
+
+
+\section{Methods}
+
+\subsection{Network models and RACIPE ensemble generation}\label{sec:RACIPE}
+
+Each network motif is modeled as a system of ordinary differential equations (ODE), one ODE per node, following the shifted Hill formalism of RACIPE~\cite{Huang2017}:
+\begin{equation}
+\frac{dX}{dt} = g_X \prod_{i \in P} \frac{H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i})}{\lambda_{Y_i}} \prod_{i \in N} H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) - d_X X
+\label{eq:odeM}
+\end{equation}
+\begin{equation}
+H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) = \lambda_{Y_i} \frac{Y_i^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}} + \frac{Y_{i0}^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}}
+\label{eq:hillM}
+\end{equation}
+where $g_X$ and $d_X$ are the production and degradation rates of node $X$, $P$ and $N$ index its activating and inhibiting regulators, and $\lambda_{Y_i}$ is the fold-change by which regulator $Y_i$ modulates $X$'s production ($\lambda_{Y_i} > 1$ for activation, $\lambda_{Y_i} < 1$ for inhibition).
+
+For each network topology, RACIPE~\cite{Huang2017} was used to generate an ensemble of $10{,}000$ parameter sets by uniform sampling within standard biologically plausible ranges, with each parameter set solved from 100 random initial conditions to identify its steady-state attractor(s). The resultant ensemble of steady states was used to calculate thresholds of individual node expressions ($\theta_X$) as the average expression across the ensemble, which were then used to discretize the steady states into strings of 1's and 0's. Based on the number of such discretized steady states allowed, each parameter set was assigned a multistability class (monostable, bistable, tristable, tetrastable). A representative subset of 100 parameter sets was selected from each stability class present for a given network for downstream stochastic analysis. 
+
+\subsection{Regulatory noise model} \label{sec:noise}
+
+To simulate regulatory noise, we allowed the fold-change parameters $\lambda_{Y_i}$ to vary stochastically over time rather than remaining fixed at their RACIPE-sampled value, using a periodic update applied every $dt = 0.01$ (a.u.) during ODE integration. Three noise modes were implemented, differing in how each update depends on the parameter's current value:
+\begin{align}
+\text{Additive:} \quad & \lambda(t+dt) = \lambda(t) + \mathcal{N}(0, \sigma_{\text{eff}}^2), \\
+\text{Multiplicative:} \quad & \lambda(t+dt) = \lambda(t)\left(1 + \mathcal{N}(0, \sigma_{\text{eff}}^2)\right), \\
+\text{Stationary:} \quad & \lambda(t+dt) = \lambda(0) + \mathcal{N}(0, \sigma_{\text{eff}}^2),
+\end{align}
+where $\sigma_{\text{eff}} = \sigma \cdot \lambda_{\max}$, with $\lambda_{\max}$ the upper bound of the relevant fold-change (inhibitory: $\lambda_{\max} = 1$, so $\sigma_{\text{eff}} \approx \sigma$; activatory: $\lambda_{\max} = 100$), so that a given nominal noise level $\sigma$ corresponds to a comparable proportion of each parameter's admissible range regardless of whether it governs activation or inhibition. After each update, $\lambda$ was clamped to its biologically admissible bounds ($[0.001, 0.999]$ for inhibitory, $[1.001, \lambda_{\max}]$ for activatory parameters). Noise levels $\sigma \in \{0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1\}$ were tested for each noise mode and network.
+
+\subsection{Stochastic simulation and mean residence time}
+
+For each selected parameter set and noise level, 100 independent stochastic trajectories were simulated, each initialized from an independently drawn initial condition $u_i(0) = U(0,1) \times (g_i/d_i)$ for every node $i$ (i.e.\ uniformly between zero and that node's maximal attainable expression). Trajectories were integrated over $t \in [0, 1000]$ (a.u.) using the Tsit5 adaptive-step solver (relative tolerance $10^{-4}$, absolute tolerance $10^{-5}$). Each trajectory was discretized into a sequence of Boolean node states using the RACIPE-derived thresholds, and the first 30\% of each trajectory was discarded as transient. Mean residence time (MRT) for a given discrete state was computed as the fraction of the remaining trajectory (across all 100 stochastic realizations) spent in that state.
+
+\subsection{Deterministic $\lambda$-resampling comparison}
+
+To test whether a given noise mode's effect on state occupancy could be explained purely by the stationary distribution of $\lambda$ it induces, rather than by any dynamical (non-adiabatic) contribution, we compared stochastic MRT against a deterministic control: for each parameter set and noise level, $\lambda$ values were resampled from the empirical stationary distribution generated by that noise mode (via \texttt{get\_lambda\_dist}), and the corresponding deterministic steady state was solved; this was repeated over 10 resampled draws per parameter set, and the resulting basin-occupancy fractions (MRT$_{\text{det}}$) were compared directly against the stochastic MRT from the same parameter set and noise level.
+
+
+\subsection{Boolean simulations of large cell-fate networks}
+
+For larger networks, we used Boolean modeling to simulate network dynamics, as opposed to the ODE models of RACIPE. We used a threshold-based Boolean formalism \cite{FontClos2018}, inspired by the Ising model of spin-glass systems. A network is defined by $N$ nodes, $E$ edges, and a topology, i.e., the arrangement of $E$ edges among $N$ nodes. The Ising model employs discretized expressions of nodes, with $s_i \in \{-1, 1\}$; $i \in 1, \ldots, N$, where $s_i = 1$ and $s_i = -1$ represent an active node and an inactive node, respectively. A state at any time $t$ is the set of expression levels of all nodes, $S(t) = \{s_i(t)\}$; $i \in 1, \ldots, N$.
+
+The system state is updated in discrete time steps using an asymmetric adjacency matrix ($\adj$), which stores the nature of pairwise interactions between nodes. In a static network, activating and inhibiting edges carry edge weights of $+1$ or $-1$, respectively, with $0$ indicating no interaction. The expression level of node $i$ at time $t$ is given by:
+\begin{equation} \label{eq:bool}
+    s_i(t) = 
+\begin{cases}
+    +1, & \text{if } \sum_j \adj_{ij} s_j(t-1) > 0 \\
+    -1, & \text{if } \sum_j \adj_{ij} s_j(t-1) < 0 \\
+    s_i(t-1), & \text{if } \sum_j \adj_{ij} s_j(t-1) = 0
+\end{cases}
+\end{equation}
+where $\sum_j \adj_{ij} s_j$ represents the net regulatory input to node $i$. A steady state is defined as a state $S(t)$ satisfying $S(t+1) = S(t)$.
+
+\subsection{Large network metrics}
+
+\subsubsection{Influence matrix}
+The influence matrix is formulated as:
+\begin{equation}
+    \inm_{l_\mathrm{max}} \equiv \inm = \frac{\sum_{l=1}^{l_\mathrm{max}} \frac{\adj^l}{\adj_{\mathrm{max}}^l}}{l_\mathrm{max}},
+\end{equation}
+where $l$ is the path length, representing a path of $l$ edges connecting a pair of nodes, and $l_\mathrm{max} = 10$ is the maximum path length considered. The influence matrix captures the net bidirectional effect between a pair of nodes mediated by all paths of length $l \in \{1, \ldots, l_\mathrm{max}\}$. $\adj_{\mathrm{max}}^l$ is derived from $\adj^l$ by setting all non-zero entries to $1$, and the division $\frac{\adj^l}{\adj_{\mathrm{max}}^l}$ is element-wise.
+
+\subsubsection{Teams}
+The wild-type influence matrices of the biological networks considered in this study are displayed in Figure~\ref{fig:5S1}. Each network can be partitioned into two ``teams'' of nodes, defined such that the influence between any pair of nodes is positive if they belong to the same team and negative otherwise. The team strength of a two-teamed network is defined as:
+\begin{align} \label{eq:ts_def}
+    \ts_{kl} &= \frac{\sum_{i \in T_k, j \in T_l} \inm_{ij}}{n_{kl}}, \quad k, l \in \{1, 2\} \\
+    \ts &= \frac{\sum_{k,l \in \{1,2\}} |\ts_{kl}|}{4},
+\end{align}
+where $T_k$ is the $k$-th team.
+
+\noindent\textbf{\textit{Team expression}}\label{text:team_exp}: For a given state $S$, team expression is defined as the fraction of nodes belonging to a team that are active (i.e., $s_i = 1$).
+
+% \paragraph{Artificial networks} For artificial networks, the team identities are decided before generating the networks, and they are used directly without requiring the calculation of influence matrix.
+
+\noindent\textbf{\textit{Nature of stable states}}: Stable states of two-team networks are classified as either dominant (most frequent) or hybrid (non-dominant). Due to the bimodal phenotypic distribution characteristic of toggle switch-like networks, dominant states are those in which only one team is active, i.e., states with team expressions of $(0,1)$ and $(1,0)$.
+
+\subsection{Stochastic simulation of large networks}
+
+\subsubsection{Inducing noise}\label{sssec:noise_def}
+
+In biological networks, the strengths of regulatory interactions are subject to temporal variation arising from fluctuations in protein concentrations, post-translational modifications, and other molecular sources. We model this regulatory noise by perturbing the edge weights of the adjacency matrix over time. Three noise modes are implemented, mirroring those used in the ODE-based simulations of small motifs (Section~\ref{sec:RACIPE}):
+
+\paragraph{Additive (state-independent) noise}
+At each time step, a perturbation drawn from $\mathcal{N}(0, \sigma^2)$ is added to each edge weight independently of its current value:
+\begin{equation}
+    \mathrm{EW}(t) = \mathrm{EW}(t-1) + \delta, \quad \delta \sim \mathcal{N}(0, \sigma^2).
+\end{equation}
+Edge weights are clipped to $[-1, 1]$ after each update to preserve the biological interpretation of interaction strengths.
+
+\paragraph{Multiplicative (state-dependent) noise}
+At each time step, each edge weight is scaled by a factor drawn from $\mathcal{N}(1, \sigma^2)$, so that the magnitude of the perturbation scales with the current edge weight:
+\begin{equation}
+    \mathrm{EW}(t) = \mathrm{EW}(t-1) \cdot (1 + \delta), \quad \delta \sim \mathcal{N}(0, \sigma^2).
+\end{equation}
+
+\paragraph{Stationary (mean-reverting) noise}
+At each time step, each edge weight is redrawn as its wild-type value plus an independent perturbation, so that the weight fluctuates around its nominal value without drift:
+\begin{equation}
+    \mathrm{EW}(t) = \mathrm{EW}_0 + \delta, \quad \delta \sim \mathcal{N}(0, \sigma^2),
+\end{equation}
+where $\mathrm{EW}_0$ denotes the wild-type edge weight. Unlike the additive mode, this formulation prevents long-range drift in parameter values and models a situation where molecular fluctuations are transient and the nominal interaction strength is effectively restored between perturbation events.
+
+In all three modes, $\sigma^2 = 0.01$ is used as the noise variance. Each biological network is simulated for $1000$ trajectories of $10{,}000$ time steps each; artificial networks are simulated for $100$ trajectories of $1{,}000$ time steps each.
+
+\subsubsection{Method of state update}
+In practice, the system can be updated in two ways \cite{garg2008synchronous, schwab2020concepts}:
+\begin{itemize}
+    \item \textbf{Synchronous update}: At each time step, every node is updated simultaneously using Eq.~\ref{eq:bool}.
+    \item \textbf{Asynchronous update}: At each time step, a single randomly chosen node is updated using Eq.~\ref{eq:bool}.
+\end{itemize}
+While synchronous updates are computationally efficient, they can produce limit cycles from which the system cannot escape. Asynchronous updates are less efficient but avoid limit cycles and implicitly capture reaction noise by assuming that only one regulatory event occurs per time step. To combine the benefits of both schemes, we check for steady states synchronously every $200$ time steps while updating the network asynchronously. For continuous perturbation simulations, synchronous updates are used throughout, as persistent perturbations make entrapment in limit cycles unlikely.
+
+\subsubsection{Initial conditions}
+
+Peripheral nodes — those involved in interactions without feedback — are excluded from the analysis, as the focus of this study is on teaming behavior arising from mutual regulatory effects. Initial conditions are drawn from the terminal states and the most dominant hybrid states identified in the unperturbed network's steady-state distribution.
+
+\section{Acknowledgments}
+
+MKJ was supported by the Ramanujan Fellowship (SB/S2/RJN-049/2018) awarded by the Science and Engineering Research Board (SERB), Department of Science and Technology, Government of India. MKJ was also supported by Param Hansa Philanthropies. KH and HL were supported by the Center for Theoretical Biological Physics, NSF PHY-2019745, and under Award Number MCB-2114191.
+
+\printbibliography
+
+\beginsupplement
+
+\include{shifted_hill_derivation}
+\include{Additive_boolean}
+\include{boolean_static}
+\include{Anaytical}
+\clearpage
+\section{Supplementary Figures}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig1S1.jpg}
+    \caption{
+    \textbf{(A)} Heatmap of RACIPE steady-state expression for nodes A and B in TS network, across all sampled parameter combinations. The steady states are sorted in increasing order of expression of node A. The color scale is in $log_2$ scale and centered at the mean of the two nodes' thresholds. \textbf{(B)} Same design as Figure 1D, but for an fold-change of an activatory edge ($\lambda \in [1,100]$, $\lambda_0 = 20$).}
+    \label{fig:1S1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig2S1.jpg}
+    \caption{MRT vs.\ noise level, colored by discrete state, mean $\pm$ SD across parameter sets, for \textbf{(A)} TS (all parameter sets), \textbf{(B)} TSSA (monostable + tristable), \textbf{(C)} TT (monostable + tristable), and \textbf{(D)} TTSA (monostable + tristable).}
+    \label{fig:2S1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig3S1.jpg}
+    \caption{\textbf{(A)} MRT boxplots (as in Fig.\ 3B) for TSSA, TT, and TTSA, stacked vertically. \textbf{(B)} Reachability scatter (as in Fig.\ 3C) for the TS network at $\sigma = 0.001, 0.01, 1.0$ (the noise levels not shown in the main figure), stacked vertically. \textbf{(C)} Reachability scatter for the TSSA network at $\sigma = 0.001, 0.01, 0.1, 1.0$.}
+    \label{fig:3S1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig4S1.jpg}
+    \caption{\textbf{(A)} Resampling effect (as in Fig.\ 4B), collapsed to a single per-parameter-set difference and shown across all noise levels, faceted by state class (all-high/single-high/double-high) and network (TS, TSSA, TT, TTSA). \textbf{(B)} Same, for the stochastic effect. \textbf{(C)} Paramwise scatter of resampled-$\lambda$ deterministic vs.\ stochastic MRT of the all-high state, all four networks, at each of four noise levels (0.001, 0.01, 0.1, 1.0).}
+    \label{fig:3bS1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig4S2.jpg}
+    \caption{All-high \textbf{(A)}, single-high \textbf{(B)}, and double-high \textbf{(C)} state MRT comparisons (as in Fig.\ 4D: original/resampled/stochastic, faceted by stability class), repeated at four noise levels (columns: 0.001, 0.01, 0.1, 1.0), for TS, TSSA, TT, TTSA. 2-node networks (TS, TSSA) have no double-high state distinct from all-high, so they are absent from that row.
+}
+    \label{fig:3bS2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig4S3.jpg}
+    \caption{Comparison of MRTs for additive noise simulated at different values of $dt$}
+    \label{fig:3bS3}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig5S1.jpg}
+    \caption{\textbf{(A)} MRT vs.\ noise level (as in Fig.\ 5A) for TS, TSSA, and TT; single-high and double-high state classes. For TS and TSSA, whose fully-active state is intrinsically ``all-high'' rather than a distinct ``double-high'' state, this facet is relabeled ``double-high'' for consistency with the other panels, but shows the same all-high data. \textbf{(B)} $\lambda$ distributions (as in Fig.\ 4A) under Multiplicative noise. \textbf{(C)} Network topology diagrams for TT4, TT4SA, and TS4. \textbf{(D)} Deterministic attractor-combination frequency (as in Fig.\ 1C, but from the noise-simulation pipeline's zero-noise runs rather than RACIPE's own steady-state search) for TT4, TT4SA, and TS4.
+}
+    \label{fig:4S1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig5S2.jpg}
+    \caption{\textbf{(A, B)} MRT vs.\ noise level for TT4, TT4SA, and TS4; single-high, double-high, and all-high states, faceted by stability class, under Additive (A) and Multiplicative (B) noise. \textbf{(C)} State-wise MRT vs.\ noise level for each of TS4's six double-high states individually (Multiplicative noise), showing that the same subset of states dominates at every noise level. \textbf{(D)} Stochastic effect for the single-high state, across noise levels, for TSSA, TTSA, TT4, and TS4. \textbf{(E)} Stochastic effect for the all-high and double-high states, for TS, TT, and TT4. \textbf{(D$'$, E$'$)} Same networks/state classes as D and E, respectively, but showing the resampling effect instead of the stochastic effect.
+}
+    \label{fig:4S2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig5S3.jpg}
+    \caption{Comparison of MRTs for multiplicative noise simulated at different values of $dt$}
+    \label{fig:4S3}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Figure4S2.jpg}
+    \caption{\textbf{Adjacency and influence matrices for the EMT and Gonadal networks.}
+    A) EMT network (23 nodes). (i) Direct adjacency matrix showing the signed regulatory
+    interactions between node pairs: red indicates activation ($+1$), blue indicates
+    inhibition ($-1$), and white indicates no edge. Nodes are ordered by team membership,
+    with the epithelial team in the lower-left block and the mesenchymal team in the
+    upper-right block. (ii) Influence matrix computed as described in the Methods, showing
+    the net cumulative effect between each pair of nodes across all path lengths up to
+    $l_{\mathrm{max}} = 10$. Positive (red) values indicate net co-regulation; negative
+    (blue) values indicate net counter-regulation. The block structure of the influence
+    matrix confirms the two-team organisation of the network.
+    B) Gonadal network (19 nodes), displayed in the same format as A, with the
+    Sertoli-fate team and the Granulosa-fate team forming the two blocks.}
+    \label{fig:5S1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Figure4S1.jpg}
+    \caption{\textbf{Effect of multiplicative and stationary noise on phenotypic
+    distributions in biological networks.}
+    A) Team score density maps for the Gonadal network under additive noise at
+    $\sigma = 0.05$, displayed as in Figure~\ref{fig:4}B. Left panel (``Rand'') shows
+    the team score distribution sampled from stochastic simulation trajectories; right
+    panel (``WT'') shows the distribution obtained from the steady states of the
+    unperturbed network. B--C) Relative frequency of phenotypic scores across 1000
+    simulation trajectories for the EMT network (i) and Gonadal network (ii) under
+    multiplicative noise (B) and stationary noise (C), shown at the same noise levels as
+    in Figure~\ref{fig:5}C. Colours indicate noise level as shown in the legend.
+    Trajectories are initiated from steady states of the unperturbed network as in
+    Figure~\ref{fig:5}.}
+    \label{fig:5S2}
+\end{figure}
+
+\begin{figure*} 
+\setlength{\tabcolsep}{2pt}
+\resizebox{1.05\textwidth}{!}{
+    \begin{tabular}{c}
+        \includegraphics[height=0.3\textwidth,keepaspectratio]{Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf} 
+        \\[2pt]
+        
+        \includegraphics[height=0.3\textwidth]{Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf}\\
+    \end{tabular} 
+}
+\caption{
+\textbf{Steady-state frequencies of perturbed networks}: Steady-states are represented in terms of the difference in team expressions ($\mathrm{T1-T2}$) (x-axis);  The frequencies are for three levels of static perturbations (legend) to edge-weights (left) and density (right); The average frequencies (dots) and, the $25$-th (lower error bar) and the $75$-th (upper error bar) percentiles are displayed; The data in black belongs to the steady-state frequencies of the corresponding wild-type (unperturbed network); The top and bottom panels are of an artificial and a biological network, respectively; The titles in the panels display the network, the number of nodes and edges in the format ($x$N,$y$E) respectively, along with corresponding wild-type team strength (see Eq.~\ref{eq:ts_def}).
+Generally, static perturbations negatively affect the dominant states of a network.
+}
+\label{fig:S1}
+\end{figure*} 
+
+\begin{figure*}
+\setlength{\tabcolsep}{2pt}
+\resizebox{1.05\textwidth}{!}{
+\begin{tabular}{c c c c}
+
+\textbf{(a)} &
+{\hspace{-0.05cm}\includegraphics[width=2.83in,height=0.4\textwidth]{Abhay_Lakshmi_old/Results/ts_ew_ts.png}} &
+\includegraphics[width=2.85in,height=0.4\textwidth]{Abhay_Lakshmi_old/Results/JSD_compiled.pdf} &
+\textbf{(b)} \\[2pt]
+
+{\raisebox{0.8cm}{\hspace{-0.15cm}\includegraphics[height=0.3\textwidth,keepaspectratio]{Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png}}} &
+{\hspace{-0.15cm}\includegraphics[width=2.9in,height=0.4\textwidth]{Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png}} &
+\includegraphics[height=0.4\textwidth]{Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png} &
+{\raisebox{0.8cm}{\hspace{-0.15cm}\includegraphics[height=0.3\textwidth]{Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png}}} \\[1.8pt]
+
+{\raisebox{0.8cm}{\hspace{-0.15cm}\includegraphics[height=0.3\textwidth,keepaspectratio]{Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png}}} &
+{\hspace{-0.05cm}\includegraphics[height=0.4\textwidth]{Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png}} &
+\includegraphics[height=0.4\textwidth]{Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png} &
+{\raisebox{0.8cm}{\hspace{-0.15cm}\includegraphics[height=0.3\textwidth]{Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png}}}
+
+\end{tabular}
+}
+\caption{
+\textbf{Quantification $\jsd$ as a function of $\ts/\tsw$ for static edge-weight perturbations}: Unless mentioned otherwise, the network along with its nodes, edges, and wild-type team strength is shown in the title. \textit{Top:} (right) Quantification of the mean of team-strength distributions ($\ts$) normalized by the corresponding wild-type team strength ($\tsw$), $\ts/\tsw$, as a function of the edge-weight noise levels ($\ewnum$; numerical values of the edge-weight noise ranges; see \S\ref{tt:ew_range_num}) using Eq.~\ref{eq:ts_ewnum} (black-dashed line) displayed along with the error bars (see Tab.~\ref{tab:ew_param}) for $\tsten$. (left) JSD distributions for edge-weight noise ranges along with their mean ($\jsd$) (green square) and median (orange line) for $\tseight$. \textit{Middle:} (right) Quantification $\jsd$ as a function of $\ts/\tsw$ for a given artificial network: Plot of $\jsd$ and $\ts/\tsw$ across edge-weight noise ranges (legend; left) along with their fit of the Eq.~\ref{eq:jsd_ts_net} (black-dashed line; see Tab.~\ref{tab:ew_param}) for $\tseight$; For an artificial network, the resilience of steady-state distribution increases with an increase in the strength of teaming interactions. (left) $\jsd$ vs. $\ts/\tsw$ for a given edge-weight noise level (in terms of range; here $[0.75,1]$; see title) across networks (represented in terms of their wild-type team strength $\tsw$; see legend); The data in black are $\jsd$ and their error bars obtained from Eq.~\ref{eq:jsd_ts_ran} with no fitting; For a static edge-weight noise level, the resilience increases with an increase in team strength across artificial networks. \textit{Bottom:} The plots represent the same as the middle panels except for biological networks. To rule out over-fitting, we have tested our models for the edge-weight noise range $[0.2,0.3]$ (see legend of left panel). The contrast is in the right panel where $\jsd$ increases with increasing $\ts/\tsw$; This observation remains to be explained.
+}
+\label{fig:S2}
+\end{figure*} 
+
+\newpage
+\clearpage
+\section{Supplementary Tables}
+
+\begin{table}[!ht]
+\centering
+\caption{\normalsize{Threshold values used to discretize node expressions for different states in small cell-fate network motifs}}
+\label{tb:Thresholds}
+\begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Node} &  \textbf{Threshold} & \textbf{Network}\\
+    \hline\hline
+    A & 15.67 & Toggle Switch\\
+    \hline
+    B & 17.12 & Toggle Switch\\
+    \hline
+    
+\end{tabular}
+
+
+\end{table}
+
+
+\noindent
+\refstepcounter{table}
+\label{tb:Attractors}
+\begin{center}
+  \small{\textbf{Table~\thetable: }}Attractor frequencies across all network motifs.
+  Each sub-panel lists attractors (monostable or multistable, written as
+  state-tuples joined by ``\_'') and their frequencies in RACIPE.
+\end{center}
+
+\medskip
+
+%% ── Row 1: six 2-node networks ──────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.45\linewidth}
+\begin{tabular}{@{}lr@{}}
+\multicolumn{2}{@{}l}{\textbf{(a) Toggle Switch (TS)}}\\
+\toprule
+Attractor & Freq.\\
+\midrule
+(0,1)          & 0.3744 \\
+(1,0)          & 0.3318 \\
+(0,1)\_(1,0)   & 0.1858 \\
+(1,1)          & 0.0573 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+\begin{tabular}{@{}lr@{}}
+\multicolumn{2}{@{}l}{\textbf{(b) TS Self-Activation (TSSA)}}\\
+\toprule
+Attractor & Freq.\\
+\midrule
+(0,1)\_(1,0)           & 0.4865 \\
+(0,1)                  & 0.1357 \\
+(1,0)                  & 0.1243 \\
+(0,0)\_(0,1)\_(1,0)    & 0.0682 \\
+(0,1)\_(1,0)\_(1,1)    & 0.0369 \\
+(1,0)\_(1,1)           & 0.0284 \\
+(0,1)\_(1,1)           & 0.0254 \\
+(0,0)\_(0,1)           & 0.0187 \\
+(0,0)\_(1,0)           & 0.0184 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\medskip
+
+%% ── Row 2: Toggle Triad and NF Self-Activation ──────────────────────────
+\noindent
+\begin{minipage}[t]{0.47\linewidth}
+\begin{tabular}{@{}lr@{}}
+\multicolumn{2}{@{}l}{\textbf{(g) Toggle Triad (TT)}}\\
+\toprule
+Attractor & Freq.\\
+\midrule
+(0,0,1)                                    & 0.1312 \\
+(0,1,0)                                    & 0.1241 \\
+(1,0,0)                                    & 0.1184 \\
+(0,0,1)\_(0,1,0)                           & 0.0694 \\
+(0,1,0)\_(1,0,0)                           & 0.0638 \\
+(0,0,1)\_(1,0,0)                           & 0.0632 \\
+(1,0,1)                                    & 0.0567 \\
+(1,1,0)                                    & 0.0559 \\
+(0,1,1)                                    & 0.0535 \\
+(0,0,1)\_(0,1,0)\_(1,0,0)                 & 0.0206 \\
+(0,1,0)\_(1,0,1)                           & 0.0187 \\
+(1,0,0)\_(1,0,1)                           & 0.0181 \\
+(0,1,0)\_(0,1,1)                           & 0.0171 \\
+(1,0,0)\_(1,1,0)                           & 0.0169 \\
+(0,1,1)\_(1,0,0)                           & 0.0166 \\
+(0,0,1)\_(1,1,0)                           & 0.0161 \\
+(0,1,0)\_(1,1,0)                           & 0.0146 \\
+(0,0,1)\_(1,0,1)                           & 0.0138 \\
+(0,0,1)\_(0,1,1)                           & 0.0136 \\
+(0,1,1)\_(1,1,0)                           & 0.0078 \\
+(1,0,1)\_(1,1,0)                           & 0.0078 \\
+(0,1,1)\_(1,0,1)                           & 0.0076 \\
+(1,0,1)\_(1,0,1)                           & 0.0055 \\
+(1,1,0)\_(1,1,0)                           & 0.0042 \\
+(0,1,0)\_(1,0,0)\_(1,0,1)                 & 0.0039 \\
+(0,0,1)\_(1,0,0)\_(1,1,0)                 & 0.0037 \\
+(0,1,1)\_(0,1,1)                           & 0.0034 \\
+(0,0,1)\_(0,1,0)\_(1,1,0)                 & 0.0028 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+\begin{tabular}{@{}lr@{}}
+\multicolumn{2}{@{}l}{\textbf{(j) Coupled Toggle Switches (TS4)}}\\
+\toprule
+Attractor & Freq.\\
+\midrule
+(0,1,0,1)\_(1,0,1,0)                               & 0.5244 \\
+(1,0,1,0)                                          & 0.1313 \\
+(0,1,0,1)                                          & 0.1251 \\
+(0,1,0,1)\_(1,0,1,1)                               & 0.0112 \\
+(1,0,1,0)\_(1,1,0,1)                               & 0.0108 \\
+(0,1,0,1)\_(1,1,1,0)                               & 0.0096 \\
+(0,1,1,1)\_(1,0,1,0)                               & 0.0096 \\
+(0,1,0,1)\_(1,0,1,0)\_(1,1,0,0)                   & 0.0093 \\
+(0,0,1,1)\_(0,1,0,1)\_(1,0,1,0)                   & 0.0092 \\
+(0,1,0,1)\_(1,0,0,1)\_(1,0,1,0)                   & 0.0092 \\
+(0,1,0,1)\_(0,1,1,0)\_(1,0,1,0)                   & 0.0088 \\
+(0,1,0,1)\_(0,1,1,1)\_(1,0,1,0)                   & 0.0079 \\
+(0,1,0,1)\_(1,0,1,0)\_(1,0,1,1)                   & 0.0065 \\
+(0,1,0,1)\_(1,0,1,0)\_(1,1,1,0)                   & 0.0063 \\
+(0,1,0,1)\_(1,0,1,0)\_(1,1,0,1)                   & 0.0059 \\
+(0,1,0,1)\_(1,0,0,0)                               & 0.0049 \\
+(0,1,0,0)\_(1,0,1,0)                               & 0.0042 \\
+(0,0,1,0)\_(0,1,0,1)                               & 0.0041 \\
+(0,1,0,1)\_(0,1,1,0)                               & 0.0040 \\
+(0,1,0,1)\_(1,0,0,1)                               & 0.0040 \\
+(0,1,0,1)\_(1,1,0,0)                               & 0.0040 \\
+(1,0,0,1)\_(1,0,1,0)                               & 0.0040 \\
+(0,1,0,1)\_(1,0,0,0)\_(1,0,1,0)                   & 0.0038 \\
+(0,0,0,1)\_(1,0,1,0)                               & 0.0037 \\
+(0,1,1,0)\_(1,0,1,0)                               & 0.0037 \\
+(1,0,1,0)\_(1,1,0,0)                               & 0.0037 \\
+(0,0,1,1)\_(1,0,1,0)                               & 0.0036 \\
+(0,1,0,1)\_(0,1,0,1)\_(1,0,1,0)                   & 0.0035 \\
+(0,0,1,1)\_(0,1,0,1)                               & 0.0034 \\
+(0,0,0,1)\_(0,1,0,1)\_(1,0,1,0)                   & 0.0033 \\
+(0,1,0,0)\_(0,1,0,1)\_(1,0,1,0)                   & 0.0032 \\
+(1,0,1,0)\_(1,1,1,0)                               & 0.0032 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+
+
+\bigskip
+
+%% ── Row 4: TTSA across three columns ─────────────────────────────────────
+\noindent
+\begin{minipage}[t]{\linewidth}
+\begin{tabular}{@{}lr@{}}
+\multicolumn{2}{@{}l}{\textbf{(i) Toggle Triad SA (TTSA) — cont'd across columns}}\\
+\toprule
+Attractor & Freq.\\
+\midrule
+(0,0,1)\_(0,1,0)\_(1,0,0)                         & 0.1449 \\
+(0,0,1)\_(0,1,0)                                   & 0.0459 \\
+(0,0,1)\_(1,0,0)                                   & 0.0444 \\
+(0,1,0)\_(1,0,0)                                   & 0.0444 \\
+(1,0,0)                                            & 0.0362 \\
+(0,0,1)                                            & 0.0359 \\
+(0,1,0)                                            & 0.0330 \\
+(0,0,1)\_(0,1,0)\_(1,0,0)\_(1,0,1)                & 0.0228 \\
+(1,0,0)\_(1,0,1)                                   & 0.0227 \\
+(0,0,1)\_(0,1,0)\_(0,1,1)\_(1,0,0)                & 0.0220 \\
+(0,0,1)\_(0,1,1)                                   & 0.0215 \\
+(0,1,0)\_(0,1,1)                                   & 0.0213 \\
+(0,1,0)\_(1,1,0)                                   & 0.0203 \\
+(0,0,1)\_(0,1,0)\_(1,0,0)\_(1,1,0)                & 0.0201 \\
+(0,0,1)\_(1,0,1)                                   & 0.0198 \\
+(1,0,0)\_(1,1,0)                                   & 0.0195 \\
+(0,1,1)                                            & 0.0188 \\
+(1,0,1)                                            & 0.0183 \\
+(0,0,1)\_(0,1,0)\_(0,1,1)                         & 0.0166 \\
+(1,1,0)                                            & 0.0161 \\
+(0,0,1)\_(1,0,0)\_(1,0,1)                         & 0.0140 \\
+(0,1,0)\_(1,0,0)\_(1,1,0)                         & 0.0138 \\
+(1,0,0)\_(1,0,1)\_(1,1,0)                         & 0.0135 \\
+(0,1,0)\_(0,1,1)\_(1,1,0)                         & 0.0132 \\
+(0,0,1)\_(0,1,1)\_(1,0,1)                         & 0.0117 \\
+(1,0,1)\_(1,1,0)                                   & 0.0116 \\
+(0,0,1)\_(0,1,0)\_(1,0,1)                         & 0.0111 \\
+(0,0,1)\_(0,1,1)\_(1,0,0)                         & 0.0110 \\
+(0,1,1)\_(1,1,0)                                   & 0.0102 \\
+(0,0,1)\_(0,1,0)\_(1,1,0)                         & 0.0101 \\
+(0,1,1)\_(1,0,1)                                   & 0.0100 \\
+(0,1,0)\_(0,1,1)\_(1,0,0)                         & 0.0098 \\
+(0,1,0)\_(1,0,0)\_(1,0,1)                         & 0.0097 \\
+(0,0,1)\_(1,0,0)\_(1,1,0)                         & 0.0096 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{\linewidth}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Attractor & Freq.\\
+\midrule
+(0,0,1)\_(0,1,0)\_(0,1,1)\_(1,0,0)\_(1,0,1)      & 0.0073 \\
+(0,1,1)\_(1,0,0)                                   & 0.0071 \\
+(0,0,1)\_(0,1,0)\_(1,0,0)\_(1,0,1)\_(1,1,0)      & 0.0070 \\
+(0,0,1)\_(0,1,0)\_(0,1,1)\_(1,0,0)\_(1,1,0)      & 0.0064 \\
+(0,0,1)\_(1,1,0)                                   & 0.0062 \\
+(0,1,1)\_(1,0,1)\_(1,1,0)                         & 0.0057 \\
+(0,1,0)\_(1,0,1)                                   & 0.0055 \\
+(0,0,1)\_(0,1,1)\_(1,1,0)                         & 0.0045 \\
+(0,1,1)\_(1,0,0)\_(1,0,1)                         & 0.0044 \\
+(0,0,1)\_(0,1,1)\_(1,0,0)\_(1,1,0)                & 0.0043 \\
+(0,0,1)\_(1,0,1)\_(1,1,0)                         & 0.0043 \\
+(0,1,0)\_(0,1,1)\_(1,0,0)\_(1,0,1)                & 0.0043 \\
+(0,0,1)\_(0,1,0)\_(0,1,1)\_(1,0,1)                & 0.0041 \\
+(0,0,1)\_(0,1,1)\_(1,0,0)\_(1,0,1)                & 0.0040 \\
+(0,0,1)\_(0,1,0)\_(1,0,1)\_(1,1,0)                & 0.0035 \\
+(0,1,0)\_(1,0,0)\_(1,0,1)\_(1,1,0)                & 0.0032 \\
+(0,1,0)\_(1,0,1)\_(1,1,0)                         & 0.0031 \\
+(0,0,1)\_(0,1,0)\_(0,1,1)\_(1,0,0)\_(1,0,1)\_(1,1,0) & 0.0030 \\
+(0,1,0)\_(0,1,1)\_(1,0,1)                         & 0.0030 \\
+(0,1,1)\_(1,0,0)\_(1,1,0)                         & 0.0030 \\
+(0,0,1)\_(0,1,1)\_(1,0,1)\_(1,1,0)                & 0.0029 \\
+(0,0,1)\_(1,0,0)\_(1,0,1)\_(1,1,0)                & 0.0029 \\
+(0,1,0)\_(0,1,1)\_(1,0,1)\_(1,1,0)                & 0.0028 \\
+(0,0,1)\_(0,1,0)\_(0,1,1)\_(1,1,0)                & 0.0027 \\
+(0,1,0)\_(0,1,1)\_(1,0,0)\_(1,1,0)                & 0.0026 \\
+(0,1,1)\_(1,0,0)\_(1,0,1)\_(1,1,0)                & 0.0026 \\
+(1,1,0)\_(1,1,0)                                   & 0.0021 \\
+(1,0,1)\_(1,1,1)                                   & 0.0018 \\
+(0,1,0)\_(0,1,1)\_(0,1,1)                         & 0.0017 \\
+(0,1,0)\_(0,1,1)\_(1,0,0)\_(1,0,1)\_(1,1,0)      & 0.0017 \\
+(0,1,1)\_(0,1,1)                                   & 0.0016 \\
+(1,0,1)\_(1,0,1)                                   & 0.0015 \\
+(0,0,1)\_(1,0,1)\_(1,0,1)                         & 0.0014 \\
+(0,1,1)\_(1,1,1)                                   & 0.0013 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Attractor & Freq.\\
+\midrule
+(1,0,0)\_(1,0,1)\_(1,0,1)                         & 0.0013 \\
+(0,0,1)\_(0,1,1)\_(0,1,1)                         & 0.0012 \\
+(0,0,1)\_(0,1,1)\_(1,0,0)\_(1,0,1)\_(1,1,0)      & 0.0012 \\
+(0,1,0)\_(0,1,1)\_(1,1,0)\_(1,1,0)                & 0.0012 \\
+(0,1,0)\_(1,1,0)\_(1,1,0)                         & 0.0012 \\
+(0,0,1)\_(0,1,0)\_(0,1,0)\_(1,0,0)                & 0.0011 \\
+(0,0,1)\_(0,1,0)\_(1,0,0)\_(1,0,0)                & 0.0011 \\
+(0,0,1)\_(0,1,0)\_(1,1,0)\_(1,1,0)                & 0.0011 \\
+(1,0,0)\_(1,1,0)\_(1,1,0)                         & 0.0011 \\
+(1,1,0)\_(1,1,1)                                   & 0.0011 \\
+(0,0,0)\_(0,0,1)\_(0,1,0)\_(1,0,0)                & 0.0010 \\
+(0,1,1)\_(0,1,1)\_(1,0,1)                         & 0.0010 \\
+(0,1,1)\_(0,1,1)\_(1,1,0)                         & 0.0010 \\
+(0,1,1)\_(1,0,1)\_(1,1,1)                         & 0.0010 \\
+(1,0,0)\_(1,0,1)\_(1,1,0)\_(1,1,1)                & 0.0010 \\
+(1,0,1)\_(1,1,0)\_(1,1,0)                         & 0.0010 \\
+(0,0,1)\_(0,0,1)                                   & 0.0009 \\
+(0,0,1)\_(0,1,0)\_(1,0,1)\_(1,0,1)                & 0.0009 \\
+(0,1,1)\_(0,1,1)\_(1,0,0)                         & 0.0009 \\
+(0,1,1)\_(1,1,0)\_(1,1,1)                         & 0.0009 \\
+(1,0,1)\_(1,0,1)\_(1,1,0)                         & 0.0009 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% APPENDICES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begingroup
+\setlength{\tabcolsep}{0.7pt} % 
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+	\caption{Fitted parameters for Equation \ref{eq:jsd_ts_ran}}
+	\label{tab:ew_param}
+\begin{threeparttable}
+\begin{tabular}{l|c|lll|ll}
+\hline
+\hline
+\multicolumn{1}{c|}{Network} & \multicolumn{1}{c|}{$\ts_\mathrm{wild}$} & \multicolumn{3}{c|}{$\ts$ parameters} & \multicolumn{2}{c}{$\jsd$ Parameters}\\
+\hline
+\hline
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{$p$} & \multicolumn{1}{c|}{$q$}  & \multicolumn{1}{c|}{$r$} & \multicolumn{1}{c|}{$a$} & \multicolumn{1}{c}{$b$}\\
+\multicolumn{1}{c|}{(1)} & \multicolumn{1}{c|}{(2)} & \multicolumn{1}{c|}{(3)} & \multicolumn{1}{c|}{(4)} & \multicolumn{1}{c|}{(5)} & \multicolumn{1}{c|}{(6)} & \multicolumn{1}{c}{(7)}\\
+\hline
+$\tsten$  & $0.90$ & $(8.07\pm0.95)\times10^{-3}$ & $(2.34\pm0.06)\times10^{-1}$  & $(-8.07\pm5.23)\times10^{-3}$ & $(0.00\pm0.00)\times10^{-2}$ & $0.13\pm0.00$\\
+$\tstwo$  & $0.88$ & $(7.39\pm0.87)\times10^{-3}$ & $(2.38\pm0.06)\times10^{-1}$  & $(-5.19\pm4.99)\times10^{-3}$ & $(0.01\pm0.00)\times10^{-2}$ & $0.01\pm0.00$\\
+$\tsfour$ & $0.86$ & $(6.51\pm0.79)\times10^{-3}$ & $(2.45\pm0.06)\times10^{-1}$  & $(-3.59\pm4.80)\times10^{-3}$ & $(0.22\pm0.01)\times10^{-2}$ & $0.01\pm0.00$\\
+$\tssix$  & $0.82$ & $(4.67\pm0.52)\times10^{-3}$ & $(2.61\pm0.06)\times10^{-1}$  & $(-3.09\pm3.81)\times10^{-3}$ & $(1.36\pm0.31)\times10^{-2}$ & $0.05\pm0.01$\\
+$\tseight$& $0.61$ & $(2.84\pm0.01)\times10^{-3}$ & $(2.86\pm0.01)\times10^{-1}$  & $(-0.38\pm0.64)\times10^{-3}$ & $(0.89\pm0.26)\times10^{-2}$ & $0.25\pm0.01$\\
+\hline
+\hline
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\endgroup
+\newpage
+
+
+% \section{Appendix}
+
+% \section{Evaluating the effect of additive noise against the corresponding stationary distribution}
+
+% Additive noise leads to an increase in node expression, increasing the residence time of hybrid states ((1,1) state in toggle switch). Among the three noises tested, additive noise also has the highest variance, with a high chance of achieving $\lambda \approx 1$ - weakening the inhibitions in the toggle switch and potentially allowing the nodes to express independently. Thus, it is important to understand if increasing hybrid state MRT is due to the distribution of $\lambda$s created by the additive noise or if the noise itself is required. We thus perfomed experiments to answer the following questions
+
+% \begin{enumerate}
+
+%     \item Do deterministic simulations of the toggle switch parameters with $\lambda$ sampled from the distributions generated by additive noise lead to an increase in the MRT of (1, 1) state?
+%     \item Does modifying the noise to ensure lambda switching between 0.01 and 1 (instead of increments by normal random variable) increase the frequency of the (1, 1) state?
+% \end{enumerate}
+% The original formulation of additive noise follows the equation below:
+
+% \begin{equation}
+% \begin{split}
+%     \lambda(t+1) &\overset{\text{Additive}}{=} 
+%         \lambda(t) + \mathcal{N}(0,\sigma)\\
+%     \lambda(t+1) &= \text{clip}\bigl(\lambda(t+1),\ 0.01,\ 1\bigr)
+% \end{split}
+% \label{additiveNoise}
+% \end{equation}
+
+% We devised two additional forms of noise - named the Jumping noise and the Extreme noise - defined as follows:
+
+
+% % \centering
+% \begin{equation}
+% \begin{split}
+%     \lambda(t+1) &\overset{\text{Jumping}}{=} 
+%     \begin{cases}
+%         \lambda(t) + \sigma & \text{if } \mathcal{N}(0,\sigma) > 0 \\
+%         \lambda(t) - \sigma & \text{if } \mathcal{N}(0,\sigma) < 0
+%     \end{cases} \\[6pt]
+%     \lambda(t+1) &= \text{clip}\bigl(\lambda(t+1),\ 0.01,\ 1\bigr)
+% \end{split}
+% \label{jumpingNoise}
+% \end{equation}
+
+% \begin{equation}
+%     \lambda (t+1) \overset{Extreme}{=} \begin{cases}
+%         1 \ if \ N(0,\sigma) > 0\\
+%         0.01 \ if \ N(0,\sigma) < 0
+%     \end{cases}
+%     \label{extremeNoise}
+% \end{equation}
+
+
+
+% We then derived the distribution of $\lambda$ for five values of $\sigma$ : ${0.001, 0.005, 0.01, 0.05, 0.1}$ numerically and simulated toggle switch as follows:
+
+% \begin{itemize}
+%     \item Sample a subset of models $\{m_i\}$ from RACIPE and extract the $\lambda$ values
+%     \item For each such $\lambda$, run 100 trajectories of $\lambda$, using the corresponding noise equation (Eq \ref{additiveNoise}, \ref{jumpingNoise}, \ref{extremeNoise}), for 10000 time steps.
+%     \item Collect the values of $\lambda$ from all the 100 trajectories to use as the distribution for the corresponding noise type. 
+%     \item Generate 10 new models $\{m_{i_j}\}$, each model having the same parameters as the original RACIPE model, except for the $\lambda$ values sampled from the distribution generated in the previous step.
+%     \item Generate deterministic trajectories for each model starting from 100 randomly generated initial conditions sampled uniformly from the range $[0, \frac{g_A}{k_A}]$, where $g_A$ is the production rate of node $A$ and $k_A$ is the degradation rate. Run each simulation for 10000 time steps
+%     \item Discretize each state along these simulations using the threshold values obtained from RACIPE. 
+%     \item Evaluate the mean fraction of occurance of each discrete state across all simulations and the 10 models.
+%     \item Parallely run stochastic simulations on the original models of RACIPE $\{m_i\}$, starting from the steady states obtained from RACIPE, with $\lambda$ being updated at each time point according to Eq \ref{additiveNoise}, \ref{jumpingNoise}, \ref{extremeNoise}. Evaluate mean residence times of the discrete states across these stochastic trajectories.
+% \end{itemize}
+
+% \subsection{Comparing the MRTs of stochastic and deterministic trajectories}
+
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[t]{0.48\linewidth}
+%         \includegraphics[width=\linewidth]{AditiveNoiseFigures/11Additive.jpg}
+%         \caption{Additive noise}
+%         \label{fig:additive11}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[t]{0.48\linewidth}
+%         \includegraphics[width=\linewidth]{AditiveNoiseFigures/11Jumping.jpg}
+%         \caption{Jumping noise}
+%         \label{fig:jumping11}
+%     \end{subfigure}
+
+%     \begin{subfigure}[t]{0.48\linewidth}
+%         \includegraphics[width=\linewidth]{AditiveNoiseFigures/11Extreme.jpg}
+%         \caption{Extreme noise}
+%         \label{fig:extreme11}
+%     \end{subfigure}
+%     \caption{Boxplots showing the comparison of MRTs of the (1,1) state from deterministic (red) and stochastic (green) simulations of Additive, Jumping and Extreme noise. The mean of the each distribution is shown using a '+' symbol, while the median is shown by a black horizontal line segment within each box. The boundaries of the boxes show the IQR.}
+%     \label{fig:11MRT}
+% \end{figure}
+
+% For both additive and jumping noise, the mean MRT of the (1,1) state is nearly the same for both stochastic and deterministic simulations. Two differences can be highlighted: (1) the median MRT is either 0 or 1 in deterministic simulations irrespective of $\sigma$, whereas the corresponding median for stochastic simulations increases with $\sigma$. (2) The overall distribution for deterministic simulations is extremely bimodal, whereas that for the stochastic simulations shifts to higher values with increasing $\sigma$. These observations suggest that the distribution alone can indeed increase the incidence of (1,1) state in additive noise, but the increase is not consistent. The stochasticity ensures that the MRT of (1,1) remains high. Similar observations can be seen for the jumping noise case. Interestingly, in the case of extreme noise where the $\lambda$ can either be high (1) or low (0.01), the mean MRT in deterministic simulations is always lower than that of stochastic simulations, which could be explained by the fact that given only 4 combinations of $\lambda$ are possible, only one of the combinations can reliably allow the stability of (1,1) state - where both $\lambda$ values are 1. 
+
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[t]{0.48\linewidth}
+%         \includegraphics[width=\linewidth]{AditiveNoiseFigures/01Additive.jpg}
+%         \caption{Additive noise}
+%         \label{fig:additive01}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[t]{0.48\linewidth}
+%         \includegraphics[width=\linewidth]{AditiveNoiseFigures/01Jumping.jpg}
+%         \caption{Jumping noise}
+%         \label{fig:jumping01}
+%     \end{subfigure}
+
+%     \begin{subfigure}[t]{0.48\linewidth}
+%         \includegraphics[width=\linewidth]{AditiveNoiseFigures/01Extreme.jpg}
+%         \caption{Extreme noise}
+%         \label{fig:extreme01}
+%     \end{subfigure}
+%     \caption{Boxplots showing the comparison of MRTs of the (0,1) state from deterministic (red) and stochastic (green) simulations of Additive, Jumping and Extreme noise. The mean of the each distribution is shown using a '+' symbol, while the median is shown by a black horizontal line segment within each box. The boundaries of the boxes show the IQR.}
+%     \label{fig:01MRT}
+% \end{figure}
+
+% \include{Multiplicative}
+\end{document}

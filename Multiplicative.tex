@@ -1,0 +1,200 @@
+\section{Distribution of $\lambda$ under multiplicative noise}
+\label{MultiplicativeStationary}
+
+\subsection*{Distribution under Multiplicative Noise:
+  $X \sim \mathrm{Uniform}[0,1]$, $Y = X(1 + Z)$, $Z \sim \mathcal{N}(0,\sigma^2)$}
+
+\subsubsection*{Notation}
+\begin{align*}
+  x &\Rightarrow \text{current position of } \lambda \\
+  y &\Rightarrow \text{next value of } \lambda \\
+  z &= \frac{y}{x} - 1 \sim \mathcal{N}(0,\sigma^2) \\
+  p(y \mid x) &\Rightarrow \text{conditional probability of } y \\
+  p(y) &\Rightarrow \text{marginal probability of } y \\
+  p_n(x) &= \frac{1}{\sqrt{2\pi}\,\sigma}
+            \exp\!\left(-\frac{x^2}{2\sigma^2}\right) \\
+  F_n(x_0) &= P(x \leq x_0) = \int_{-\infty}^{x_0} p_n(x)\,dx
+\end{align*}
+
+We also define the auxiliary function
+\begin{equation}
+  g(a) \;=\; \int_a^{\infty} \frac{p_n(t)}{1+t}\,dt,
+  \label{eq:gdef}
+\end{equation}
+which will appear throughout. Note $g'(a) = -p_n(a)/(1+a)$.
+
+%---------------------------------------------------------
+\subsubsection*{Conditional distribution given $X = x$}
+
+Since $Y = x(1+Z)$ and the state space is clamped to $[0,1]$:
+\begin{itemize}
+  \item $Y = 0$ iff $x(1+Z) \leq 0$, i.e.\ $Z \leq -1$ (for $x > 0$),
+  \item $Y = 1$ iff $x(1+Z) \geq 1$, i.e.\ $Z \geq 1/x - 1$,
+  \item $Y = y \in (0,1)$ otherwise, with $z = y/x - 1$.
+\end{itemize}
+
+Applying the change-of-variables $z = y/x - 1$, $dz = dy/x$:
+
+\begin{equation}
+  p(y \mid x) = \begin{cases}
+    F_n(-1) & y = 0 \\[4pt]
+    \dfrac{1}{x}\,p_n\!\left(\dfrac{y}{x} - 1\right) & 0 < y < 1 \\[8pt]
+    1 - F_n\!\left(\dfrac{1}{x} - 1\right) & y = 1
+  \end{cases}
+  \label{eq:conditional_mult}
+\end{equation}
+
+%---------------------------------------------------------
+\subsubsection*{Point mass at $y = 0$}
+
+The boundary condition $Y = 0$ requires $Z \leq -1$, independently of $x$:
+\begin{align*}
+  p(y = 0)
+    &= \int_0^1 P(Y=0 \mid X=x)\,dx
+     = \int_0^1 F_n(-1)\,dx
+\end{align*}
+\begin{equation}
+  \boxed{p(y=0) = F_n(-1)}
+  \label{eq:mass0_mult}
+\end{equation}
+
+\textbf{Note:} Unlike the additive case, $p(y=0)$ depends only on $\sigma$
+and not on the position $x$, because the sign change requires $Z < -1$
+regardless of $x$.
+
+%---------------------------------------------------------
+\subsubsection*{Point mass at $y = 1$}
+
+\begin{align*}
+  p(y=1)
+    &= \int_0^1 \left[1 - F_n\!\left(\tfrac{1}{x}-1\right)\right] dx
+\end{align*}
+
+\textbf{Substitution} $u = 1/x - 1$, so $x = 1/(1+u)$,
+$dx = -du/(1+u)^2$; $x=1 \Rightarrow u=0$, $x \to 0^+ \Rightarrow u \to \infty$:
+
+\begin{align*}
+  p(y=1)
+    &= \int_0^{\infty} \frac{1-F_n(u)}{(1+u)^2}\,du
+\end{align*}
+
+\textbf{IBP} with $A = 1-F_n(u)$, $dB = (1+u)^{-2}\,du$,
+so $B = -(1+u)^{-1}$:
+
+\begin{align*}
+  &= \left[-\frac{1-F_n(u)}{1+u}\right]_0^{\infty}
+     - \int_0^{\infty} \frac{p_n(u)}{1+u}\,du \\
+  &= \left(0 - \frac{1-F_n(0)}{1}\right) - g(0) \\
+  &= \frac{1}{2} - g(0)
+\end{align*}
+
+\begin{equation}
+  \boxed{p(y=1) = \tfrac{1}{2} - g(0)}
+  \label{eq:mass1_mult}
+\end{equation}
+
+\textbf{Note:} $p(y=0) \neq p(y=1)$ in general; the symmetry of the additive
+case is broken because multiplicative noise scales with position.
+
+%---------------------------------------------------------
+\subsubsection*{Continuous density for $0 < y < 1$}
+
+\begin{align*}
+  p(y)
+    &= \int_0^1 \frac{1}{x}\,p_n\!\left(\frac{y}{x}-1\right)dx
+\end{align*}
+
+\textbf{Substitution} $t = y/x - 1$, so $x = y/(1+t)$,
+$dx = -y/(1+t)^2\,dt$; $x=1 \Rightarrow t=y-1$,
+$x \to 0^+ \Rightarrow t \to \infty$:
+
+\begin{align*}
+  p(y)
+    &= \int_{y-1}^{\infty}
+       \frac{1+t}{y}\,p_n(t)\cdot\frac{y}{(1+t)^2}\,dt
+     = \int_{y-1}^{\infty} \frac{p_n(t)}{1+t}\,dt
+\end{align*}
+
+\begin{equation}
+  \boxed{p(y) = g(y-1), \qquad 0 < y < 1}
+  \label{eq:density_mult}
+\end{equation}
+
+where $g$ is defined in Eq.~\eqref{eq:gdef}.
+Note that for $y \in (0,1)$ the lower limit $y-1 \in (-1,0)$, so the
+integral is always well-defined. 
+
+%---------------------------------------------------------
+\subsubsection*{CDF for $0 \leq y_0 \leq 1$}
+
+\begin{align*}
+  P(Y \leq y_0)
+    &= p(y=0) + \int_0^{y_0} p(y)\,dy \\
+    &= F_n(-1) + \int_0^{y_0} g(y-1)\,dy
+\end{align*}
+
+\textbf{Substitution} $s = y-1$, $ds = dy$:
+\begin{align*}
+  \int_0^{y_0} g(y-1)\,dy
+    &= \int_{-1}^{y_0-1} g(s)\,ds
+\end{align*}
+
+\textbf{Switching order of integration} (Fubini) in
+$\int_{-1}^{y_0-1} \int_s^{\infty} \frac{p_n(t)}{1+t}\,dt\,ds$:
+
+\begin{align*}
+  &= \int_{-1}^{\infty} \frac{p_n(t)}{1+t}
+     \int_{-1}^{\min(t,\,y_0-1)} ds\,dt \\[4pt]
+  &= \int_{y_0-1}^{\infty} \frac{p_n(t)}{1+t}\cdot y_0\,dt
+   + \int_{-1}^{y_0-1} \frac{p_n(t)}{1+t}\cdot(t+1)\,dt \\[4pt]
+  &= y_0\,g(y_0-1)
+   + \int_{-1}^{y_0-1} p_n(t)\,dt \\[4pt]
+  &= y_0\,g(y_0-1) + F_n(y_0-1) - F_n(-1)
+\end{align*}
+
+Therefore:
+\begin{equation}
+  \boxed{P(Y \leq y_0)
+    = y_0\,g(y_0 - 1) + F_n(y_0 - 1)}
+  \label{eq:CDF_mult}
+\end{equation}
+
+%---------------------------------------------------------
+\subsubsection*{Sanity checks}
+
+\textbf{At $y_0 = 0$:}
+\[
+  P(Y \leq 0) = 0 \cdot g(-1) + F_n(-1) = F_n(-1) = p(y=0) \;\checkmark
+\]
+
+\textbf{At $y_0 = 1$:}
+\begin{align*}
+  P(Y < 1) &= g(0) + F_n(0) = g(0) + \tfrac{1}{2} \\
+  P(Y \leq 1) &= P(Y < 1) + p(y=1)
+               = g(0) + \tfrac{1}{2} + \tfrac{1}{2} - g(0) = 1 \;\checkmark
+\end{align*}
+
+%---------------------------------------------------------
+\subsubsection*{Summary}
+
+\[
+\boxed{
+\begin{aligned}
+  p(y=0) &= F_n(-1) \\
+  p(y=1) &= \tfrac{1}{2} - g(0) \\
+  p(y)\big|_{0<y<1} &= g(y-1) \\
+  P(Y \leq y_0) &= y_0\,g(y_0-1) + F_n(y_0-1)
+\end{aligned}
+}
+\]
+
+where $g(a) = \displaystyle\int_a^{\infty} \frac{p_n(t)}{1+t}\,dt$.
+
+\textbf{Key differences from additive noise:}
+\begin{enumerate}
+  \item $p(y=0) \neq p(y=1)$ in general — symmetry is broken.
+  \item The continuous density $g(y-1)$ involves a non-elementary integral,
+        unlike $F_n(y) - F_n(y-1)$ in the additive case.
+  \item The CDF $y_0\,g(y_0-1) + F_n(y_0-1)$ must be evaluated numerically
+        for general $\sigma$.
+\end{enumerate}

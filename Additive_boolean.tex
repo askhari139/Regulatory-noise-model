@@ -1,0 +1,181 @@
+\section{A Boolean limit explains the noise-driven enhancement of the double-positive state}
+\label{sec:boolean}
+ 
+To isolate the mechanism by which structural ($\lambda$) noise redistributes
+occupancy toward high-expression states, we analyse the toggle switch in the
+Boolean limit, where the exact stationary distribution can be computed in closed
+form for both the deterministic (fixed-$\lambda$) and stochastic (fluctuating-$\lambda$)
+cases.
+ 
+\subsection{The two $\lambda$ extremes are not symmetric}
+\label{sec:asymmetry}
+ 
+For an inhibitory edge, the shifted Hill function entering the production term is
+\begin{equation}
+  H^{S}(x,\lambda) \;=\; H^{-}(x) \;+\; \lambda\,H^{+}(x),
+  \qquad H^{+}(x) \equiv 1 - H^{-}(x),
+  \label{eq:hshift}
+\end{equation}
+which is \emph{exactly affine in $\lambda$} for fixed regulator level $x$. At the
+noise amplitude $\sigma=1$ the clamped $\lambda$ walk is confined to the two
+boundaries of its range, $\lambda\in\{\lambda_{\min},\lambda_{\max}\}$ with
+$\lambda_{\min}\approx 0.01$ and $\lambda_{\max}=1$. Evaluating
+Eq.~\eqref{eq:hshift} at these two limits exposes a structural asymmetry:
+\begin{align}
+  \lambda = 1: \quad & H^{S}(x,1) = H^{-}(x)+H^{+}(x) = 1
+    && \text{(independent of } x\text{)},\\
+  \lambda \approx 0.01: \quad & H^{S}(x,0.01) \approx H^{-}(x)
+    && \text{(depends on } x\text{)}.
+\end{align}
+The $\lambda=1$ boundary abolishes regulation \emph{unconditionally}: the target
+is produced at its full rate regardless of the regulator's expression. The
+$\lambda\approx 0$ boundary imposes repression only \emph{conditionally}: it
+lowers the target's production rate only when the regulator $x$ is high, and has
+essentially no effect when the regulator is low ($H^{-}(x)\!\approx\!1$).
+An excursion toward de-repression therefore always ``fires,'' whereas an
+excursion toward repression fires only when the partner node happens to be
+expressed. This unconditional-up / conditional-down asymmetry is the microscopic
+origin of the enhancement derived below.
+ 
+\subsection{Boolean reduction}
+ 
+We coarse-grain expression to $(A,B)\in\{0,1\}^2$ and each edge's regulatory
+strength to $\lambda_{1},\lambda_{2}\in\{0,1\}$, where $\lambda=1$ denotes the
+unconditional (de-repressed) branch and $\lambda=0$ the conditional (repressive)
+branch. In the Boolean limit the fixed-$\lambda$ update rule is
+\begin{equation}
+  A' = \begin{cases}\overline{B} & \lambda_{1}=0\\[2pt] 1 & \lambda_{1}=1\end{cases},
+  \qquad
+  B' = \begin{cases}\overline{A} & \lambda_{2}=0\\[2pt] 1 & \lambda_{2}=1\end{cases}.
+  \label{eq:boolupdate}
+\end{equation}
+Each of the four $\lambda$-configurations defines a deterministic map on the four
+states $(00,01,10,11)$, with transition matrices
+\begin{equation}
+  M_{(0,0)}=\!\begin{pmatrix}0&0&0&1\\0&1&0&0\\0&0&1&0\\1&0&0&0\end{pmatrix}\!,\;
+  M_{(1,0)}=\!\begin{pmatrix}0&0&0&1\\0&0&0&1\\0&0&1&0\\0&0&1&0\end{pmatrix}\!,\;
+  M_{(0,1)}=\!\begin{pmatrix}0&0&0&1\\0&1&0&0\\0&0&0&1\\0&1&0&0\end{pmatrix}\!,\;
+  M_{(1,1)}=\!\begin{pmatrix}0&0&0&1\\0&0&0&1\\0&0&0&1\\0&0&0&1\end{pmatrix}\!,
+  \label{eq:configmaps}
+\end{equation}
+in row/column order $(00,01,10,11)$.
+ 
+\subsection{Deterministic case ($\sigma=1$, $\lambda$ drawn once and held fixed)}
+\label{sec:quenched}
+ 
+In the deterministic (quenched) picture each parameter set draws a single
+$(\lambda_{1},\lambda_{2})\in\{0.01,1\}^2$ and integrates to its attractor(s).
+The four configurations yield:
+\begin{center}
+\begin{tabular}{clc}
+\toprule
+$(\lambda_1,\lambda_2)$ & Effective dynamics & Attractor(s) \\
+\midrule
+$(1,1)$ & $A,B$ both unconditionally on & $\{11\}$ \\
+$(1,0)$ & $A$ on; $B=\overline{A}$ & $\{10\}$ \\
+$(0,1)$ & $B$ on; $A=\overline{B}$ & $\{01\}$ \\
+$(0,0)$ & mutual inhibition (toggle) & $\{10,\,01\}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The $(0,0)$ configuration is the bistable toggle, whose stable attractors are the
+two single-positive fixed points $\{10,01\}$; the states $00$ and $11$ are
+unstable and carry no basin. Weighting the four configurations equally (each
+boundary combination is equiprobable at $\sigma=1$) and splitting the bistable
+config's weight symmetrically between its two attractors gives the deterministic
+stationary distribution
+\begin{equation}
+  \pi^{\det}_{00}=0,\qquad
+  \pi^{\det}_{01}=\tfrac{3}{8},\qquad
+  \pi^{\det}_{10}=\tfrac{3}{8},\qquad
+  \boxed{\;\pi^{\det}_{11}=\tfrac{1}{4}=0.25\;}
+  \label{eq:pidet}
+\end{equation}
+The double-positive state $11$ is reached only under the single $(1,1)$
+configuration; the conclusion $\pi^{\det}_{11}=1/4$ is independent of how the
+bistable config's basins are partitioned, since $(0,0)$ never resolves to $11$.
+ 
+\subsection{Stochastic case ($\lambda$ fluctuating)}
+\label{sec:annealed}
+ 
+When $\lambda$ fluctuates rapidly relative to the state dynamics, the effective
+one-step operator is the \emph{$\lambda$-average} of the four deterministic maps
+in Eq.~\eqref{eq:configmaps}:
+\begin{equation}
+  T \;=\; \tfrac{1}{4}\bigl(M_{(0,0)}+M_{(1,0)}+M_{(0,1)}+M_{(1,1)}\bigr)
+    \;=\;
+    \begin{pmatrix}
+      0 & 0 & 0 & 1\\[2pt]
+      0 & \tfrac{1}{2} & 0 & \tfrac{1}{2}\\[2pt]
+      0 & 0 & \tfrac{1}{2} & \tfrac{1}{2}\\[2pt]
+      \tfrac{1}{4} & \tfrac{1}{4} & \tfrac{1}{4} & \tfrac{1}{4}
+    \end{pmatrix}.
+  \label{eq:T}
+\end{equation}
+The chain is irreducible and aperiodic ($T_{11,11}=\tfrac14>0$), so a unique
+stationary distribution exists and equals the long-run occupancy. Solving
+$\pi=\pi T$ with $\sum_i\pi_i=1$ gives $\pi_{00}=\tfrac14\pi_{11}$,
+$\pi_{01}=\pi_{10}=\tfrac12\pi_{11}$, hence $\tfrac{9}{4}\pi_{11}=1$ and
+\begin{equation}
+  \pi_{00}=\tfrac{1}{9},\qquad
+  \pi_{01}=\tfrac{2}{9},\qquad
+  \pi_{10}=\tfrac{2}{9},\qquad
+  \boxed{\;\pi_{11}=\tfrac{4}{9}\approx 0.444\;}
+  \label{eq:piann}
+\end{equation}
+The mean residence time in the double-positive state is
+$\mathrm{MRT}(11)=\pi_{11}=4/9$.
+ 
+\subsection{Every state flows toward $11$ under fluctuating $\lambda$}
+\label{sec:column}
+ 
+The enhancement is read directly off the last column of $T$
+(Eq.~\eqref{eq:T}): the one-step probability of entering $11$ is positive from
+\emph{every} state,
+\begin{equation}
+  T_{\,\cdot\,\to 11} = \bigl(\,1,\ \tfrac12,\ \tfrac12,\ \tfrac14\,\bigr)^{\!\top}.
+\end{equation}
+In particular the fully-repressed state $00$ maps to $11$ with probability~$1$:
+under the update rule~\eqref{eq:boolupdate}, when neither node is expressed both
+targets are de-repressed under \emph{all four} $\lambda$-configurations (the
+$\lambda=1$ branch sets the target high unconditionally, and the $\lambda=0$
+branch sets it high because the repressor is absent), so $00\!\to\!11$ is
+$\lambda$-independent. By contrast, in the deterministic case $11$ is reachable
+only under the isolated $(1,1)$ configuration. Fluctuating $\lambda$ thus lets a
+parameter set that would deterministically settle into a single-positive fixed
+point ($01$ or $10$) nonetheless accumulate occupancy in $11$, because every
+re-draw of $\lambda$ offers a fresh, largely unconditional route upward.
+ 
+\subsection{Comparison}
+ 
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+State & Deterministic $\pi^{\det}$ & Stochastic $\pi$ & Change \\
+\midrule
+$00$ & $0$            & $1/9\approx0.111$ & --- \\
+$01$ & $3/8 = 0.375$  & $2/9\approx0.222$ & $\downarrow$ \\
+$10$ & $3/8 = 0.375$  & $2/9\approx0.222$ & $\downarrow$ \\
+$11$ & $1/4 = 0.250$  & $4/9\approx0.444$ & $\uparrow\ (1.78\times)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+Fluctuating $\lambda$ increases the occupancy of the double-positive state by a
+factor of $16/9\approx1.78$ relative to the deterministic prediction from the
+same clamped $\lambda$ range, drawing the redistributed mass from the two
+single-positive states. This is a purely structural effect: the two calculations
+use an identical, symmetric $\lambda$ ensemble confined to the same boundaries,
+and differ only in whether $\lambda$ is quenched (Eq.~\eqref{eq:pidet}) or
+annealed (Eq.~\eqref{eq:piann}). The gain reflects the asymmetry of
+Section~\ref{sec:asymmetry}---de-repression fires unconditionally while
+repression fires only conditionally---so that mixing over $\lambda$ favours the
+state in which both nodes are high.
+ 
+\paragraph{Remark.} The small stationary occupancy of $00$
+($\pi_{00}=1/9$) arises from the synchronous discrete update, in which the
+$(0,0)$ configuration maps $11\!\to\!00$; in the continuous ODE this appears as a
+brief transient rather than a stable state. The robust, ODE-relevant conclusion
+is the redistribution of occupancy from the single-positive states to the
+double-positive state, not the absolute occupancy of $00$.
+ 
