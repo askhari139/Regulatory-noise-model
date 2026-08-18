@@ -87,7 +87,8 @@
 \textbf{Current address}: Lakshmi Malvadi, Department of Physics, University of California Merced, Merced, USA
 \end{center}
 \begin{abstract}
-Models of gene regulatory networks (GRNs) underlying cell-fate decision systems treat regulatory parameters as fixed quantities, although transcription-factor efficacy varies with molecular context. We asked how temporal fluctuations in interaction strength, rather than molecular abundance, alter phenotype occupancy in multistable regulatory networks. We applied three stochastic update rules to fold-change parameters—independent fluctuations anchored to their initial values, a bounded additive random walk, and a bounded multiplicative random walk—across RACIPE ensembles of mutually inhibitory circuits, and tested analogous perturbations in Boolean models of epithelial–mesenchymal plasticity and gonadal-fate determination. Anchored fluctuations largely preserved deterministic occupancies of network states. Additive fluctuations increased occupancy of all-high co-expression states, particularly in multistable regimes and when high expression was readily accessible; this effect extended to hybrid team-expression states in both biological networks. Multiplicative fluctuations biased inhibitory fold changes toward stronger repression and favored single-high states in a topology-dependent manner. Fixed-parameter controls sampled from the same noise-induced distributions did not fully reproduce the additive effect or the multiplicative effect in several circuits. A Boolean-limit analysis traced the additional additive bias to an asymmetry between unconditional derepression and conditional repression. Thus, temporally evolving regulatory parameters can redistribute phenotype occupancy in ways not predicted from static parameter ensembles, with outcomes jointly determined by fluctuation dynamics and network topology.
+Gene regulatory network models treat interaction parameters as fixed, although regulatory efficacy fluctuates with molecular context. We asked how temporal fluctuations in interaction strength reshape phenotype occupancy in cell-fate decision GRN motifs. Across large ensembles of parameter sets, fluctuations anchored to initial values largely preserved deterministic state occupancies. Additive fluctuations in interaction strengths increased occupancy of all-high co-expression states, particularly in multistable regimes where high expression was accessible. In contrast, multiplicative fluctuations biased inhibitory interactions toward stronger repression and favored single-high states in a topology-dependent manner. Control deterministic simulations sampled from the noise-induced parameter distributions did not fully reproduce these effects. A Boolean-limit analysis attributed the additional additive bias to an asymmetry between unconditional derepression and conditional repression. Analyses of epithelial–mesenchymal plasticity and gonadal-fate networks further demonstrated increased occupancy of hybrid team-expression states under additive fluctuations. Thus, regulatory noise can reshape the developmental landscape in opposing directions, pushing cell-fate systems toward either progenitor-like or terminally differentiated states.
+
 \end{abstract}
 
 
@@ -109,7 +110,7 @@ Models of gene regulatory networks (GRNs) underlying cell-fate decision systems 
     \caption{\textbf{Effect of stationary noise on toggle switch and toggle triad networks}. 
     \textbf{(A)} Representative single-parameter trajectory for the TS network: (i) node A and (ii) node B expression over time (log$_2$), with the deterministic (noise-free) segment at negative time and the stochastic segment at positive time. Gray lines show all sampled initial conditions; the black line highlights one representative trajectory (the one whose switch count is closest to the population median); dashed horizontal line marks each node's discretization threshold $\theta$.
     \textbf{(B)} Discrete-state trace of the same parameter, colored by state for the highlighted trajectory (gray for all other initial conditions). Crosshatched region marks the discarded transient-dominated window of the stochastic segment. 
-    \textbf{(C)} MRT of each state across noise levels. Each panel corresponds to the state indicated by its label. Grey lines show individual parameter-set trajectories; the black dashed line shows their mean. Darker or apparently solid grey segments result from the overlap of multiple trajectories and do not denote a separate category.
+    \textbf{(C)} MRT of each state across noise levels. Each panel corresponds to the state indicated by its label. Grey lines show a random sample of 100 parameter-set trajectories (out of the full population, shown for legibility); the black dashed line shows the mean across the full parameter population, not just the sampled 100. Darker or apparently solid grey segments result from the overlap of multiple trajectories and do not denote a separate category.
     \textbf{(D--F)} MRT vs.\ noise level for TSSA (D), TT (E), and TTSA (F) bistable parameter sets, colored by state (top 4 states shown for TSSA, top 7 for TT/TTSA), mean $\pm$ SD across parameter sets. 
 }
     \label{fig:2}
@@ -119,7 +120,7 @@ Models of gene regulatory networks (GRNs) underlying cell-fate decision systems 
     \centering
     \includegraphics[width=\linewidth]{Figs/Fig3.jpg}
     \caption{\textbf{Effect of Additive noise on the phenotypic landscape of cell-fate decision networks}
-    \textbf{(A)} MRT of $(1, 1)$ and $(1, 0)$ states vs.\ noise level for the TS network, individual parameter-set trajectories (gray) with population mean (dashed).
+    \textbf{(A)} MRT of $(1, 1)$ and $(1, 0)$ states vs.\ noise level for the TS network, a random sample of 100 parameter-set trajectories (gray) with the mean across the full parameter population (dashed).
     \textbf{(B)} MRT boxplots for the TS network, monostable vs.\ bistable parameter sets, all-high vs.\ single-high states, with paired Wilcoxon significance brackets; ``*'' $p-value<0.05$, ``ns'' not significant. 
     \textbf{(C)} Reachability scatter for TS monostable parameter sets at $\sigma = 0.1$: each node's (max expression $-$ threshold) margin on the x/y axes, colored by MRT of the (1,1) state.
     \textbf{(D)} Spearman correlation between the minimum reachability margin across nodes and MRT of the (1,1) state, across four noise levels (0.001, 0.01, 0.1, 1), TS monostable parameter sets.
@@ -144,8 +145,8 @@ Models of gene regulatory networks (GRNs) underlying cell-fate decision systems 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Figs/Fig5.jpg}
-    \caption{Effect of multiplicative noise on the phenotypic landscape of cell-fate decision networks.
-    \textbf{(A)} MRT vs.\ noise level for the TTSA network, single-high and double-high states.
+    \caption{\textbf{Effect of multiplicative noise on the phenotypic landscape of cell-fate decision networks.}
+    \textbf{(A)} MRT vs.\ noise level for the TTSA network, single-high and double-high states; grey lines show a random sample of 100 parameter-set trajectories, with the mean across the full parameter population shown separately.
     \textbf{(B)} Average MRT of single-high vs.\ double-high states vs.\ noise level, for TS, TSSA, TT, and TTSA.
     \textbf{(C)} Same, for the 4-node networks TT4 and TS4.
     \textbf{(D)} Stochastic effect (as in Fig.\ 4C(i)) for the single-high state, across noise levels, for TS, TSSA, TT, TTSA, TT4, and TT4SA.
@@ -155,18 +156,25 @@ Models of gene regulatory networks (GRNs) underlying cell-fate decision systems 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figs/Figure4.jpg}
-    \caption{\textbf{Effect of regulatory noise on large biological networks} A) Representative trajectories of the phenotypic score for EMT network (i) and Gonadal network (ii) at additive noise of 0.05 magnitude. B) Density of team scores across the representative trajectory of the EMT network, with frequency represented on a scale from low (blue) to high (yellow). WT represents the frequency of team score configurations obtained from the steady states of the unperturbed network, while Rand represents that of the simulations corresponding to the trajectories in A. C) Relative frequency (equivalent to MRT) of different phenotypic scores across 1000 simulation trajectories of additive noise over simulation time for (i) EMT network, (ii) Gonadal network. D) Same as C, but for Multiplicative and Stationary noise for EMT network.}
+    \includegraphics[width=0.9\linewidth]{Figs/Fig6.jpg}
+    \caption{\textbf{Fate resolution of progenitor state under multiplicative noise}
+    \textbf{(A)} Distribution of switching-event counts by noise level (Additive vs.\ Multiplicative), after excluding the initial burn-in window.
+    \textbf{(B)} Frequency of the three deterministic stability classes among double-high parameter sets.
+    \textbf{(C)} For each stability class, the fraction of parameter sets accessing 1 (Monostable), 2 (Bistable), or 3+ (Tristable/Tetrastable) distinct single-high fates under noise.
+    \textbf{(D)} Circular chord diagram of double-high $\to$ single-high MRT flow among monostable double-high parameter sets, at $\sigma$ = 0.01.
+    \textbf{(E)} Noise-level $\to$ outcome alluvial for the pooled monostable double-high population (outcomes labeled relative to the initial double-high state XY, e.g.\ ``XY to X''), colored by the multistability classification from panel C.
+}
+    \label{fig:6}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Fig7.jpg}
+    \caption{\textbf{Effect of regulatory noise on large biological networks} \textbf{(A)} Representative trajectories of the phenotypic score for EMT network (i) and Gonadal network (ii) at additive noise of 0.05 magnitude. \textbf{(B)} Density of team scores across the representative trajectory of the EMT network, with frequency represented on a scale from low (blue) to high (yellow). WT represents the frequency of team score configurations obtained from the steady states of the unperturbed network, while Rand represents that of the simulations corresponding to the trajectories in A. \textbf{(C)} Relative frequency (equivalent to MRT) of different phenotypic scores across 1000 simulation trajectories of additive noise over simulation time for (i) EMT network, (ii) Gonadal network. \textbf{(D)} Same as C, but for Multiplicative and Stationary noise for EMT network.}
     \label{fig:5}
 \end{figure}
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{Figs/Schematic.png}
-    \caption{\textbf{Graphical representation of the effect of regulatory noise on the cell-fate decision landscape supported by GRNs}}
-    \label{fig:schematic}
-\end{figure}
 \newpage
 \beginsupplement
 

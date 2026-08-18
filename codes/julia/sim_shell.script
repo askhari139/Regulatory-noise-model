@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# Usage: same env-var-driven config as sim.script (NETWORKS=, NOISE_MODES=,
+# NOISE_LEVELS=, etc. -- see sim_script_combine.sh for examples), e.g.:
+#   NETWORKS=TT4 NOISE_MODES=Additive NOISE_LEVELS=0.0,0.001,0.01,0.1,1.0 \
+#     DT=1.0,10.0 NUM_SIMS=100 MAX_PARAMS=100 sbatch sim_shell.script
+#
+# #SBATCH directives are parsed by sbatch itself, not bash -- they can't
+# reference shell/env vars, so --cpus-per-task is fixed below at a sensible
+# default. Override the core count from the command line instead (SLURM
+# CLI flags take precedence over in-script #SBATCH directives), e.g.:
+#   sbatch --cpus-per-task=64 sim_shell.script
+#
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=64GB
+#SBATCH --time=12:00:00
+#SBATCH --job-name=detStochShell
+#SBATCH --partition=ctbp
+#SBATCH --output=logs/detStochShell_%j.out
+#SBATCH --error=logs/detStochShell_%j.err
+
+set -euo pipefail   # bail on any error
+
+module load julia
+module load R
+unset SCHEDULER     # force monitor to run inline
+export RACIPE_SOURCE="$(pwd)"
+export GKSwstype=nul
+mkdir -p logs
+
+echo "Julia: $(julia --version)"
+echo "RACIPE_SOURCE: $RACIPE_SOURCE"
+echo "Allocated CPUs: $SLURM_CPUS_PER_TASK"
+
+# Phase 1+2: 0_run_all.jl with deterministic=true does BOTH det and
+# stochastic. run-mode=shell forces 2_submit_jobs.jl to use
+# run_parallel_shell() -- many concurrent single-threaded ("--threads=1")
+# Julia subprocesses, one per parameter, forked directly within THIS one
+# allocation -- instead of run-mode=parallel's default behavior of calling
+# submit_slurm_job_array() (which submits a SEPARATE 1-cpu sbatch job per
+# parameter; fine at small parameter counts, but adds per-job queueing and
+# Julia-startup overhead that dominates at the parameter counts this
+# project actually runs, and schedules poorly against a busy partition).
+#
+# The outer julia call below is deliberately NOT given --threads=N: all of
+# the parallelism here comes from run_parallel_shell()'s subprocess
+# forking (bounded by num-threads, matched to the allocation's core count
+# below), not from Julia's own thread pool, so the orchestrating process
+# itself stays single-threaded.
+echo "=== PHASE 1+2: DET + STOCHASTIC (shell-parallel, $SLURM_CPUS_PER_TASK cores) ==="
+srun --cpus-per-task=$SLURM_CPUS_PER_TASK --cpu-bind=no \
+     stdbuf -oL -eL \
+     julia /scratch/a.hari/RACIPEdata/scripts/0_run_all.jl \
+               networks=${NETWORKS:-TS} \
+               noise-modes=${NOISE_MODES:-Additive} \
+               noise-levels=${NOISE_LEVELS:-0.0,0.001,0.005,0.01,0.05,0.1} \
+               num-sims=${NUM_SIMS:-25} \
+               run-mode=shell \
+               num-threads=$SLURM_CPUS_PER_TASK \
+               deterministic=true \
+               resample=true \
+               max-params=${MAX_PARAMS:-100} \
+               stability-class=${STABILITY_CLASS:-TTTF} \
+               poll-interval=${POLL_INTERVAL:-300} \
+               max-wait=${MAX_WAIT:-8640} \
+	       partition=${PARTITION:-ctbp} \
+	       dt=${DT:-0.01}
+
+# Phase 3: plots
+if [[ -f scripts/plotGen.r ]]; then
+    echo "=== PHASE 3: PLOTTING ==="
+    Rscript scripts/plotGen.r T "$(pwd)"
+else
+    echo "scripts/plotGen.r not found — skipping plotting"
+fi

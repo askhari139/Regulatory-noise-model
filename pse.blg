@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'pse.blg'
+[37] biber-darwin:340> INFO - === Tue Aug 18, 2026, 18:23:52
+[45] Biber.pm:420> INFO - Reading 'pse.bcf'
+[83] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[91] bbl.pm:676> INFO - Writing 'pse.bbl' with encoding 'UTF-8'
+[91] bbl.pm:779> INFO - Output to pse.bbl
+[91] Biber.pm:131> WARN - The file 'pse.bcf' does not contain any citations!
+[91] Biber.pm:133> INFO - WARNINGS: 1

@@ -1,0 +1,51 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=32GB
+#SBATCH --time=12:00:00
+#SBATCH --job-name=detStoch
+#SBATCH --partition=ctbp
+#SBATCH --output=logs/detStoch_%j.out
+#SBATCH --error=logs/detStoch_%j.err
+
+set -euo pipefail   # bail on any error
+
+module load julia
+module load R
+unset SCHEDULER     # force monitor to run inline
+export RACIPE_SOURCE="$(pwd)"
+export JULIA_NUM_THREADS=$SLURM_CPUS_PER_TASK
+export GKSwstype=nul
+mkdir -p logs
+
+echo "Julia: $(julia --version)"
+echo "RACIPE_SOURCE: $RACIPE_SOURCE"
+
+# Phase 1+2: 0_run_all.jl with deterministic=true does BOTH det and stochastic
+echo "=== PHASE 1+2: DET + STOCHASTIC ==="
+srun --cpus-per-task=$SLURM_CPUS_PER_TASK --cpu-bind=no \
+     stdbuf -oL -eL \
+     julia --threads=$SLURM_CPUS_PER_TASK \
+           /scratch/a.hari/RACIPEdata/scripts/0_run_all.jl \
+               networks=${NETWORKS:-TS} \
+               noise-modes=${NOISE_MODES:-Additive} \
+               noise-levels=${NOISE_LEVELS:-0.0,0.001,0.005,0.01,0.05,0.1} \
+               num-sims=${NUM_SIMS:-25} \
+               run-mode=${RUN_MODE:-parallel} \
+               deterministic=true \
+               resample=true \
+               max-params=${MAX_PARAMS:-100} \
+               stability-class=${STABILITY_CLASS:-TTTF} \
+               poll-interval=${POLL_INTERVAL:-300} \
+               max-wait=${MAX_WAIT:-8640} \
+	       partition=${PARTITION:-ctbp} \
+	       dt=${DT:-0.01}
+
+# Phase 3: plots
+if [[ -f scripts/plotGen.r ]]; then
+    echo "=== PHASE 3: PLOTTING ==="
+    Rscript scripts/plotGen.r T "$(pwd)"
+else
+    echo "scripts/plotGen.r not found — skipping plotting"
+fi

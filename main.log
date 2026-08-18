@@ -1,0 +1,1418 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  18 AUG 2026 18:15
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-03-26>
+(/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count197
+\c@section=\count198
+\c@subsection=\count199
+\c@subsubsection=\count266
+\c@paragraph=\count267
+\c@subparagraph=\count268
+\c@figure=\count269
+\c@table=\count270
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen146
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count271
+\Gm@cntv=\count272
+\c@Gm@tempcnt=\count273
+\Gm@bindingoffset=\dimen147
+\Gm@wd@mp=\dimen148
+\Gm@odd@mp=\dimen149
+\Gm@even@mp=\dimen150
+\Gm@layoutwidth=\dimen151
+\Gm@layoutheight=\dimen152
+\Gm@layouthoffset=\dimen153
+\Gm@layoutvoffset=\dimen154
+\Gm@dimlist=\toks20
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2024/11/05 v2.17t AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks21
+\ex@=\dimen155
+)) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen156
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count274
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count275
+\leftroot@=\count276
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count277
+\DOTSCASE@=\count278
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen157
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count279
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count280
+\dotsspace@=\muskip17
+\c@parentequation=\count281
+\dspbrk@lvl=\count282
+\tag@help=\toks22
+\row@=\count283
+\column@=\count284
+\maxfields@=\count285
+\andhelp@=\toks23
+\eqnshift@=\dimen158
+\alignsep@=\dimen159
+\tagshift@=\dimen160
+\tagwidth@=\dimen161
+\totwidth@=\dimen162
+\lineht@=\dimen163
+\@envbody=\toks24
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/mhchem/mhchem.sty
+Package: mhchem 2024/01/29 v4.10 for typesetting chemical formulae
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-03-26 L3 programming layer (loader) 
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-03-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count286
+)) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count287
+\calc@Bcount=\count288
+\calc@Adimen=\dimen164
+\calc@Bdimen=\dimen165
+\calc@Askip=\skip54
+\calc@Bskip=\skip55
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count289
+\calc@Cskip=\skip56
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/chemgreek/chemgreek.sty (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-08-16 L3 Experimental document command parser
+)
+Package: chemgreek 2020/01/16 v1.1a interface for upright Greek letters for use in chemistry (CN)
+\l__chemgreek_tmpa_int=\count290
+\g__chemgreek_tmpa_int=\count291
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+))
+\l__mhchem_ce_distanceFromLastComma_int=\count292
+\__mhchem_arrow_extPgfLength_skip=\skip57
+\mhchem@minispace@tmp=\skip58
+\mhchem@minibackspace@tmp=\skip59
+\mhchem@bondwidth=\skip60
+\mhchem@bondheight=\skip61
+\mhchem@smallbondwidth@tmpA=\skip62
+\mhchem@smallbondwidth@tmpB=\skip63
+\mhchem@smallbondwidth=\skip64
+\mhchem@bondtmp@minussidebearingleft=\skip65
+\mhchem@bondtmp@minussidebearingright=\skip66
+\l__mhchem_option_version_int=\count293
+\mhchem@option@minusmathsidebearingleft=\dimen166
+\mhchem@option@minusmathsidebearingright=\dimen167
+\mhchem@option@minustextsidebearingleft=\dimen168
+\mhchem@option@minustextsidebearingright=\dimen169
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+\Gin@req@height=\dimen170
+\Gin@req@width=\dimen171
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count294
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count295
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+\@linkdim=\dimen172
+\Hy@linkcounter=\count296
+\Hy@pagecounter=\count297
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count298
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4424.
+\c@Hy@tempcnt=\count299
+LaTeX Info: Redefining \url on input line 4763.
+\XeTeXLinkMargin=\dimen173
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count300
+\Field@Width=\dimen174
+\Fld@charsize=\dimen175
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count301
+\c@Item=\count302
+\c@Hfootnote=\count303
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count304
+\c@bookmark@seq@number=\count305
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip67
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2025/01/04 v2.17 Sectioning titles
+\ttl@box=\box55
+\beforetitleunit=\skip68
+\aftertitleunit=\skip69
+\ttl@plus=\dimen176
+\ttl@minus=\dimen177
+\ttl@toksa=\toks26
+\titlewidth=\dimen178
+\titlewidthlast=\dimen179
+\titlewidthfirst=\dimen180
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip70
+\enit@outerparindent=\dimen181
+\enit@toks=\toks27
+\enit@inbox=\box56
+\enit@count@id=\count306
+\enitdp@description=\count307
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen182
+\WF@size=\dimen183
+\c@WF@wrappedlines=\count308
+\WF@box=\box57
+\WF@everypar=\toks28
+Package: wrapfig 2003/01/31  v 3.6
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2024/03/21 v3.20 programmable bibliographies (PK/MW)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count309
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count310
+\c@listtotal=\count311
+\c@listcount=\count312
+\c@liststart=\count313
+\c@liststop=\count314
+\c@citecount=\count315
+\c@citetotal=\count316
+\c@multicitecount=\count317
+\c@multicitetotal=\count318
+\c@instcount=\count319
+\c@maxnames=\count320
+\c@minnames=\count321
+\c@maxitems=\count322
+\c@minitems=\count323
+\c@citecounter=\count324
+\c@maxcitecounter=\count325
+\c@savedcitecounter=\count326
+\c@uniquelist=\count327
+\c@uniquename=\count328
+\c@refsection=\count329
+\c@refsegment=\count330
+\c@maxextratitle=\count331
+\c@maxextratitleyear=\count332
+\c@maxextraname=\count333
+\c@maxextradate=\count334
+\c@maxextraalpha=\count335
+\c@abbrvpenalty=\count336
+\c@highnamepenalty=\count337
+\c@lownamepenalty=\count338
+\c@maxparens=\count339
+\c@parenlevel=\count340
+\blx@tempcnta=\count341
+\blx@tempcntb=\count342
+\blx@tempcntc=\count343
+\c@blx@maxsection=\count344
+\blx@maxsegment@0=\count345
+\blx@notetype=\count346
+\blx@parenlevel@text=\count347
+\blx@parenlevel@foot=\count348
+\blx@sectionciteorder@0=\count349
+\blx@sectionciteorderinternal@0=\count350
+\blx@entrysetcounter=\count351
+\blx@biblioinstance=\count352
+\labelnumberwidth=\skip71
+\labelalphawidth=\skip72
+\biblabelsep=\skip73
+\bibitemsep=\skip74
+\bibnamesep=\skip75
+\bibinitsep=\skip76
+\bibparsep=\skip77
+\bibhang=\skip78
+\blx@bcfin=\read2
+\blx@bcfout=\write3
+\blx@langwohyphens=\language6
+\c@mincomprange=\count353
+\c@maxcomprange=\count354
+\c@mincompwidth=\count355
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2024/03/21 v3.20 biblatex datamodel (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count356
+\c@savedafterword=\count357
+\c@annotator=\count358
+\c@savedannotator=\count359
+\c@author=\count360
+\c@savedauthor=\count361
+\c@bookauthor=\count362
+\c@savedbookauthor=\count363
+\c@commentator=\count364
+\c@savedcommentator=\count365
+\c@editor=\count366
+\c@savededitor=\count367
+\c@editora=\count368
+\c@savededitora=\count369
+\c@editorb=\count370
+\c@savededitorb=\count371
+\c@editorc=\count372
+\c@savededitorc=\count373
+\c@foreword=\count374
+\c@savedforeword=\count375
+\c@holder=\count376
+\c@savedholder=\count377
+\c@introduction=\count378
+\c@savedintroduction=\count379
+\c@namea=\count380
+\c@savednamea=\count381
+\c@nameb=\count382
+\c@savednameb=\count383
+\c@namec=\count384
+\c@savednamec=\count385
+\c@translator=\count386
+\c@savedtranslator=\count387
+\c@shortauthor=\count388
+\c@savedshortauthor=\count389
+\c@shorteditor=\count390
+\c@savedshorteditor=\count391
+\c@labelname=\count392
+\c@savedlabelname=\count393
+\c@institution=\count394
+\c@savedinstitution=\count395
+\c@lista=\count396
+\c@savedlista=\count397
+\c@listb=\count398
+\c@savedlistb=\count399
+\c@listc=\count400
+\c@savedlistc=\count401
+\c@listd=\count402
+\c@savedlistd=\count403
+\c@liste=\count404
+\c@savedliste=\count405
+\c@listf=\count406
+\c@savedlistf=\count407
+\c@location=\count408
+\c@savedlocation=\count409
+\c@organization=\count410
+\c@savedorganization=\count411
+\c@origlocation=\count412
+\c@savedoriglocation=\count413
+\c@origpublisher=\count414
+\c@savedorigpublisher=\count415
+\c@publisher=\count416
+\c@savedpublisher=\count417
+\c@language=\count418
+\c@savedlanguage=\count419
+\c@origlanguage=\count420
+\c@savedoriglanguage=\count421
+\c@pageref=\count422
+\c@savedpageref=\count423
+\shorthandwidth=\skip79
+\shortjournalwidth=\skip80
+\shortserieswidth=\skip81
+\shorttitlewidth=\skip82
+\shortauthorwidth=\skip83
+\shorteditorwidth=\skip84
+\locallabelnumberwidth=\skip85
+\locallabelalphawidth=\skip86
+\localshorthandwidth=\skip87
+\localshortjournalwidth=\skip88
+\localshortserieswidth=\skip89
+\localshorttitlewidth=\skip90
+\localshortauthorwidth=\skip91
+\localshorteditorwidth=\skip92
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
+\c@textcitecount=\count424
+\c@textcitetotal=\count425
+\c@textcitemaxnames=\count426
+\c@biburlbigbreakpenalty=\count427
+\c@biburlbreakpenalty=\count428
+\c@biburlnumpenalty=\count429
+\c@biburlucpenalty=\count430
+\c@biburllcpenalty=\count431
+\biburlbigskip=\muskip19
+\biburlnumskip=\muskip20
+\biburlucskip=\muskip21
+\biburllcskip=\muskip22
+\c@smartand=\count432
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count433
+\c@bbx:relatedtotal=\count434
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2024/03/21 v3.20 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2025-03-26 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+Package: blx-case-expl3 2024/03/21 v3.20 expl3 case changing code for biblatex
+)) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen184
+\lightrulewidth=\dimen185
+\cmidrulewidth=\dimen186
+\belowrulesep=\dimen187
+\belowbottomsep=\dimen188
+\aboverulesep=\dimen189
+\abovetopsep=\dimen190
+\cmidrulesep=\dimen191
+\cmidrulekern=\dimen192
+\defaultaddspace=\dimen193
+\@cmidla=\count435
+\@cmidlb=\count436
+\@aboverulesep=\dimen194
+\@belowrulesep=\dimen195
+\@thisruleclass=\count437
+\@lastruleclass=\count438
+\@thisrulewidth=\dimen196
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen197
+\ar@mcellbox=\box58
+\extrarowheight=\dimen198
+\NC@list=\toks29
+\extratabsurround=\skip93
+\backup@length=\skip94
+\ar@cellbox=\box59
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen199
+\captionmargin=\dimen256
+\caption@leftmargin=\dimen257
+\caption@rightmargin=\dimen258
+\caption@width=\dimen259
+\caption@indent=\dimen260
+\caption@parindent=\dimen261
+\caption@hangindent=\dimen262
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count439
+\c@continuedfloat=\count440
+Package caption Info: hyperref package is loaded.
+Package caption Info: wrapfig package is loaded.
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count441
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count442
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2025/02/11 v3.2a Micro-typographical refinements (RS)
+\MT@toks=\toks30
+\MT@tempbox=\box60
+\MT@count=\count443
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
+LaTeX Info: Redefining \leftprotrusion on input line 1088.
+\MT@prot@toks=\toks31
+LaTeX Info: Redefining \rightprotrusion on input line 1107.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen263
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count444
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2025/02/11 v3.2a Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip95
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2025/02/11 v3.2a microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box61
+)
+\@quotelevel=\count445
+\@quotereset=\count446
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 77.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) (./main.aux (./shifted_hill_derivation.aux) (./Additive_boolean.aux
+
+LaTeX Warning: Label `eq:hshift' multiply defined.
+
+) (./boolean_static.aux) (./Anaytical.aux))
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(57.81621pt, 513.11636pt, 43.36243pt)
+* v-part:(T,H,B)=(43.36243pt, 693.79135pt, 57.81621pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=513.11636pt
+* \textheight=693.79135pt
+* \oddsidemargin=-14.45378pt
+* \evensidemargin=-14.45378pt
+* \topmargin=-65.90756pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Package chemgreek Info: Activating mapping `default' on line 77.
+
+(/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package hyperref Info: Link coloring OFF on input line 77.
+ (./main.out) (./main.out)
+\@outlinefile=\write4
+\openout4 = `main.out'.
+
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `main.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' found.
+ (./main.bbl)
+Package biblatex Info: Reference section=0 on input line 77.
+Package biblatex Info: Reference segment=0 on input line 77.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: threeparttable package is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Info: Redefining \microtypecontext on input line 77.
+Package microtype Info: Applying patch `item' on input line 77.
+Package microtype Info: Applying patch `toc' on input line 77.
+Package microtype Info: Applying patch `eqnum' on input line 77.
+Package microtype Info: Applying patch `footnote' on input line 77.
+Package microtype Info: Applying patch `verbatim' on input line 77.
+LaTeX Info: Redefining \microtypesetup on input line 77.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 77.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 81.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 81.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 81.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 81.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 81.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 81.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 82.
+
+
+[1
+
+{/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+
+[2]
+<Figs/Fig1.jpg, id=246, 2007.5pt x 2580.64125pt>
+File: Figs/Fig1.jpg Graphic file (type jpg)
+<use Figs/Fig1.jpg>
+Package pdftex.def Info: Figs/Fig1.jpg  used on input line 119.
+(pdftex.def)             Requested size: 410.49464pt x 527.69606pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 125.
+
+
+[3{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
+
+[4{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} <./Figs/Fig1.jpg>]
+
+[5{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+<Figs/Fig2.jpg, id=320, 2007.5pt x 1204.5pt>
+File: Figs/Fig2.jpg Graphic file (type jpg)
+<use Figs/Fig2.jpg>
+Package pdftex.def Info: Figs/Fig2.jpg  used on input line 169.
+(pdftex.def)             Requested size: 513.11636pt x 307.86942pt.
+
+
+[6 <./Figs/Fig2.jpg>]
+<Figs/Fig3.jpg, id=338, 2007.5pt x 1739.49875pt>
+File: Figs/Fig3.jpg Graphic file (type jpg)
+<use Figs/Fig3.jpg>
+Package pdftex.def Info: Figs/Fig3.jpg  used on input line 192.
+(pdftex.def)             Requested size: 513.11636pt x 444.61475pt.
+
+
+[7]
+
+[8 <./Figs/Fig3.jpg>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 210.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 210.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 210.
+
+
+
+[9]
+<Figs/Fig4.jpg, id=383, 2007.5pt x 2509.375pt>
+File: Figs/Fig4.jpg Graphic file (type jpg)
+<use Figs/Fig4.jpg>
+Package pdftex.def Info: Figs/Fig4.jpg  used on input line 220.
+(pdftex.def)             Requested size: 461.80159pt x 577.25899pt.
+
+
+[10]
+
+[11 <./Figs/Fig4.jpg>]
+<Figs/Fig5.jpg, id=400, 2007.5pt x 1756.5625pt>
+File: Figs/Fig5.jpg Graphic file (type jpg)
+<use Figs/Fig5.jpg>
+Package pdftex.def Info: Figs/Fig5.jpg  used on input line 251.
+(pdftex.def)             Requested size: 513.11636pt x 448.97623pt.
+<Figs/Fig6.jpg, id=401, 2007.5pt x 2453.165pt>
+File: Figs/Fig6.jpg Graphic file (type jpg)
+<use Figs/Fig6.jpg>
+Package pdftex.def Info: Figs/Fig6.jpg  used on input line 263.
+(pdftex.def)             Requested size: 461.80159pt x 564.32838pt.
+
+
+[12]
+
+[13 <./Figs/Fig5.jpg>]
+
+[14 <./Figs/Fig6.jpg>]
+
+[15]
+<Figs/Fig7.jpg, id=470, 2007.5pt x 1045.9075pt>
+File: Figs/Fig7.jpg Graphic file (type jpg)
+<use Figs/Fig7.jpg>
+Package pdftex.def Info: Figs/Fig7.jpg  used on input line 295.
+(pdftex.def)             Requested size: 513.11636pt x 267.33327pt.
+
+
+[16 <./Figs/Fig7.jpg>]
+<Figs/Schematic.png, id=492, 963.6pt x 468.7914pt>
+File: Figs/Schematic.png Graphic file (type png)
+<use Figs/Schematic.png>
+Package pdftex.def Info: Figs/Schematic.png  used on input line 305.
+(pdftex.def)             Requested size: 513.11636pt x 249.63853pt.
+
+
+[17 <./Figs/Schematic.png>]
+
+[18]
+
+[19]
+
+[20]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 389.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 389.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 389.
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 391.
+(/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+
+[21]
+
+[22]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 463.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (7.22716pt too wide) in paragraph at lines 478--479
+\T1/lmr/m/n/10.95 (-20) stochas-tic sim-u-la-tion pipeline and all figure-generation scripts, is avail-able at github.com/askhari139/Regulatory-
+ []
+
+
+
+[23{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+
+
+[24]
+
+[25]
+
+[26]
+Overfull \hbox (8.63818pt too wide) in paragraph at lines 481--481
+[]\T1/lmr/m/n/10.95 (-20) Mubasher Rashid et al. ``Net-work topol-ogy met-rics ex-plain-ing en-rich-ment of hy-brid ep-ithe-lial/mesenchymal
+ []
+
+
+Overfull \hbox (9.04984pt too wide) in paragraph at lines 481--481
+[]\T1/lmr/m/n/10.95 (-20) Francesc Font-Clos, Ste-fano Zap-peri, and Cate-rina A. M. La Porta. ``To-pog-ra-phy of ep-ithe-lial^^Umesenchymal
+ []
+
+
+
+[27]
+
+[28]
+\openout2 = `shifted_hill_derivation.aux'.
+
+ (./shifted_hill_derivation.tex
+pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 ...n{Derivation of the shifted Hill functions}
+                                                  
+
+[29
+
+])
+
+[30]
+\openout2 = `Additive_boolean.aux'.
+
+ (./Additive_boolean.tex
+pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 ...n enhancement of the double-positive state}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.10 ... two $\lambda$ extremes are not symmetric}
+                                                  
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 10.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 10.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 10.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.40 \subsection{Boolean reduction}
+                                   
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.63 ...=1$, $\lambda$ drawn once and held fixed)}
+                                                  
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 63.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 63.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 63.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 63.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 63.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 63.
+
+
+
+[31
+
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.98 ...n{Stochastic case ($\lambda$ fluctuating)}
+                                                  
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 98.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 98.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 98.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.129 ... toward $11$ under fluctuating $\lambda$}
+                                                  
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 129.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 129.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 129.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 129.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 129.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.149 \subsection{Comparison}
+                             
+
+[32])
+
+[33]
+\openout2 = `boolean_static.aux'.
+
+ (./boolean_static.tex
+pdfTeX warning (ext4): destination with the same identifier (name{section.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 ...e-scale binary cell-fate decision networks}
+                                                   \label{ssec:stat_pert}
+
+LaTeX Warning: Reference `ap:ts_jsd_dist' on page 34 undefined on input line 7.
+
+
+LaTeX Warning: Reference `tt:ew_range_num' on page 34 undefined on input line 12.
+
+
+
+[34
+
+
+
+]
+
+LaTeX Warning: Reference `{sssec:jsd_def}' on page 35 undefined on input line 14.
+
+
+LaTeX Warning: Reference `tab:ew_art_all' on page 35 undefined on input line 24.
+
+
+LaTeX Warning: Reference `tab:ew_art_all' on page 35 undefined on input line 24.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{section.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.26 \section{Methods}
+                      
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.4.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.28 \subsection{Jensen--Shannon divergence}
+                                            \label{sssec:jsd_def}
+pdfTeX warning (ext4): destination with the same identifier (name{section.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.36 \section{Fitting and error propagation}
+                                            \label{ssec:fit_meth}
+
+[35])
+
+[36]
+\openout2 = `Anaytical.aux'.
+
+ (./Anaytical.tex
+pdfTeX warning (ext4): destination with the same identifier (name{section.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 ...ribution of $\lambda$ under additive noise}
+                                                  \label{AdditiveStationary}
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 1.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 1.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 3.
+
+
+
+[37
+
+
+
+]
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+
+ []
+
+)
+
+[39]
+<Figs/Fig1S1.jpg, id=873, 2007.5pt x 1337.99875pt>
+File: Figs/Fig1S1.jpg Graphic file (type jpg)
+<use Figs/Fig1S1.jpg>
+Package pdftex.def Info: Figs/Fig1S1.jpg  used on input line 493.
+(pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
+<Figs/Fig2S1.jpg, id=874, 2007.5pt x 1517.67pt>
+File: Figs/Fig2S1.jpg Graphic file (type jpg)
+<use Figs/Fig2S1.jpg>
+Package pdftex.def Info: Figs/Fig2S1.jpg  used on input line 501.
+(pdftex.def)             Requested size: 410.49464pt x 310.337pt.
+<Figs/Fig3S1.jpg, id=875, 2007.5pt x 2315.65125pt>
+File: Figs/Fig3S1.jpg Graphic file (type jpg)
+<use Figs/Fig3S1.jpg>
+Package pdftex.def Info: Figs/Fig3S1.jpg  used on input line 508.
+(pdftex.def)             Requested size: 410.49464pt x 473.51022pt.
+<Figs/Fig4S1.jpg, id=876, 2007.5pt x 1606.0pt>
+File: Figs/Fig4S1.jpg Graphic file (type jpg)
+<use Figs/Fig4S1.jpg>
+Package pdftex.def Info: Figs/Fig4S1.jpg  used on input line 515.
+(pdftex.def)             Requested size: 410.49464pt x 328.39894pt.
+<Figs/Fig4S2.jpg, id=877, 2007.5pt x 1337.99875pt>
+File: Figs/Fig4S2.jpg Graphic file (type jpg)
+<use Figs/Fig4S2.jpg>
+Package pdftex.def Info: Figs/Fig4S2.jpg  used on input line 522.
+(pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
+<Figs/Fig4S3.jpg, id=878, 2007.5pt x 2823.54875pt>
+File: Figs/Fig4S3.jpg Graphic file (type jpg)
+<use Figs/Fig4S3.jpg>
+Package pdftex.def Info: Figs/Fig4S3.jpg  used on input line 530.
+(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
+<Figs/Fig5S1.jpg, id=879, 2007.5pt x 1672.2475pt>
+File: Figs/Fig5S1.jpg Graphic file (type jpg)
+<use Figs/Fig5S1.jpg>
+Package pdftex.def Info: Figs/Fig5S1.jpg  used on input line 538.
+(pdftex.def)             Requested size: 410.49464pt x 341.9454pt.
+<Figs/Fig5S2.jpg, id=880, 2007.5pt x 2371.86125pt>
+File: Figs/Fig5S2.jpg Graphic file (type jpg)
+<use Figs/Fig5S2.jpg>
+Package pdftex.def Info: Figs/Fig5S2.jpg  used on input line 546.
+(pdftex.def)             Requested size: 410.49464pt x 485.0042pt.
+<Figs/Fig5S3.jpg, id=881, 2007.5pt x 2823.54875pt>
+File: Figs/Fig5S3.jpg Graphic file (type jpg)
+<use Figs/Fig5S3.jpg>
+Package pdftex.def Info: Figs/Fig5S3.jpg  used on input line 554.
+(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
+<Figs/Fig6S1.jpg, id=882, 2007.5pt x 1505.625pt>
+File: Figs/Fig6S1.jpg Graphic file (type jpg)
+<use Figs/Fig6S1.jpg>
+Package pdftex.def Info: Figs/Fig6S1.jpg  used on input line 561.
+(pdftex.def)             Requested size: 410.49464pt x 307.87401pt.
+<Figs/Fig7S1.jpg, id=883, 2007.5pt x 1635.10875pt>
+File: Figs/Fig7S1.jpg Graphic file (type jpg)
+<use Figs/Fig7S1.jpg>
+Package pdftex.def Info: Figs/Fig7S1.jpg  used on input line 571.
+(pdftex.def)             Requested size: 410.49464pt x 334.35118pt.
+<Figs/Fig7S2.jpg, id=884, 2007.5pt x 1932.21875pt>
+File: Figs/Fig7S2.jpg Graphic file (type jpg)
+<use Figs/Fig7S2.jpg>
+Package pdftex.def Info: Figs/Fig7S2.jpg  used on input line 589.
+(pdftex.def)             Requested size: 410.49464pt x 395.10498pt.
+<Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf, id=891, 1186.25691pt x 555.62709pt>
+File: Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf Graphic file (type pdf)
+<use Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf  used on input line 614.
+(pdftex.def)             Requested size: 328.63812pt x 153.93646pt.
+<Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf, id=892, 1186.25691pt x 555.62709pt>
+File: Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf Graphic file (type pdf)
+<use Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf  used on input line 614.
+(pdftex.def)             Requested size: 328.63812pt x 153.93646pt.
+
+Overfull \hbox (25.65672pt too wide) in paragraph at lines 607--618
+[][] 
+ []
+
+<Abhay_Lakshmi_old/Results/ts_ew_ts.png, id=895, 864.22874pt x 755.82375pt>
+File: Abhay_Lakshmi_old/Results/ts_ew_ts.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/ts_ew_ts.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/ts_ew_ts.png  used on input line 643.
+(pdftex.def)             Requested size: 204.51797pt x 205.23996pt.
+<Abhay_Lakshmi_old/Results/JSD_compiled.pdf, id=896, 355.70703pt x 336.19753pt>
+File: Abhay_Lakshmi_old/Results/JSD_compiled.pdf Graphic file (type pdf)
+<use Abhay_Lakshmi_old/Results/JSD_compiled.pdf>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/JSD_compiled.pdf  used on input line 643.
+(pdftex.def)             Requested size: 205.96826pt x 205.24434pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png, id=897, 239.89626pt x 748.7975pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png  used on input line 643.
+(pdftex.def)             Requested size: 49.31815pt x 153.93646pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png, id=898, 784.9325pt x 751.80875pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png  used on input line 643.
+(pdftex.def)             Requested size: 209.57512pt x 205.23952pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png, id=899, 966.61125pt x 757.83125pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png  used on input line 643.
+(pdftex.def)             Requested size: 261.78499pt x 205.24341pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png, id=900, 204.765pt x 726.715pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png  used on input line 643.
+(pdftex.def)             Requested size: 43.37372pt x 153.93646pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png, id=901, 260.975pt x 730.73pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png  used on input line 643.
+(pdftex.def)             Requested size: 54.9776pt x 153.93646pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png, id=902, 949.5475pt x 751.80875pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png  used on input line 643.
+(pdftex.def)             Requested size: 259.22107pt x 205.24341pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png, id=903, 926.46124pt x 737.75626pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png  used on input line 643.
+(pdftex.def)             Requested size: 257.73924pt x 205.24341pt.
+<Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png, id=904, 206.7725pt x 738.76pt>
+File: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png Graphic file (type png)
+<use Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png>
+Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png  used on input line 643.
+(pdftex.def)             Requested size: 43.0859pt x 153.93646pt.
+
+Overfull \hbox (25.66658pt too wide) in paragraph at lines 624--646
+[][] 
+ []
+
+
+LaTeX Warning: Reference `tt:ew_range_num' on page 40 undefined on input line 646.
+
+
+LaTeX Warning: Reference `tt:ew_range_num' on page 40 undefined on input line 646.
+
+
+
+[40
+
+
+
+ <./Figs/Fig1S1.jpg>]
+
+[41 <./Figs/Fig2S1.jpg>]
+
+[42 <./Figs/Fig3S1.jpg>]
+
+[43 <./Figs/Fig4S1.jpg> <./Figs/Fig4S2.jpg>]
+
+[44 <./Figs/Fig4S3.jpg>]
+
+[45 <./Figs/Fig5S1.jpg>]
+
+[46 <./Figs/Fig5S2.jpg>]
+
+[47 <./Figs/Fig5S3.jpg>]
+
+[48 <./Figs/Fig6S1.jpg>]
+
+[49 <./Figs/Fig7S1.jpg>]
+
+[50 <./Figs/Fig7S2.jpg>]
+
+[51 <./Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf> <./Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf>]
+
+[52 <./Abhay_Lakshmi_old/Results/ts_ew_ts.png> <./Abhay_Lakshmi_old/Results/JSD_compiled.pdf> <./Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png> <./Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png> <./Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png> <./Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png> <./Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png> <./Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png> <./Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png> <./Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png>]
+
+[53
+
+]
+
+[54]
+
+[55]
+
+[56]
+
+[57]
+Overfull \hbox (94.59277pt too wide) in paragraph at lines 936--954
+[] 
+ []
+
+
+
+[58] (./main.aux (./shifted_hill_derivation.aux) (./Additive_boolean.aux) (./boolean_static.aux) (./Anaytical.aux))
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-03-26>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: A4362F8F6349CAD98C35D6D5D6E23A04;10935.
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 24368 strings out of 471546
+ 442697 string characters out of 5518556
+ 1313272 words of memory out of 5000000
+ 49922 multiletter control sequences out of 15000+600000
+ 734279 words of font info for 340 fonts, out of 8000000 for 9000
+ 36 hyphenation exceptions out of 8191
+ 75i,27n,108p,2946b,1559s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on main.pdf (58 pages, 13956982 bytes).
+PDF statistics:
+ 1337 PDF objects out of 1440 (max. 8388607)
+ 1011 compressed objects within 11 object streams
+ 233 named destinations out of 1000 (max. 500000)
+ 52225 words of extra memory for PDF output out of 61914 (max. 10000000)
+
