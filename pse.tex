@@ -67,7 +67,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Regulatory stochasticity drives opposing phenotypic outcomes in cell-fate decision networks}
 
-\author{Kishore Hari$^1$, Abhay Gupta$^2$, Lakshmi Malvadi$^3$, Prakash Kulkarni$^4$, Ravi Salgia$^4$, \\ Mohit Kumar Jolly$^3$, Herbert Levine$^1$}
+\author{Kishore Hari$^1$, Abhay Gupta$^2$, Lakshmi Malvadi Shivakumar$^3$, Prakash Kulkarni$^4$, Ravi Salgia$^4$, \\ Mohit Kumar Jolly$^3$, Herbert Levine$^1$}
 
 
 
@@ -87,7 +87,8 @@
 \textbf{Current address}: Lakshmi Malvadi, Department of Physics, University of California Merced, Merced, USA
 \end{center}
 \begin{abstract}
-Gene regulatory network models treat interaction parameters as fixed, although regulatory efficacy fluctuates with molecular context. We asked how temporal fluctuations in interaction strength reshape phenotype occupancy in cell-fate decision GRN motifs. Across large ensembles of parameter sets, fluctuations anchored to initial values largely preserved deterministic state occupancies. Additive fluctuations in interaction strengths increased occupancy of all-high co-expression states, particularly in multistable regimes where high expression was accessible. In contrast, multiplicative fluctuations biased inhibitory interactions toward stronger repression and favored single-high states in a topology-dependent manner. Control deterministic simulations sampled from the noise-induced parameter distributions did not fully reproduce these effects. A Boolean-limit analysis attributed the additional additive bias to an asymmetry between unconditional derepression and conditional repression. Analyses of epithelial–mesenchymal plasticity and gonadal-fate networks further demonstrated increased occupancy of hybrid team-expression states under additive fluctuations. Thus, regulatory noise can reshape the developmental landscape in opposing directions, pushing cell-fate systems toward either progenitor-like or terminally differentiated states.
+Gene regulatory network models treat interaction parameters as fixed, although regulatory efficacy fluctuates. We asked how temporal fluctuations in interaction strength reshape phenotype occupancy in cell-fate decision GRN motifs. Across large parameter ensembles, anchored fluctuations largely preserved deterministic occupancies. Additive fluctuations increased occupancy of all-high co-expression states, particularly where high expression was accessible. In contrast, multiplicative fluctuations biased inhibitory interactions toward stronger repression and favored single-high states in a topology-dependent manner. Deterministic controls sampled from noise-induced parameter distributions did not fully reproduce these effects. A Boolean-limit analysis revealed an intrinsic upward bias: loss of repression increased expression regardless of regulator state, whereas stronger repression acted only when the regulator was present. Analyses of epithelial–mesenchymal plasticity and gonadal-fate networks showed increased occupancy of hybrid team-expression states under additive fluctuations. Thus, regulatory noise can reshape the developmental landscape in opposing directions, pushing cell-fate systems toward either progenitor-like or terminally differentiated states.
+
 
 \end{abstract}
 
@@ -96,7 +97,7 @@ Gene regulatory network models treat interaction parameters as fixed, although r
     \centering
     \includegraphics[width=0.8\linewidth]{Figs/Fig1.jpg}
     \caption{
-    \textbf{RACIPE network topologies and the stochastic simulation framework.}. 
+    \textbf{RACIPE network topologies and the stochastic simulation framework.}
     \textbf{(A)} Network topology diagrams for the four base circuits used throughout this study: (i) TS (toggle switch), (ii) TSSA (toggle switch with self-activation), (iii) TT (toggle triad), (iv) TTSA (toggle triad with self-activation). Red circles denote nodes; bar-headed edges denote inhibitory interactions; curved arrows denote self-activation.
     \textbf{(B)} (i) Schematic of the RACIPE parameter-sampling framework: production, degradation, and interaction-strength parameters are randomly sampled within a bounded parameter space, generating an ensemble of models with varying dynamical behavior. (ii) Steady-state expression of node A vs. node B (log scale) across the RACIPE parameter ensemble for the TS network. Dashed red lines mark each gene's discretization threshold (mean of its expression in log scale across all steady states); quadrants are labeled with the corresponding discrete state, (A, B).
     \textbf{(C)} Frequency of the 10 most frequent discrete attractors found by RACIPE for each network (TS, TSSA, TT, TTSA), expressed as the fraction of parameter sets that map onto these attractors. States are represented in short-hand form, with the key given inside the plot. Compound labels (e.g.\ ``A\_B'') denote multistable parameter sets. Because TT and TTSA support many more distinct multistable combinations than TS/TSSA, the top-10 bars shown capture only part of the full ensemble: 100\%, 99.2\%, 77.5\%, and 46.2\% of all parameter sets for TS, TSSA, TT, and TTSA respectively (out of 9, 12, 97, and 119 total distinct attractor combinations found).
@@ -157,7 +158,7 @@ Gene regulatory network models treat interaction parameters as fixed, although r
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{Figs/Fig6.jpg}
-    \caption{\textbf{Fate resolution of progenitor state under multiplicative noise}
+    \caption{\textbf{Fate resolution of progenitor states under multiplicative noise}
     \textbf{(A)} Distribution of switching-event counts by noise level (Additive vs.\ Multiplicative), after excluding the initial burn-in window.
     \textbf{(B)} Frequency of the three deterministic stability classes among double-high parameter sets.
     \textbf{(C)} For each stability class, the fraction of parameter sets accessing 1 (Monostable), 2 (Bistable), or 3+ (Tristable/Tetrastable) distinct single-high fates under noise.
@@ -175,23 +176,23 @@ Gene regulatory network models treat interaction parameters as fixed, although r
 \end{figure}
 
 
-\newpage
-\beginsupplement
+% \newpage
+% \beginsupplement
 
-\section{Supplementary Figures}
+% \section{Supplementary Figures}
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\linewidth]{Figs/Fig4S3.jpg}
-    \caption{Comparison of MRTs for additive noise simulated at different values of $dt$}
-    \label{fig:3bS3}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{Figs/Fig4S3.jpg}
+%     \caption{Comparison of MRTs for additive noise simulated at different values of $dt$}
+%     \label{fig:3bS3}
+% \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{Figs/Fig5S3.jpg}
-    \caption{Comparison of MRTs for multiplicative noise simulated at different values of $dt$}
-    \label{fig:4S3}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{Figs/Fig5S3.jpg}
+%     \caption{Comparison of MRTs for multiplicative noise simulated at different values of $dt$}
+%     \label{fig:4S3}
+% \end{figure}
 
 \end{document}

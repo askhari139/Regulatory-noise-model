@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  18 AUG 2026 18:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  20 AUG 2026 04:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**pse.tex
-(./pse.tex
+**/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.tex
+(/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
 (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -618,7 +618,7 @@ Package: threeparttable 2003/06/13  v 3.0
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 74.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (./pse.aux)
+) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.aux)
 \openout1 = `pse.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
@@ -681,7 +681,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring OFF on input line 74.
- (./pse.out) (./pse.out)
+ (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.out) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.out)
 \@outlinefile=\write4
 \openout4 = `pse.out'.
 
@@ -697,7 +697,7 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'pse.bbl' found.
- (./pse.bbl)
+ (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.bbl)
 Package biblatex Info: Reference section=0 on input line 74.
 Package biblatex Info: Reference segment=0 on input line 74.
 Package caption Info: Begin \AtBeginDocument code.
@@ -759,46 +759,46 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 79.
-<Figs/Fig1.jpg, id=8, 2007.5pt x 2580.64125pt>
+<Figs/Fig1.jpg, id=4, 2007.5pt x 2580.64125pt>
 File: Figs/Fig1.jpg Graphic file (type jpg)
 <use Figs/Fig1.jpg>
-Package pdftex.def Info: Figs/Fig1.jpg  used on input line 97.
+Package pdftex.def Info: Figs/Fig1.jpg  used on input line 98.
 (pdftex.def)             Requested size: 410.49464pt x 527.69606pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 103.
-<Figs/Fig2.jpg, id=9, 2007.5pt x 1204.5pt>
+(Font)              <5> on input line 104.
+<Figs/Fig2.jpg, id=5, 2007.5pt x 1204.5pt>
 File: Figs/Fig2.jpg Graphic file (type jpg)
 <use Figs/Fig2.jpg>
-Package pdftex.def Info: Figs/Fig2.jpg  used on input line 109.
+Package pdftex.def Info: Figs/Fig2.jpg  used on input line 110.
 (pdftex.def)             Requested size: 513.11636pt x 307.86942pt.
-<Figs/Fig3.jpg, id=10, 2007.5pt x 1739.49875pt>
+<Figs/Fig3.jpg, id=6, 2007.5pt x 1739.49875pt>
 File: Figs/Fig3.jpg Graphic file (type jpg)
 <use Figs/Fig3.jpg>
-Package pdftex.def Info: Figs/Fig3.jpg  used on input line 121.
+Package pdftex.def Info: Figs/Fig3.jpg  used on input line 122.
 (pdftex.def)             Requested size: 513.11636pt x 444.61475pt.
-<Figs/Fig4.jpg, id=11, 2007.5pt x 2509.375pt>
+<Figs/Fig4.jpg, id=7, 4818.0pt x 6022.5pt>
 File: Figs/Fig4.jpg Graphic file (type jpg)
 <use Figs/Fig4.jpg>
-Package pdftex.def Info: Figs/Fig4.jpg  used on input line 135.
-(pdftex.def)             Requested size: 513.11636pt x 641.39462pt.
+Package pdftex.def Info: Figs/Fig4.jpg  used on input line 136.
+(pdftex.def)             Requested size: 513.11636pt x 641.34102pt.
 
 
-LaTeX Warning: Float too large for page by 46.60326pt on input line 142.
+LaTeX Warning: Float too large for page by 46.54965pt on input line 143.
 
-<Figs/Fig5.jpg, id=12, 2007.5pt x 1756.5625pt>
+<Figs/Fig5.jpg, id=8, 2007.5pt x 1756.5625pt>
 File: Figs/Fig5.jpg Graphic file (type jpg)
 <use Figs/Fig5.jpg>
-Package pdftex.def Info: Figs/Fig5.jpg  used on input line 147.
+Package pdftex.def Info: Figs/Fig5.jpg  used on input line 148.
 (pdftex.def)             Requested size: 513.11636pt x 448.97623pt.
-<Figs/Fig6.jpg, id=13, 2007.5pt x 2453.165pt>
+<Figs/Fig6.jpg, id=9, 5420.25pt x 6624.75pt>
 File: Figs/Fig6.jpg Graphic file (type jpg)
 <use Figs/Fig6.jpg>
-Package pdftex.def Info: Figs/Fig6.jpg  used on input line 159.
-(pdftex.def)             Requested size: 461.80159pt x 564.32838pt.
-<Figs/Fig7.jpg, id=14, 2007.5pt x 1045.9075pt>
+Package pdftex.def Info: Figs/Fig6.jpg  used on input line 160.
+(pdftex.def)             Requested size: 461.80159pt x 564.35988pt.
+<Figs/Fig7.jpg, id=10, 2007.5pt x 1045.9075pt>
 File: Figs/Fig7.jpg Graphic file (type jpg)
 <use Figs/Fig7.jpg>
-Package pdftex.def Info: Figs/Fig7.jpg  used on input line 172.
+Package pdftex.def Info: Figs/Fig7.jpg  used on input line 173.
 (pdftex.def)             Requested size: 513.11636pt x 267.33327pt.
 
 
@@ -806,57 +806,42 @@ Package pdftex.def Info: Figs/Fig7.jpg  used on input line 172.
 
 {/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
 
-[2{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} <./Figs/Fig1.jpg>]
+[2{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig1.jpg>]
 
-[3 <./Figs/Fig2.jpg>]
+[3 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig2.jpg>]
 
-[4 <./Figs/Fig3.jpg>]
+[4 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig3.jpg>]
 
-[5 <./Figs/Fig4.jpg>]
+[5 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig4.jpg>]
 
-[6 <./Figs/Fig5.jpg>]
+[6 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig5.jpg>]
 
-[7 <./Figs/Fig6.jpg>]
-<Figs/Fig4S3.jpg, id=61, 2007.5pt x 2823.54875pt>
-File: Figs/Fig4S3.jpg Graphic file (type jpg)
-<use Figs/Fig4S3.jpg>
-Package pdftex.def Info: Figs/Fig4S3.jpg  used on input line 185.
-(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
-<Figs/Fig5S3.jpg, id=62, 2007.5pt x 2823.54875pt>
-File: Figs/Fig5S3.jpg Graphic file (type jpg)
-<use Figs/Fig5S3.jpg>
-Package pdftex.def Info: Figs/Fig5S3.jpg  used on input line 192.
-(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
+[7 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig6.jpg>]
 
-
-[8 <./Figs/Fig7.jpg>]
-
-[9 <./Figs/Fig4S3.jpg>]
-
-[10 <./Figs/Fig5S3.jpg>] (./pse.aux)
+[8 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7.jpg>] (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
  ***********
 Package rerunfilecheck Info: File `pse.out' has not changed.
-(rerunfilecheck)             Checksum: 25369070850D935B7C2E7A80C9BC02DB;151.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package logreq Info: Writing requests to 'pse.run.xml'.
 \openout1 = `pse.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 21795 strings out of 471546
- 380597 string characters out of 5518556
- 1238859 words of memory out of 5000000
- 47936 multiletter control sequences out of 15000+600000
- 685223 words of font info for 160 fonts, out of 8000000 for 9000
+ 21759 strings out of 471546
+ 381072 string characters out of 5518556
+ 1238644 words of memory out of 5000000
+ 47909 multiletter control sequences out of 15000+600000
+ 679016 words of font info for 156 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 75i,7n,79p,2295b,803s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on pse.pdf (10 pages, 4898425 bytes).
+ 75i,7n,79p,2366b,803s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on /Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/pse.pdf (8 pages, 10075067 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 92 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
- 30774 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
+ 26660 words of extra memory for PDF output out of 29859 (max. 10000000)
 
