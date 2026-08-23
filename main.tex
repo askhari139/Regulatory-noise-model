@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{xcolor}
 % \usepackage{natbib}
 \usepackage{url}
 \usepackage{hyperref}
@@ -275,11 +276,17 @@ Given the potentially deterministic nature of multiplicative noise, we tried to 
     \textbf{(D)} Circular chord diagram of double-high $\to$ single-high MRT flow among monostable double-high parameter sets, at noise = 0.01.
     \textbf{(E)} Noise-level $\to$ outcome alluvial for the pooled monostable double-high population (outcomes labeled relative to the initial double-high state XY, e.g.\ ``XY to X''), colored by the multistability classification from panel C.
 }
-    \label{fig:4b}
+    \label{fig:6}
 \end{figure}
 
-\subsection{}
-We wanted to further understand the nature of these transitions - which single-high states do the hybrid double-high states converge to? Can multiple single-high states be achieved from a given double-high state - i.e., if we think of the double-high state as a progenitor, can it always differentiate into multiple terminal phenotypes? We chose to do this analysis on TT4, as this network has the highest frequency of double-high and lowest frequency of single-high states, thereby giving us the cleanest signal with a large dataset. TT4 predominantly allows monostable and bistable double-high steady states. We first analyzed the monostable steady states, and found that the single-high states emergent from the application of multiplicative noise were always the closest single-high states from the double-high states, achieved by pushing the expression of one of the high expression nodes to low. Bistable states of TT4 are composed of "mirror" states, i.e., different pairs of nodes have high expression in both the states. Therefore, the bistable double-high states have access to all four of the single-high states. We further find that while all these parmeters converge to single-high states upon application of appropriate multiplicative noise, a large fraction of parameters a small fraction of parameter sets (~19\% for TT, 33\% for TT4) converge to two single-high states in different instances of simulations. We further studied the transitions observed in multiplicative noise simulations and found that the only transitions are between the double-high states and single-high states, and never between the two single-high states. Furthermore the number of transitions observed are also very small (1 in every x time steps). Since we know that the initial time steps are the most noisy in multiplicative noise, most of these transitions would have happened initially, resulting in stable terminal states achieved after long-term application of multiplicative noise. We were able to confirm these results for TT, TTSA and TT4SA. Therefore, we concluded that multiplicative noise can push the landscape of cell-fate decision systems towards single-high, terminally differentiated states. 
+\subsection{Multistable double-high states resolve toward their nearest single-high fate, and this generalizes across networks}
+We next asked which single-high states the hybrid double-high states converge to under multiplicative noise: is a double-high ``progenitor'' restricted to one terminal fate, or can it access several? We focused this analysis on TT4, which has the highest double-high and lowest single-high frequency among our networks, giving the cleanest signal (Figure~\ref{fig:1}C). TT4's double-high parameter sets are predominantly deterministically monostable or non-mirror-bistable, with a small mirror-bistable population (Figure~\ref{fig:6}B). Among monostable double-high parameter sets, the single-high state(s) accessed under noise were always the ``nearest'' ones -- reached by silencing one of the two active nodes rather than switching to an unrelated fate (Figure~\ref{fig:6}D). Bistable double-high states are composed of ``mirror'' pairs (both stable states share no active node), giving these parameter sets access to all four single-high fates in principle. Consistent with this, both bistable classes accessed a larger number of distinct fates under noise than the monostable class (Figure~\ref{fig:6}C). A minority of parameter sets -- ~19\% for TT, ~33\% for TT4 -- visited two different single-high fates across independent simulation replicates of the same parameter set, rather than committing to one. Across all transitions observed, double-high states always converted directly to single-high states and never to another single-high state, and transitions were rare overall, consistent with the bulk of switching happening early in the (noisiest) part of the simulation and the network settling into a single fate thereafter (Figure~\ref{fig:6}E). We confirmed this same pattern -- nearest-fate commitment, rare late-stage switching, no single-to-single transitions -- in TT, TTSA, and TT4SA, indicating that multiplicative noise's ability to push cell-fate systems from hybrid, progenitor-like states toward terminally differentiated ones is a general property of these topologies rather than one specific to TT4.
+
+To confirm that this terminal commitment reflects genuinely stable fates rather than continued flickering between states, we examined switching-event rates -- as in Figure~\ref{fig:6}A, but now for TS, TSSA, TT, TTSA, and TT4SA, and split by each network's deterministic stability classes (Figure~\ref{fig:6S1}). Under additive noise, switching rates rose with noise level before leveling off or mildly declining by $\sigma=0.1$, across every network and stability class. Under multiplicative noise, by contrast, switching events remained close to zero throughout this same range, regardless of network or class. This held even for networks and classes with substantial multistability under noise (Figure~\ref{fig:6}C), indicating that once a parameter set commits to a single-high fate, it rarely leaves it -- the ``multistability'' we quantify above reflects different fates reached across independent replicates, not repeated switching within a single trajectory.
+
+The pooled chord diagram (Figure~\ref{fig:6}D) shows that monostable double-high states preferentially resolve to their nearest single-high fate at the population level; we next asked whether this holds for every individual double-high combination, or only on average. Examining the per-parameter MRT distribution separately for each monostable double-high attractor in TT, TTSA, TT4, and TT4SA (Figure~\ref{fig:6S2}), every combination showed the same pattern: MRT concentrated at the two single-high states matching its own active nodes, with markedly lower and comparable MRT toward its own (unresolved) double-high identity and toward every other single-high fate. This was consistent across all networks and every double-high combination tested, showing that nearest-fate resolution is a property of individual attractors and not an artifact of pooling.
+
+We extended the noise-level $\to$ fate alluvial analysis of Figure~\ref{fig:6}E to the bistable double-high classes (Figure~\ref{fig:6S3}). Mirror bistability is structurally impossible in the 3-node TT and TTSA networks (any two of three nodes must share at least one active node), so only their non-mirror class is shown (Figure~\ref{fig:6S3}A, B); TT4 has enough parameter sets in both classes to show them separately (Figure~\ref{fig:6S3}C), while TT4SA's mirror-bistable population is too sparse (~13 parameter sets) to interpret alone and is pooled with its non-mirror population (Figure~\ref{fig:6S3}D). Across all of these, the ``Self'' (return-to-double-high) outcome remains a substantial fraction of the bistable-class population even at $\sigma=0.1$, more so than for the monostable class in Figure~\ref{fig:6}E -- consistent with our choice to base the quantitative claims above on the monostable subclass, where the fate-resolution signal is cleanest.\K{Read this last sentence's ``Self remains substantial at high noise'' claim off the relative band widths in Fig6S3 by eye -- please confirm against the underlying fraction-resolved-by-sigma numbers before this goes out.}
 
 
 \subsection{Effects of regulatory noise on the phenotypic landscape scale to larger biological networks}
@@ -558,11 +565,28 @@ The code used to generate and analyze the simulations reported in this study, in
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Figs/Fig6S1.jpg}
-    \caption{\textbf{Supplementary transition-flow diagrams for the TT4 network, complementing Figure 6.}
-    \textbf{(A)} Per-parameter MRT distribution for every monostable double-high attractor combination individually, at noise = 0.01 (one facet per double-high combination).
-    \textbf{(B, C)} Noise-level $\to$ fate alluvial (as in Figure 6E), shown separately for the two bistable stability classes: mirror-symmetric \textbf{(B)} and non-mirror \textbf{(C)} double-high combinations.
+    \caption{\textbf{Switching-event rates generalize across networks and stability classes.}
+    Distribution of switching-event counts per timestep by noise level (Additive vs.\ Multiplicative), for TS, TSSA, TT, TTSA, and TT4SA, faceted by network (columns) and deterministic stability class (rows). TS has no Tristable class (a 2-node network cannot support 3+ distinct stable states), so that facet is empty.
 }
     \label{fig:6S1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figs/Fig6S2.jpg}
+    \caption{\textbf{Nearest-fate resolution holds for every individual double-high attractor.}
+    Per-parameter MRT distribution at noise = 0.01, shown separately for each monostable double-high attractor combination (one facet per combination), for \textbf{(A)} TT, \textbf{(B)} TTSA, \textbf{(C)} TT4, and \textbf{(D)} TT4SA.
+}
+    \label{fig:6S2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figs/Fig6S3.jpg}
+    \caption{\textbf{Noise-level $\to$ fate alluvials for the bistable double-high classes.}
+    Noise-level $\to$ outcome alluvial (as in Figure~\ref{fig:6}E), colored by the multistability classification from Figure~\ref{fig:6}C, for the bistable double-high stability class: \textbf{(A)} TT and \textbf{(B)} TTSA, non-mirror only (mirror bistability is structurally impossible for these 3-node networks). \textbf{(C)} TT4, mirror \textbf{(i)} and non-mirror \textbf{(ii)} shown separately. \textbf{(D)} TT4SA, monostable double-high class \textbf{(i)} (as in Figure~\ref{fig:6}E, for this network) and bistable double-high class \textbf{(ii)}, with mirror and non-mirror populations pooled (TT4SA's mirror-bistable population alone is too sparse, ~13 parameter sets, to interpret on its own).
+}
+    \label{fig:6S3}
 \end{figure}
 
 \begin{figure}
