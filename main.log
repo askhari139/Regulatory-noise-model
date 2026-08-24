@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  23 AUG 2026 04:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  24 AUG 2026 07:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -669,11 +669,7 @@ Package: threeparttable 2003/06/13  v 3.0
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 78.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.aux (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.aux
-
-LaTeX Warning: Label `eq:hshift' multiply defined.
-
-) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.aux))
+) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.aux (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
@@ -821,10 +817,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 [1
 
-{/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+{/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 [2]
-<Figs/Fig1.jpg, id=250, 2007.5pt x 2580.64125pt>
+<Figs/Fig1.jpg, id=251, 2007.5pt x 2580.64125pt>
 File: Figs/Fig1.jpg Graphic file (type jpg)
 <use Figs/Fig1.jpg>
 Package pdftex.def Info: Figs/Fig1.jpg  used on input line 120.
@@ -835,7 +831,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 [3{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
 
-[4{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc} </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig1.jpg>]
+[4 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig1.jpg>]
 
 [5{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
 <Figs/Fig2.jpg, id=324, 2007.5pt x 1204.5pt>
@@ -871,7 +867,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 [9]
-<Figs/Fig4.jpg, id=387, 4818.0pt x 6022.5pt>
+<Figs/Fig4.jpg, id=388, 4818.0pt x 6022.5pt>
 File: Figs/Fig4.jpg Graphic file (type jpg)
 <use Figs/Fig4.jpg>
 Package pdftex.def Info: Figs/Fig4.jpg  used on input line 221.
@@ -881,7 +877,7 @@ Package pdftex.def Info: Figs/Fig4.jpg  used on input line 221.
 [10]
 
 [11 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig4.jpg>]
-<Figs/Fig5.jpg, id=404, 2007.5pt x 1756.5625pt>
+<Figs/Fig5.jpg, id=405, 2007.5pt x 1756.5625pt>
 File: Figs/Fig5.jpg Graphic file (type jpg)
 <use Figs/Fig5.jpg>
 Package pdftex.def Info: Figs/Fig5.jpg  used on input line 252.
@@ -891,7 +887,7 @@ Package pdftex.def Info: Figs/Fig5.jpg  used on input line 252.
 [12]
 
 [13 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig5.jpg>]
-<Figs/Fig6.jpg, id=444, 5420.25pt x 6624.75pt>
+<Figs/Fig6.jpg, id=445, 5420.25pt x 6624.75pt>
 File: Figs/Fig6.jpg Graphic file (type jpg)
 <use Figs/Fig6.jpg>
 Package pdftex.def Info: Figs/Fig6.jpg  used on input line 271.
@@ -908,19 +904,18 @@ File: Figs/Fig7.jpg Graphic file (type jpg)
 <use Figs/Fig7.jpg>
 Package pdftex.def Info: Figs/Fig7.jpg  used on input line 302.
 (pdftex.def)             Requested size: 513.11636pt x 267.33327pt.
-
-
-[17 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7.jpg>]
-<Figs/Schematic.png, id=519, 963.6pt x 468.7914pt>
+<Figs/Schematic.png, id=508, 963.6pt x 468.7914pt>
 File: Figs/Schematic.png Graphic file (type png)
 <use Figs/Schematic.png>
 Package pdftex.def Info: Figs/Schematic.png  used on input line 312.
 (pdftex.def)             Requested size: 513.11636pt x 249.63853pt.
 
 
-[18 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Schematic.png>]
+[17]
 
-[19]
+[18 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7.jpg>]
+
+[19 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Schematic.png>]
 
 [20]
 
@@ -954,13 +949,12 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 46
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
+
+[24{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
 Overfull \hbox (7.22716pt too wide) in paragraph at lines 484--485
 \T1/lmr/m/n/10.95 (-20) stochas-tic sim-u-la-tion pipeline and all figure-generation scripts, is avail-able at github.com/askhari139/Regulatory-
  []
 
-
-
-[24{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1128,10 +1122,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{section.3}) ha
 l.1 ...e-scale binary cell-fate decision networks}
                                                    \label{ssec:stat_pert}
 
+LaTeX Warning: Reference `fig:S1' on page 35 undefined on input line 2.
+
+
+LaTeX Warning: Reference `fig:S2' on page 35 undefined on input line 7.
+
+
 LaTeX Warning: Reference `ap:ts_jsd_dist' on page 35 undefined on input line 7.
 
 
 LaTeX Warning: Reference `tt:ew_range_num' on page 35 undefined on input line 12.
+
+
+LaTeX Warning: Reference `fig:S2' on page 35 undefined on input line 12.
 
 
 
@@ -1141,13 +1144,25 @@ LaTeX Warning: Reference `tt:ew_range_num' on page 35 undefined on input line 12
 
 ]
 
+LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 14.
+
+
 LaTeX Warning: Reference `{sssec:jsd_def}' on page 36 undefined on input line 14.
 
 
+LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 14.
+
+
+LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 18.
+
+
 LaTeX Warning: Reference `tab:ew_art_all' on page 36 undefined on input line 24.
 
 
 LaTeX Warning: Reference `tab:ew_art_all' on page 36 undefined on input line 24.
+
+
+LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 24.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{section.4}) has been already used, duplicate ignored
@@ -1216,152 +1231,76 @@ Underfull \hbox (badness 10000) in paragraph at lines 238--239
 )
 
 [40]
-<Figs/Fig1S1.jpg, id=900, 2007.5pt x 1337.99875pt>
+<Figs/Fig1S1.jpg, id=895, 2007.5pt x 1337.99875pt>
 File: Figs/Fig1S1.jpg Graphic file (type jpg)
 <use Figs/Fig1S1.jpg>
 Package pdftex.def Info: Figs/Fig1S1.jpg  used on input line 499.
 (pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
-<Figs/Fig2S1.jpg, id=901, 2007.5pt x 1517.67pt>
+<Figs/Fig2S1.jpg, id=898, 2007.5pt x 1517.67pt>
 File: Figs/Fig2S1.jpg Graphic file (type jpg)
 <use Figs/Fig2S1.jpg>
 Package pdftex.def Info: Figs/Fig2S1.jpg  used on input line 507.
 (pdftex.def)             Requested size: 410.49464pt x 310.337pt.
-<Figs/Fig3S1.jpg, id=902, 2007.5pt x 2315.65125pt>
+<Figs/Fig3S1.jpg, id=899, 2007.5pt x 2315.65125pt>
 File: Figs/Fig3S1.jpg Graphic file (type jpg)
 <use Figs/Fig3S1.jpg>
 Package pdftex.def Info: Figs/Fig3S1.jpg  used on input line 514.
 (pdftex.def)             Requested size: 410.49464pt x 473.51022pt.
-<Figs/Fig4S1.jpg, id=903, 2007.5pt x 1606.0pt>
+<Figs/Fig4S1.jpg, id=902, 2007.5pt x 1606.0pt>
 File: Figs/Fig4S1.jpg Graphic file (type jpg)
 <use Figs/Fig4S1.jpg>
 Package pdftex.def Info: Figs/Fig4S1.jpg  used on input line 521.
 (pdftex.def)             Requested size: 410.49464pt x 328.39894pt.
-<Figs/Fig4S2.jpg, id=904, 2007.5pt x 1337.99875pt>
+<Figs/Fig4S2.jpg, id=905, 2007.5pt x 1337.99875pt>
 File: Figs/Fig4S2.jpg Graphic file (type jpg)
 <use Figs/Fig4S2.jpg>
 Package pdftex.def Info: Figs/Fig4S2.jpg  used on input line 528.
 (pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
-<Figs/Fig4S3.jpg, id=905, 2007.5pt x 2823.54875pt>
+<Figs/Fig4S3.jpg, id=908, 2007.5pt x 2823.54875pt>
 File: Figs/Fig4S3.jpg Graphic file (type jpg)
 <use Figs/Fig4S3.jpg>
 Package pdftex.def Info: Figs/Fig4S3.jpg  used on input line 536.
 (pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
-<Figs/Fig5S1.jpg, id=906, 2007.5pt x 1672.2475pt>
+<Figs/Fig5S1.jpg, id=909, 2007.5pt x 1672.2475pt>
 File: Figs/Fig5S1.jpg Graphic file (type jpg)
 <use Figs/Fig5S1.jpg>
 Package pdftex.def Info: Figs/Fig5S1.jpg  used on input line 544.
 (pdftex.def)             Requested size: 410.49464pt x 341.9454pt.
-<Figs/Fig5S2.jpg, id=907, 2007.5pt x 2371.86125pt>
+<Figs/Fig5S2.jpg, id=914, 2007.5pt x 2371.86125pt>
 File: Figs/Fig5S2.jpg Graphic file (type jpg)
 <use Figs/Fig5S2.jpg>
 Package pdftex.def Info: Figs/Fig5S2.jpg  used on input line 552.
 (pdftex.def)             Requested size: 410.49464pt x 485.0042pt.
-<Figs/Fig5S3.jpg, id=908, 2007.5pt x 2823.54875pt>
+<Figs/Fig5S3.jpg, id=915, 2007.5pt x 2823.54875pt>
 File: Figs/Fig5S3.jpg Graphic file (type jpg)
 <use Figs/Fig5S3.jpg>
 Package pdftex.def Info: Figs/Fig5S3.jpg  used on input line 560.
 (pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
-<Figs/Fig6S1.jpg, id=909, 5420.25pt x 3613.5pt>
+<Figs/Fig6S1.jpg, id=916, 5420.25pt x 3613.5pt>
 File: Figs/Fig6S1.jpg Graphic file (type jpg)
 <use Figs/Fig6S1.jpg>
 Package pdftex.def Info: Figs/Fig6S1.jpg  used on input line 567.
 (pdftex.def)             Requested size: 410.49464pt x 273.6474pt.
-<Figs/Fig6S2.jpg, id=910, 6022.5pt x 4818.0pt>
+<Figs/Fig6S2.jpg, id=917, 6022.5pt x 4818.0pt>
 File: Figs/Fig6S2.jpg Graphic file (type jpg)
 <use Figs/Fig6S2.jpg>
 Package pdftex.def Info: Figs/Fig6S2.jpg  used on input line 576.
 (pdftex.def)             Requested size: 410.49464pt x 328.32542pt.
-<Figs/Fig6S3.jpg, id=911, 7829.25pt x 4215.75pt>
+<Figs/Fig6S3.jpg, id=918, 7829.25pt x 4215.75pt>
 File: Figs/Fig6S3.jpg Graphic file (type jpg)
 <use Figs/Fig6S3.jpg>
 Package pdftex.def Info: Figs/Fig6S3.jpg  used on input line 585.
 (pdftex.def)             Requested size: 513.11636pt x 276.28482pt.
-<Figs/Fig7S1.jpg, id=918, 2007.5pt x 1635.10875pt>
+<Figs/Fig7S1.jpg, id=925, 2007.5pt x 1635.10875pt>
 File: Figs/Fig7S1.jpg Graphic file (type jpg)
 <use Figs/Fig7S1.jpg>
 Package pdftex.def Info: Figs/Fig7S1.jpg  used on input line 594.
 (pdftex.def)             Requested size: 410.49464pt x 334.35118pt.
-<Figs/Fig7S2.jpg, id=919, 2007.5pt x 1932.21875pt>
+<Figs/Fig7S2.jpg, id=926, 2007.5pt x 1932.21875pt>
 File: Figs/Fig7S2.jpg Graphic file (type jpg)
 <use Figs/Fig7S2.jpg>
 Package pdftex.def Info: Figs/Fig7S2.jpg  used on input line 612.
 (pdftex.def)             Requested size: 410.49464pt x 395.10498pt.
-<Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf, id=926, 1186.25691pt x 555.62709pt>
-File: Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf Graphic file (type pdf)
-<use Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf  used on input line 637.
-(pdftex.def)             Requested size: 328.63812pt x 153.93646pt.
-<Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf, id=927, 1186.25691pt x 555.62709pt>
-File: Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf Graphic file (type pdf)
-<use Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf  used on input line 637.
-(pdftex.def)             Requested size: 328.63812pt x 153.93646pt.
-
-Overfull \hbox (25.65672pt too wide) in paragraph at lines 630--641
-[][] 
- []
-
-<Abhay_Lakshmi_old/Results/ts_ew_ts.png, id=930, 864.22874pt x 755.82375pt>
-File: Abhay_Lakshmi_old/Results/ts_ew_ts.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/ts_ew_ts.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/ts_ew_ts.png  used on input line 666.
-(pdftex.def)             Requested size: 204.51797pt x 205.23996pt.
-<Abhay_Lakshmi_old/Results/JSD_compiled.pdf, id=931, 355.70703pt x 336.19753pt>
-File: Abhay_Lakshmi_old/Results/JSD_compiled.pdf Graphic file (type pdf)
-<use Abhay_Lakshmi_old/Results/JSD_compiled.pdf>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/JSD_compiled.pdf  used on input line 666.
-(pdftex.def)             Requested size: 205.96826pt x 205.24434pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png, id=932, 239.89626pt x 748.7975pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png  used on input line 666.
-(pdftex.def)             Requested size: 49.31815pt x 153.93646pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png, id=933, 784.9325pt x 751.80875pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png  used on input line 666.
-(pdftex.def)             Requested size: 209.57512pt x 205.23952pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png, id=934, 966.61125pt x 757.83125pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png  used on input line 666.
-(pdftex.def)             Requested size: 261.78499pt x 205.24341pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png, id=935, 204.765pt x 726.715pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png  used on input line 666.
-(pdftex.def)             Requested size: 43.37372pt x 153.93646pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png, id=936, 260.975pt x 730.73pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png  used on input line 666.
-(pdftex.def)             Requested size: 54.9776pt x 153.93646pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png, id=937, 949.5475pt x 751.80875pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png  used on input line 666.
-(pdftex.def)             Requested size: 259.22107pt x 205.24341pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png, id=938, 926.46124pt x 737.75626pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png  used on input line 666.
-(pdftex.def)             Requested size: 257.73924pt x 205.24341pt.
-<Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png, id=939, 206.7725pt x 738.76pt>
-File: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png Graphic file (type png)
-<use Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png>
-Package pdftex.def Info: Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png  used on input line 666.
-(pdftex.def)             Requested size: 43.0859pt x 153.93646pt.
-
-Overfull \hbox (25.66658pt too wide) in paragraph at lines 647--669
-[][] 
- []
-
-
-LaTeX Warning: Reference `tt:ew_range_num' on page 41 undefined on input line 669.
-
-
-LaTeX Warning: Reference `tt:ew_range_num' on page 41 undefined on input line 669.
-
 
 
 [41
@@ -1392,28 +1331,24 @@ LaTeX Warning: Reference `tt:ew_range_num' on page 41 undefined on input line 66
 
 [52 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7S2.jpg>]
 
-[53 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/fig_1/fig1_ToggleSwitch_0.8.pdf> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/fig_1/fig1_EMT_RACIPE.pdf>]
-
-[54 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/ts_ew_ts.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/JSD_compiled.pdf> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_net_ts.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_net_ts_fig.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_ew_ts_fig.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_ew_ts.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_net_bio.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_net_bio_fig.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_ew_bio_fig.png> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Abhay_Lakshmi_old/Results/jsd_ts_ew_bio.png>]
-
-[55
+[53
 
 ]
+
+[54]
+
+[55]
 
 [56]
 
 [57]
-
-[58]
-
-[59]
-Overfull \hbox (94.59277pt too wide) in paragraph at lines 959--977
+Overfull \hbox (94.59277pt too wide) in paragraph at lines 996--1014
 [] 
  []
 
 
 
-[60] (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.aux (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.aux))
+[58] (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.aux (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -1422,28 +1357,25 @@ L3 programming layer <2025-03-26>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7353617388071C61D4A41D8F23D28087;11602.
+(rerunfilecheck)             Checksum: 5817DB3DF4778D76C9478FF04AF29355;11516.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24859 strings out of 471546
- 452596 string characters out of 5518556
- 1328057 words of memory out of 5000000
- 50395 multiletter control sequences out of 15000+600000
- 734373 words of font info for 341 fonts, out of 8000000 for 9000
+ 24741 strings out of 471546
+ 447711 string characters out of 5518556
+ 1326372 words of memory out of 5000000
+ 50308 multiletter control sequences out of 15000+600000
+ 728829 words of font info for 327 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 75i,27n,108p,3018b,1562s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on /Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.pdf (60 pages, 30559602 bytes).
+ 75i,27n,108p,3345b,1562s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on /Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.pdf (58 pages, 29779400 bytes).
 PDF statistics:
- 1376 PDF objects out of 1440 (max. 8388607)
- 1043 compressed objects within 11 object streams
- 238 named destinations out of 1000 (max. 500000)
- 52243 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1164 PDF objects out of 1200 (max. 8388607)
+ 1012 compressed objects within 11 object streams
+ 234 named destinations out of 1000 (max. 500000)
+ 50135 words of extra memory for PDF output out of 51595 (max. 10000000)
 
