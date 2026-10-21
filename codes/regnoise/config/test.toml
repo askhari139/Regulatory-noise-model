@@ -1,0 +1,78 @@
+# TEST configuration: tiny sizes for the end-to-end test. Never use for results.
+# Every number used by the pipeline lives here. Do not edit after a run starts:
+# the SHA-256 of everything except [paths] is stamped into every output file.
+
+[run]
+run_id = "test"
+seed_root = 20261018
+networks = ["TS", "TSSA"]
+noise_modes = ["Additive", "Multiplicative", "Stationary"]
+
+[paths]
+# Machine-specific; excluded from config_hash. Override with --data-dir / --results-root.
+data_dir = "inputs"
+results_root = "test/results"
+
+[selection]
+n_per_class = 2
+classes = ["monostable", "bistable", "tristable"]
+
+[model]
+lambda_inh_bounds = [0.01, 1.0]
+lambda_act_bounds = [1.0, 100.0]
+
+[noise]
+sigmas = [0.0, 0.01, 0.1, 1.0]
+dts = [0.01, 1.0]
+
+[sim]
+t_end = 100.0
+t_burn = 50.0
+saveat = 1.0
+reltol = 1e-4
+abstol = 1e-5
+n_ics = 6
+n_traj = 6
+n_blocks = 5
+threshold_multipliers = [0.5, 2.0]
+
+[controls]
+modes = ["Additive", "Multiplicative", "Stationary"]
+n_det_draws = 20
+convergence_ns = [5, 10, 20]
+n_bootstrap = 20
+ctrl_sigmas = [0.1, 1.0]
+hold_times = [0.01, 1.0, 10.0]
+pool_dt = 0.01
+acf_lags = [1, 5, 10, 50]
+lambda_quantiles = [0.01, 0.05, 0.25, 0.5, 0.75, 0.95, 0.99]
+
+[inputs.sha256]
+"TS.prs" = "36681eb4281f989fd4f570e803daef321ccb9dd112c44a912259148b14cf3ec8"
+"TS.topo" = "5f321dc724023303ee405533f95d3f6ed9d7207aa67155a177cb2383ddba3490"
+"TS_parameters.dat" = "599ee4df7350b6df6559c62805841190fad484a20c0b375d82227519f1aa3783"
+"TS_solution.dat" = "2725584c8e52fd9ecc8a9b82d113ebe9d47c7f5e220674d5fb332340344444f4"
+"TSSA.prs" = "bb475bcfe32b5fe11f784405c4c745a0f33a16719b9b28594c7198259b9fe553"
+"TSSA.topo" = "380afee02a77039d0b672481529120f8fd5799f0b6f4f38e6474592a4c578c0b"
+"TSSA_parameters.dat" = "8d345c11491891193d2ac7df236db996b69c526140ff24b3167eae5e6852660c"
+"TSSA_solution.dat" = "44ad98c0e14dd7a8cf96da78264fc8d8a8a0d2e87574990aad63dcd0bc47f523"
+"TT.prs" = "b18a6078275fec89c8f56a5fd56fb48fdd7a038de93e60b76df6b60432809e58"
+"TT.topo" = "08cbe91e4b9df48f0c4ab833b62c9e053e6c869c9d19235c6cfa7ca45203bc3d"
+"TT_parameters.dat" = "c6f2d9417c3790473644994ca4d315562df2cfca101c9abd9c9ac306150a79a6"
+"TT_solution.dat" = "72cf2c5d567d272a5db7dce2d47ab133994765f5ccdddb0b9d74b75887093c6f"
+"TTSA.prs" = "370fd9c80f03afb85754dfae39f484b59b2883ef3caabfed06f71328ef886d2b"
+"TTSA.topo" = "967e7774a8e6a97cddf5cf7fd904f02b9dfa02016c4a02eec83bb9e895e5c7c1"
+"TTSA_parameters.dat" = "60676eaa2fcd04462c4abbf3d77fff6def1e3c8e825a609a66485b503b96e2c1"
+"TTSA_solution.dat" = "2b011d03cf339d12dee393aed7a3f18c971a614e8137ce36e09c1495f8129645"
+"TS4.prs" = "35a8ad791d8e1f5e4f20e82394761971ea61eecc088c4eb2620facdac9ff1f1b"
+"TS4.topo" = "e3bf67b6749696b47ace76648b85de814f576b3935d4384188f07642c65938e8"
+"TS4_parameters.dat" = "c4a12f0aa9d8406970f182e8bed080a9de37c56686f73a37a04133bd3ac1d941"
+"TS4_solution.dat" = "574c207d9a488022c98e2e8c28de46eae5d402d3934af58fa830918b08a43d5d"
+"TT4.prs" = "4f814fc2ace0cc2d9f25eab9a0a06b47e219b24edf690db55c4a535e07b03037"
+"TT4.topo" = "ede7f23d1969d0f8efc0b1e62219b0a2d9c78861fdb8f5a7394d38cdab0db718"
+"TT4_parameters.dat" = "9077f4a3d7a37ddc6a9a5467088e07c2b1b32e29ffc8591e2195873236a20cf7"
+"TT4_solution.dat" = "66bdfdda256fdad85c3150e6c90ca657f877e58c552f110adb1a4a48545d6a75"
+"TT4SA.prs" = "90bebc8f904ccd0b59d8b9fda1ac3dc6104c039ec736a54494e281920af141d7"
+"TT4SA.topo" = "7b14dfcd59081f7d74466bd4d001763b5e10423361904af895a181206c2ddeac"
+"TT4SA_parameters.dat" = "cf12b5f3457a799c902274f5585d4e85ae46d4fe836aab97e6ad17a8a43be6db"
+"TT4SA_solution.dat" = "9eabb2852b8d8ab99841fb9a214a70b1da0ed01823648643fc615cd2afa5aa55"

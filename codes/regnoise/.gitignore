@@ -1,0 +1,6 @@
+test/results/
+results/
+inputs/
+logs/
+*.tmp
+Manifest.toml
