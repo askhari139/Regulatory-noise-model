@@ -97,13 +97,13 @@ end
     acc = R.CellAccumulator(2)
     R.add_replicate!(acc, cfg, R.Trajectory(t, x, nothing), θ)
     occ = acc.occ[1]
-    # codes: "10" (A high) = 1, "11" = 3, "01" = 2
+    # codes: A high only = 1 ("HL"), both high = 3 ("HH"), B high only = 2 ("LH")
     @test occ[1+1] ≈ 20 / 51 && occ[3+1] ≈ 20 / 51 && occ[2+1] ≈ 11 / 51
     @test acc.trans[1+1, 3+1] == 1 && acc.trans[3+1, 2+1] == 1 && sum(acc.trans) == 2
     # only the middle run is a completed visit
     @test acc.dwell_n == [0, 0, 0, 1] && acc.dwell_sum[4] ≈ 20.0
     @test acc.block_occ[1][1+1, 1] == 1.0 && acc.block_occ[1][2+1, 5] ≈ 11 / 11
-    @test R.state_label(1, 2) == "10" && R.state_label(2, 2) == "01"
+    @test R.state_label(1, 2) == "HL" && R.state_label(2, 2) == "LH" && R.state_label(3, 2) == "HH"
 end
 
 @testset "selection" begin

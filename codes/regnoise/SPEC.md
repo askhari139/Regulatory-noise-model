@@ -122,7 +122,8 @@ Classes run: monostable, bistable, tristable (tetrastable only if §15-D3 says s
 Threshold for node i: θ_i = 2^( Σ_s f_s log2 x_{i,s} / Σ_s f_s ), the RACIPE
 convergence-frequency-weighted geometric mean of node i across all 10,000 parameter sets'
 steady states (unchanged from the old code; document as such — R3 minor 3).
-A sample is in state b = (1[x_1 > θ_1], …, 1[x_N > θ_N]).
+A sample is in state b = (1[x_1 > θ_1], …, 1[x_N > θ_N]), written in outputs as letters in
+node order (H = high, L = low; e.g. TT all-high = "HHH") so no CSV reader parses it as a number.
 
 Threshold sensitivity (R3.6): every occupancy observable is also computed at
 θ × m for m ∈ {0.5, 2.0}; stored alongside m = 1.

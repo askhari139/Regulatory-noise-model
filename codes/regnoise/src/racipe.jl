@@ -164,5 +164,8 @@ end
     return c
 end
 
-"Human-readable state label in node order, e.g. A high, B low → \"10\"."
-state_label(code::Int, n::Int) = join(((code >> (i - 1)) & 1 for i in 1:n))
+"""
+State label in node order, H = above threshold, L = below; e.g. A high, B low → "HL".
+Letters, not digits, so CSV readers (Julia, readr) never parse a label as a number.
+"""
+state_label(code::Int, n::Int) = join((((code >> (i - 1)) & 1) == 1 ? 'H' : 'L' for i in 1:n))

@@ -19,7 +19,7 @@ params = read_parameters(cfg, net)
 
 old = CSV.read(joinpath(o["old-results"], mode, netname, "results", "all_parameters_results.csv"), DataFrame)
 old = filter(r -> r.DT == 0.01, old)
-old.State = [replace(s, r"[^01]" => "") for s in string.(old.State)]
+old.State = [replace(replace(replace(s, r"[^01]" => ""), "1" => "H"), "0" => "L") for s in string.(old.State)]
 shared = intersect(Set(sel.ParamID), Set(old.ParamID))
 ids = Int[]
 for cls in unique(sel.StabilityClass)       # balance the classes
