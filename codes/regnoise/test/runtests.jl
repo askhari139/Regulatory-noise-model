@@ -128,6 +128,9 @@ end
             rows = run_unit(cfg, net, mode, pid, params[pid], θ)
             path = write_unit(cfg, net, mode, pid, sel.StabilityClass[1], θ, rows, 0.0)
             @test isempty(validate_unit(cfg, path, mode, lo, hi))
+            meta, T = R.read_unit(path)
+            @test meta["stability_class"] isa String && meta["noise_mode"] isa String
+            @test all(eltype(c) <: Union{Number,String} for t in values(T) for c in eachcol(t))
             @test unit_status(cfg, netname, mode, pid) == :done
         end
         rows1 = run_unit(cfg, net, "Additive", pid, params[pid], θ)

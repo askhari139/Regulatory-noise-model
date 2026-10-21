@@ -38,7 +38,7 @@ function write_unit(cfg::Config, net::Network, mode, pid, class, θ, rows, wall)
     mkpath(dirname(path))
     meta = merge(provenance(), Dict(
         "config_hash" => cfg.hash, "run_id" => cfg.run_id, "network" => net.name,
-        "noise_mode" => mode, "param_id" => pid, "stability_class" => class,
+        "noise_mode" => String(mode), "param_id" => pid, "stability_class" => String(class),
         "nodes" => net.nodes, "edges" => [e.name for e in net.edges],
         "thresholds" => θ, "wall_seconds" => wall))
     tables = Dict(String(t) => (isempty(rows[t]) ? DataFrame() : DataFrame(rows[t])) for t in keys(rows))

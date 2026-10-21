@@ -55,7 +55,10 @@ function load_selection(cfg::Config, netname::AbstractString)
     meta = TOML.parsefile(path * ".meta.toml")
     meta["config_hash"] == cfg.hash ||
         error("selection for $netname was made with config $(meta["config_hash"]), current is $(cfg.hash)")
-    sel = CSV.read(path, DataFrame)
-    th = CSV.read(thresholds_path(cfg, netname), DataFrame)
-    return sel, Vector{Float64}(th.Threshold), Vector{String}(th.Node)
+    # Plain String columns: newer CSV.jl returns its own string types, which would then
+    # leak into the raw files and need that exact package to be read back.
+    sel = CSV.read(path, DataFrame; types=Dict(:StabilityClass => String))
+    sel.StabilityClass = String.(sel.StabilityClass)
+    th = CSV.read(thresholds_path(cfg, netname), DataFrame; types=Dict(:Node => String))
+    return sel, Vector{Float64}(th.Threshold), String.(th.Node)
 end
