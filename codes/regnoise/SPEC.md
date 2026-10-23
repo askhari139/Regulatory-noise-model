@@ -91,6 +91,13 @@ bounds (not "absorbing": the next update can move it back inside — fixes R3 mi
 | Additive | λ ← clip(λ + σ_eff ξ) | σ for inhibition, σ·λ_max for activation |
 | Multiplicative | λ ← clip(λ + \|λ* − λ\| σ ξ), λ* = λ_min (inh), λ_max (act) | raw σ |
 | Stationary | λ ← clip(λ(0) + σ_eff ξ) | as Additive |
+| LogAdditive (candidate, piloted 2026-10) | log10 λ ← clip(log10 λ + σ_eff ξ) | σ × (log10 λ_max − log10 λ_min) = 2σ decades, both edge types |
+
+LogAdditive is the additive walk on the fold-change scale. RACIPE samples the fold-change
+uniformly on [1, 100], so inhibitory λ starts concentrated near 0.01; the linear-scale Additive walk
+spreads λ uniformly over [0.01, 1] (stationary mean ≈ 0.5, i.e. at most 2-fold repression), which
+the first pilot showed drives most of the additive effect. Whether LogAdditive joins production is
+decided after pilot 2.
 
 At σ = 0 every rule is the identity (unit-tested). The manuscript's Eq. 10 must be
 corrected to `λ(t+Δt) = λ(t) + |λ* − λ(t)| η` (R3.1 is a typo in the paper; the code
@@ -213,7 +220,24 @@ samples.
 n ∈ {10, 30, 100, 300, 1000}, plus bootstrap SE (200 resamples) at n = 1000 (R1 minor 2,
 R3.5.1).
 
-9.6 **Node expression** per node (analysis window): mean and SD.
+9.6 **Node expression** per node (analysis window): mean and SD, averaged over replicates.
+Note: averaging over replicates blends replicates that sit in different states; use 9.7 for
+distributions and joint states.
+
+9.7 **Per-replicate expression** (`replicates` table): for the first `replicates_stored` (100)
+replicates of every cell (for C2, the first 100 of the 1,000 draws), the time-averaged mean and the
+within-trajectory SD of every node, one row per replicate (columns `Mean_<node>`, `SD_<node>`,
+Float32). This replaces the old pipeline's rounded-and-grouped per-node statistics: states and
+joint node configurations are kept exactly, and clustering (e.g. round and count) is done in
+post-processing.
+
+9.8 **Windowed log fold-change** (`lfc` table, time-varying conditions C1 and C3 only): for each
+node, lag τ ∈ {1, 3, 10, 30, 100} and threshold c ∈ {1, 2} (2- and 4-fold), the fraction of time
+points t in the analysis window with |log2 x(t+τ) − log2 x(t)| ≥ c, per stored replicate
+(columns `<node>_Frac_lag<τ>_<k>fold`, UInt16 = fraction × 65535). The natural lag is the node's
+relaxation time 1/k (1–10 time units); storing several lags lets the analysis pick it per node.
+Deterministic conditions (C0, C2, C4) are at a fixed point in the window, so the measure is 0 by
+construction and is not stored; their per-replicate SD (9.7) shows any oscillation.
 
 ---
 
@@ -294,7 +318,7 @@ ParamIDs serially, single-threaded (`sbatch/array.sh`). No nested job submission
 
 Measured cost of one full unit (C0–C4, all σ and dt, production config), single core,
 local Apple-silicon machine (2026-10-18): TS ≈ 90–100 s; TT4SA ≈ 270–320 s (one unit per
-stability class). Raw output ≈ 0.45 MB (TS) to 1.8 MB (TT4SA) per unit.
+stability class). Cluster pilot (2026-10-20): TT 4–5 min, TT4 6–8 min per unit (one core).
 
 Estimate for the cluster, assuming a cluster core is ~2× slower than the local one
 (the pilot measures this) and interpolating the other networks between TS and TT4SA:
@@ -303,7 +327,8 @@ Estimate for the cluster, assuming a cluster core is ~2× slower than the local 
 |---|---|
 | One noise mode, all 7 networks (~19,400 units) | ~2,200 |
 | All three modes | ~6,500 (~50 h on one 128-core node) |
-| Raw storage, all three modes | ~25 GB |
+| Raw storage per noise mode (incl. per-replicate tables, measured 2026-10-22: TS 0.86 MB, TT 1.22 MB, TT4SA 1.75 MB per unit) | ~27 GB |
+| Raw storage, three modes (four with LogAdditive) | ~80 GB (~110 GB); collected CSV.gz about the same again |
 
 Tolerance check in the pilot: 10 ParamIDs per network rerun at reltol 1e-6 / abstol 1e-8;
 occupancy differences must be within Monte-Carlo SE (reported, not a hard gate).
@@ -347,6 +372,9 @@ check validation, timings, and that C2 at n = 1000 has converged; (3) full Addit
 | D6 | Extra multiplicative control | None; R1.3 answered by the C0→C4→C2→C1 decomposition (default) |
 | D7 | Solver tolerance | Keep reltol 1e-4 / abstol 1e-5. At dt = 0.01 the callback caps step size at 0.01 so tolerance barely matters; elsewhere it can only change basin assignment for ICs near separatrices. Verified by the pilot tolerance check (§13). |
 | D8 | Trajectory length | tspan = 1000, 50 % burn-in, block diagnostics (default) |
+| D9 | Expression outputs (2026-10-22) | Per-replicate mean and SD of every node, first 100 replicates per cell (9.7) |
+| D10 | Continuous dynamics measure (2026-10-22) | Windowed log fold-change at lags 1–100, 2- and 4-fold (9.8), C1 and C3 only |
+| D11 | LogAdditive noise mode (2026-10-22) | Piloted on TT (pilot 2) before deciding on production |
 
 ## 16. Changes from the old pipeline (for Methods / rebuttal)
 

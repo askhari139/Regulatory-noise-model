@@ -4,7 +4,7 @@ See SPEC.md for the full specification; every number comes from the config file.
 """
 module RegNoise
 
-using CSV, DataFrames, JLD2, TOML, SHA, Dates, Random, Statistics, StatsBase
+using CSV, DataFrames, JLD2, TOML, SHA, Dates, Random, Statistics, StatsBase, PooledArrays
 using OrdinaryDiffEq, DiffEqCallbacks, SciMLBase
 
 include("config.jl")

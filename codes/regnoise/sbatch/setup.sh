@@ -15,5 +15,5 @@ set -euo pipefail
 module load julia/1.10.4
 CODE="${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 cd "$CODE"
-julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
+julia --project=. -e 'using Pkg; Pkg.resolve(); Pkg.instantiate(); Pkg.precompile()'
 REGNOISE_DATA="$DATA_DIR" julia --project=. test/runtests.jl

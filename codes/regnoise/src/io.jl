@@ -41,7 +41,7 @@ function write_unit(cfg::Config, net::Network, mode, pid, class, θ, rows, wall)
         "noise_mode" => String(mode), "param_id" => pid, "stability_class" => String(class),
         "nodes" => net.nodes, "edges" => [e.name for e in net.edges],
         "thresholds" => θ, "wall_seconds" => wall))
-    tables = Dict(String(t) => (isempty(rows[t]) ? DataFrame() : DataFrame(rows[t])) for t in keys(rows))
+    tables = Dict(String(t) => (isempty(rows[t]) ? DataFrame() : pool_strings!(DataFrame(rows[t]))) for t in keys(rows))
     tmp = path * ".tmp"
     jldsave(tmp; meta=meta, tables=tables)
     mv(tmp, path; force=true)
@@ -49,6 +49,14 @@ function write_unit(cfg::Config, net::Network, mode, pid, class, θ, rows, wall)
 end
 
 read_unit(path) = jldopen(f -> (f["meta"], f["tables"]), path, "r")
+
+"Store repeated string columns (Condition, State, Edge, ...) as pooled integer codes."
+function pool_strings!(df::DataFrame)
+    for c in names(df)
+        eltype(df[!, c]) <: AbstractString && (df[!, c] = PooledArray(String.(df[!, c]); compress=true))
+    end
+    return df
+end
 
 "Status of an existing unit file: :missing, :done, or error on a config mismatch."
 function unit_status(cfg::Config, net, mode, pid)
@@ -93,6 +101,20 @@ function validate_unit(cfg::Config, path, mode, lo, hi)
     g = combine(groupby(occ, [:Condition, :Sigma, :DT, :THold, :ThresholdMult, :Block]), :Mean => sum => :Total)
     bad = filter(r -> abs(r.Total - 1) > 1e-9, g)
     nrow(bad) > 0 && push!(problems, "occupancies do not sum to 1 in $(nrow(bad)) groups")
+
+    # per-replicate tables: first `replicates_stored` replicates × nodes per cell;
+    # the windowed fold-change only for the time-varying conditions C1 and C3
+    for (tname, conds) in (("replicates", ("C0", "C1", "C2", "C3", "C4")), ("lfc", ("C1", "C3")))
+        haskey(T, tname) || (push!(problems, "missing table $tname"); continue)
+        t = T[tname]
+        cnt = nrow(t) == 0 ? Dict() :
+            Dict((r.Condition, r.Sigma, r.DT, r.THold) => r.n for r in eachrow(combine(groupby(t, [:Condition, :Sigma, :DT, :THold]), nrow => :n)))
+        for c in expected_cells(cfg, mode)
+            c[1] in conds || continue
+            want = min(c[5], cfg.replicates_stored)
+            get(cnt, c[1:4], 0) == want || push!(problems, "$tname: cell $(c[1:4]) has $(get(cnt, c[1:4], 0)) rows, expected $want")
+        end
+    end
 
     lam = T["lambda"]
     for r in eachrow(lam)

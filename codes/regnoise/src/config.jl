@@ -18,10 +18,12 @@ const SCHEMA = Dict(
                          "ctrl_sigmas" => Vector, "hold_times" => Vector,
                          "pool_dt" => Real, "acf_lags" => Vector,
                          "lambda_quantiles" => Vector),
+    "observables" => Dict("replicates_stored" => Integer, "lfc_lags" => Vector,
+                          "lfc_log2_thresholds" => Vector),
     "inputs"     => Dict("sha256" => Dict),
 )
 
-const NOISE_MODES = ("Additive", "Multiplicative", "Stationary")
+const NOISE_MODES = ("Additive", "Multiplicative", "Stationary", "LogAdditive")
 const STABILITY_CLASSES = ("monostable", "bistable", "tristable", "tetrastable")
 
 struct Config
@@ -59,6 +61,9 @@ struct Config
     pool_dt::Float64
     acf_lags::Vector{Int}
     lambda_quantiles::Vector{Float64}
+    replicates_stored::Int
+    lfc_lags::Vector{Float64}
+    lfc_thresholds::Vector{Float64}
     input_sha256::Dict{String,String}
 end
 
@@ -116,6 +121,14 @@ function load_config(path::AbstractString; data_dir=nothing, results_root=nothin
     (0 < inh[1] < inh[2] <= 1) || error("config: bad lambda_inh_bounds")
     (1 <= act[1] < act[2]) || error("config: bad lambda_act_bounds")
 
+    ob = raw["observables"]
+    ob["replicates_stored"] >= 1 || error("config: replicates_stored must be >= 1")
+    for L in ob["lfc_lags"]
+        L > 0 && isapprox(rem(L, s["saveat"]), 0; atol=1e-9) && L < s["t_end"] - s["t_burn"] ||
+            error("config: each lfc_lag must be a positive multiple of saveat shorter than the analysis window")
+    end
+    all(>(0), ob["lfc_log2_thresholds"]) || error("config: lfc_log2_thresholds must be positive")
+
     p = raw["paths"]
     base = dirname(abspath(path))
     resolve(x) = isabspath(x) ? x : normpath(joinpath(base, "..", x))
@@ -132,6 +145,7 @@ function load_config(path::AbstractString; data_dir=nothing, results_root=nothin
         String.(c["modes"]), c["n_det_draws"], Int.(c["convergence_ns"]), c["n_bootstrap"],
         Float64.(c["ctrl_sigmas"]), Float64.(c["hold_times"]), c["pool_dt"],
         Int.(c["acf_lags"]), Float64.(c["lambda_quantiles"]),
+        ob["replicates_stored"], Float64.(ob["lfc_lags"]), Float64.(ob["lfc_log2_thresholds"]),
         Dict{String,String}(k => String(v) for (k, v) in raw["inputs"]["sha256"]))
 end
 

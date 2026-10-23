@@ -25,7 +25,7 @@ cfg_tmp() = load_config(TESTCFG; data_dir=ENV["REGNOISE_DATA"], results_root=mkt
 end
 
 @testset "λ update rules" begin
-    for mode in (:Additive, :Multiplicative, :Stationary), ξ in (-2.3, 0.0, 1.7)
+    for mode in (:Additive, :Multiplicative, :Stationary, :LogAdditive), ξ in (-2.3, 0.0, 1.7)
         # σ = 0 is the identity whenever λ = λ0
         @test R.update_lambda(mode, 0.3, 0.3, 0.0, 0.0, 0.01, 0.01, 1.0, ξ) == 0.3
     end
@@ -35,6 +35,10 @@ end
     # multiplicative step is proportional to the distance to the target
     @test R.update_lambda(:Multiplicative, 0.21, 0.21, 0.1, 0.0, 0.01, 0.01, 1.0, 1.0) ≈ 0.21 + 0.2 * 0.1
     @test R.update_lambda(:Multiplicative, 20.0, 20.0, 0.1, 0.0, 100.0, 1.0, 100.0, 1.0) ≈ 20.0 + 80.0 * 0.1
+    # log-additive: step in log10 λ, clamped to the bounds
+    @test R.update_lambda(:LogAdditive, 0.1, 0.1, 0.1, 0.2, 0.01, 0.01, 1.0, 1.0) ≈ 0.1 * 10^0.2
+    @test R.update_lambda(:LogAdditive, 0.5, 0.5, 1.0, 2.0, 0.01, 0.01, 1.0, 3.0) == 1.0
+    @test R.update_lambda(:LogAdditive, 0.5, 0.5, 1.0, 2.0, 0.01, 0.01, 1.0, -3.0) == 0.01
     # stationary always restarts from λ0
     @test R.update_lambda(:Stationary, 0.9, 0.3, 0.1, 0.1, 0.01, 0.01, 1.0, 1.0) ≈ 0.4
     # activation edges use σ·λ_max for Additive
@@ -44,6 +48,9 @@ end
     upd = R.ProcessUpdater("Additive", 0.1, net, lo, hi, zeros(length(net.param_names)), Xoshiro(1))
     @test all(upd.sigma_eff[k] == (e.act ? 10.0 : 0.1) for (k, e) in enumerate(net.edges))
     @test_throws ErrorException R.ProcessUpdater("Lognormal", 0.1, net, lo, hi, zeros(16), Xoshiro(1))
+    # log-additive step = σ × log10 range (2 decades) for both edge types
+    updl = R.ProcessUpdater("LogAdditive", 0.1, net, lo, hi, zeros(length(net.param_names)), Xoshiro(1))
+    @test all(updl.sigma_eff .≈ 0.2)
 end
 
 @testset "RHS matches legacy generated ODE ($n)" for n in ("TS", "TSSA", "TT", "TTSA", "TS4", "TT4", "TT4SA")
@@ -106,6 +113,17 @@ end
     @test R.state_label(1, 2) == "HL" && R.state_label(2, 2) == "LH" && R.state_label(3, 2) == "HH"
 end
 
+@testset "windowed log fold-change" begin
+    cfg = cfg_tmp()                                    # lags 1, 3, 10, 30; thresholds 2- and 4-fold
+    nt = 51
+    x = vcat([isodd(j) ? 1.0 : 4.0 for j in 1:nt]', fill(3.0, 1, nt))   # A alternates 4-fold, B constant
+    F = R.decode_frac.(R.lfc_fractions(cfg, x))
+    # columns lag-major: (1,2f) (1,4f) (3,2f) (3,4f) (10,2f) (10,4f) (30,2f) (30,4f)
+    @test F[1, :] ≈ [1, 1, 1, 1, 0, 0, 0, 0]          # odd lags see the 4-fold jump, even lags do not
+    @test all(F[2, :] .== 0)
+    @test R.lfc_colnames(cfg)[1:2] == [:Frac_lag1_2fold, :Frac_lag1_4fold]
+end
+
 @testset "selection" begin
     cfg = cfg_tmp()
     s1 = select_parameters(cfg, "TS")
@@ -131,6 +149,8 @@ end
             meta, T = R.read_unit(path)
             @test meta["stability_class"] isa String && meta["noise_mode"] isa String
             @test all(eltype(c) <: Union{Number,String} for t in values(T) for c in eachcol(t))
+            @test nrow(T["replicates"]) == sum(min(c[5], cfg.replicates_stored) for c in expected_cells(cfg, mode))
+            @test "Mean_A" in names(T["replicates"]) && "A_Frac_lag1_2fold" in names(T["lfc"])
             @test unit_status(cfg, netname, mode, pid) == :done
         end
         rows1 = run_unit(cfg, net, "Additive", pid, params[pid], θ)

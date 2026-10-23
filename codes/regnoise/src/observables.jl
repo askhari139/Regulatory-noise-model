@@ -14,12 +14,38 @@ mutable struct CellAccumulator
     switches::Vector{Int}
     node_mean::Vector{Vector{Float64}}
     node_sd::Vector{Vector{Float64}}
+    store_lfc::Bool                          # windowed fold-change kept for this cell (C1, C3)
+    lfc::Vector{Matrix{UInt16}}              # per stored replicate: n_nodes × (lags × thresholds)
 end
 
-CellAccumulator(n_nodes::Int) = (ns = 1 << n_nodes;
+CellAccumulator(n_nodes::Int; store_lfc::Bool=false) = (ns = 1 << n_nodes;
     CellAccumulator(ns, n_nodes, Vector{Float64}[], Matrix{Float64}[], Matrix{Float64}[],
                     zeros(ns), zeros(Int, ns), zeros(Int, ns, ns), Int[],
-                    Vector{Float64}[], Vector{Float64}[]))
+                    Vector{Float64}[], Vector{Float64}[], store_lfc, Matrix{UInt16}[]))
+
+"Fraction stored as UInt16 (resolution 1.5e-5)."
+encode_frac(f) = round(UInt16, clamp(f, 0, 1) * typemax(UInt16))
+decode_frac(u) = u / typemax(UInt16)
+
+"""
+Windowed log fold-change of each node: for each lag τ and log2 threshold c, the fraction of
+time points t in the window with |log2 x(t+τ) − log2 x(t)| ≥ c. Columns ordered lag-major.
+"""
+function lfc_fractions(cfg::Config, x::AbstractMatrix)
+    lx = log2.(max.(x, 1e-12))
+    nt = size(lx, 2)
+    out = zeros(UInt16, size(lx, 1), length(cfg.lfc_lags) * length(cfg.lfc_thresholds))
+    for (a, τ) in enumerate(cfg.lfc_lags)
+        L = round(Int, τ / cfg.saveat)
+        for i in axes(lx, 1)
+            d = abs.(view(lx, i, 1+L:nt) .- view(lx, i, 1:nt-L))
+            for (b, c) in enumerate(cfg.lfc_thresholds)
+                out[i, (a - 1) * length(cfg.lfc_thresholds) + b] = encode_frac(mean(d .>= c))
+            end
+        end
+    end
+    return out
+end
 
 nreplicates(a::CellAccumulator) = length(a.occ)
 
@@ -71,6 +97,7 @@ function add_replicate!(a::CellAccumulator, cfg::Config, tr::Trajectory, θ::Vec
     push!(a.switches, nsw)
     push!(a.node_mean, vec(mean(tr.x; dims=2)))
     push!(a.node_sd, vec(std(tr.x; dims=2)))
+    a.store_lfc && length(a.lfc) < cfg.replicates_stored && push!(a.lfc, lfc_fractions(cfg, tr.x))
     return a
 end
 
@@ -121,6 +148,34 @@ end
 
 function cell_rows!(rows, key, a::CellAccumulator)
     push!(rows, (; key..., MeanSwitches=mean(a.switches), SDSwitches=std(a.switches)))
+end
+
+"""
+Per-replicate time-averaged mean and SD of every node (columns Mean_<node>, SD_<node>), one row
+per replicate, for the first `replicates_stored` replicates.
+"""
+function replicate_rows!(rows, key, a::CellAccumulator, net::Network, cfg::Config)
+    names = Tuple(Symbol(s, "_", n) for n in net.nodes for s in ("Mean", "SD"))
+    for r in 1:min(nreplicates(a), cfg.replicates_stored)
+        vals = Tuple(Float32(s == 1 ? a.node_mean[r][i] : a.node_sd[r][i]) for i in eachindex(net.nodes) for s in 1:2)
+        push!(rows, (; key..., Replicate=Int32(r), NamedTuple{names}(vals)...))
+    end
+end
+
+lfc_colnames(cfg::Config) = [Symbol("Frac_lag", L == round(L) ? Int(L) : L, "_", Int(2^c), "fold")
+                             for L in cfg.lfc_lags for c in cfg.lfc_thresholds]
+
+"""
+Per-replicate windowed fold-change fractions, one row per replicate, columns <node>_Frac_lag<τ>_<k>fold
+(stored as UInt16; divide by 65535).
+"""
+function lfc_rows!(rows, key, a::CellAccumulator, net::Network, cfg::Config)
+    a.store_lfc || return
+    cols = lfc_colnames(cfg)
+    names = Tuple(Symbol(n, "_", c) for n in net.nodes for c in cols)
+    for (r, M) in enumerate(a.lfc)
+        push!(rows, (; key..., Replicate=Int32(r), NamedTuple{names}(Tuple(vec(permutedims(M))))...))
+    end
 end
 
 function expression_rows!(rows, key, a::CellAccumulator, net::Network)

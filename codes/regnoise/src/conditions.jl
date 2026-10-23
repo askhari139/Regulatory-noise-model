@@ -1,6 +1,7 @@
 # All conditions for one (network, noise mode, ParamID) unit (SPEC §6, §7).
 
-const TABLES = (:occupancy, :transitions, :dwell, :cells, :expression, :lambda, :convergence)
+const TABLES = (:occupancy, :transitions, :dwell, :cells, :expression, :lambda, :convergence,
+                :replicates, :lfc)
 
 "Run C0–C4 for one parameter set and noise mode. Returns Dict(table => Vector of rows)."
 function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
@@ -16,6 +17,8 @@ function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
         dwell_rows!(rows[:dwell], key, acc)
         cell_rows!(rows[:cells], key, acc)
         expression_rows!(rows[:expression], key, acc, net)
+        replicate_rows!(rows[:replicates], key, acc, net, cfg)
+        lfc_rows!(rows[:lfc], key, acc, net, cfg)
     end
 
     # C0: deterministic, original λ
@@ -30,7 +33,7 @@ function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
         σ == 0.0 && continue
 
         # C1: stochastic; record λ in the analysis window to build the pool
-        acc = CellAccumulator(nnodes(net))
+        acc = CellAccumulator(nnodes(net); store_lfc=true)
         trajs = Trajectory[]
         for r in 1:cfg.n_traj
             upd = ProcessUpdater(mode, σ, net, lo, hi, p0, seed("C1", σ, dt, r))
@@ -60,7 +63,7 @@ function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
 
         # C3: λ redrawn i.i.d. from the pool every T_hold (first draw at t = 0)
         for th in cfg.hold_times
-            acc = CellAccumulator(nnodes(net))
+            acc = CellAccumulator(nnodes(net); store_lfc=true)
             for r in 1:cfg.n_traj
                 rng = seed("C3", σ, th, r)
                 p = copy(p0)

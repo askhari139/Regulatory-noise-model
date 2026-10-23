@@ -32,9 +32,13 @@ end
 function ProcessUpdater(mode::AbstractString, sigma, net::Network, lo, hi, p0, rng)
     acts = [e.act for e in net.edges]
     m = Symbol(mode)
-    m in (:Additive, :Multiplicative, :Stationary) || error("unknown noise mode $mode")
-    return ProcessUpdater(m, sigma, net.lam_idx, lo, hi,
-        [a ? sigma * h : sigma for (a, h) in zip(acts, hi)],
+    m in (:Additive, :Multiplicative, :Stationary, :LogAdditive) || error("unknown noise mode $mode")
+    # Additive/Stationary: step in λ units (σ for inhibition, σ·λ_max for activation).
+    # LogAdditive: step in log10 λ, scaled by the edge's log10 range (2 decades for both types).
+    seff = m === :LogAdditive ?
+        [sigma * (log10(h) - log10(l)) for (l, h) in zip(lo, hi)] :
+        [a ? sigma * h : sigma for (a, h) in zip(acts, hi)]
+    return ProcessUpdater(m, sigma, net.lam_idx, lo, hi, seff,
         [a ? h : l for (a, l, h) in zip(acts, lo, hi)],
         p0[net.lam_idx], rng)
 end
@@ -45,6 +49,8 @@ end
         λ + sigma_eff * ξ
     elseif mode === :Multiplicative
         λ + abs(target - λ) * sigma * ξ
+    elseif mode === :LogAdditive
+        λ * exp10(sigma_eff * ξ)          # log10 λ ← log10 λ + σ_eff ξ; clamping λ = clamping log λ
     else # :Stationary
         λ0 + sigma_eff * ξ
     end

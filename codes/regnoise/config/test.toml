@@ -6,7 +6,7 @@
 run_id = "test"
 seed_root = 20261018
 networks = ["TS", "TSSA"]
-noise_modes = ["Additive", "Multiplicative", "Stationary"]
+noise_modes = ["Additive", "Multiplicative", "Stationary", "LogAdditive"]
 
 [paths]
 # Machine-specific; excluded from config_hash. Override with --data-dir / --results-root.
@@ -37,7 +37,7 @@ n_blocks = 5
 threshold_multipliers = [0.5, 2.0]
 
 [controls]
-modes = ["Additive", "Multiplicative", "Stationary"]
+modes = ["Additive", "Multiplicative", "Stationary", "LogAdditive"]
 n_det_draws = 20
 convergence_ns = [5, 10, 20]
 n_bootstrap = 20
@@ -46,6 +46,13 @@ hold_times = [0.01, 1.0, 10.0]
 pool_dt = 0.01
 acf_lags = [1, 5, 10, 50]
 lambda_quantiles = [0.01, 0.05, 0.25, 0.5, 0.75, 0.95, 0.99]
+
+[observables]
+# Per-replicate summaries: first replicates_stored replicates of every condition cell.
+replicates_stored = 5
+# Windowed log fold-change (C1, C3): fraction of time points with |log2 x(t+lag) - log2 x(t)| >= threshold.
+lfc_lags = [1.0, 3.0, 10.0, 30.0]
+lfc_log2_thresholds = [1.0, 2.0]
 
 [inputs.sha256]
 "TS.prs" = "36681eb4281f989fd4f570e803daef321ccb9dd112c44a912259148b14cf3ec8"
