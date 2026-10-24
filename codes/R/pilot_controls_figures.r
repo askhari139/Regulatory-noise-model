@@ -19,7 +19,7 @@ dir.create(outDir, showWarnings = FALSE, recursive = TRUE)
 famColors <- c(Reference = "#8a8984", Frozen = "#eb6834", Hold = "#1baf7a", Stochastic = "#2a78d6")
 classColors <- c(monostable = "#2a78d6", bistable = "#eb6834", tristable = "#1baf7a")
 classShapes <- c(monostable = 16, bistable = 17, tristable = 15)
-targetClass <- c(Additive = "all-high", Multiplicative = "single-high")
+targetClass <- c(Additive = "all-high", Multiplicative = "single-high", LogAdditive = "all-high", Stationary = "all-high")
 ctrlSigmas <- c(0.01, 0.1, 1)
 poolDT <- 0.01
 
@@ -188,10 +188,10 @@ fig_ladder <- function(mode) {
 }
 
 warnCounts <- list()
-for (mode in c("Additive", "Multiplicative")) {
+for (mode in intersect(c("Additive", "Multiplicative", "LogAdditive", "Stationary"), unique(d$NoiseMode))) {
 	withCallingHandlers({
-	tag <- tolower(substr(mode, 1, 4))
-	for (net in c("TT", "TT4")) save_fig(fig_conditions(mode, net), paste0("fig1_conditions_", tag, "_", net), 11, 8)
+	tag <- c(Additive = "addi", Multiplicative = "mult", LogAdditive = "logadd", Stationary = "stat")[[mode]]
+	for (net in sort(unique(d[NoiseMode == mode, Network]))) save_fig(fig_conditions(mode, net), paste0("fig1_conditions_", tag, "_", net), 11, 8)
 	save_fig(fig_effects(mode), paste0("fig2a_effects_", tag), 10, 6.5)
 	save_fig(fig_decomposition(mode), paste0("fig2b_decomposition_", tag), 11, 6.5)
 	save_fig(fig_scatter(mode), paste0("fig3_scatter_", tag), 9, 8.5)
