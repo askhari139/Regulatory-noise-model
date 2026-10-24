@@ -70,6 +70,22 @@ end
     end
 end
 
+@testset "expression stays non-negative (long λ holds)" begin
+    # Production case that diverged before the isoutofdomain check: TSSA, Multiplicative,
+    # ParamID 44, C1 σ = 0.1, Δt = 10, trajectory 31. The solver stepped a near-zero node below 0,
+    # where the Hill terms change sign and self-activation drives the solution to -Inf.
+    cfgp = load_config(joinpath(@__DIR__, "..", "config", "production.toml");
+                       data_dir=ENV["REGNOISE_DATA"], results_root=mktempdir())
+    net = load_network(cfgp, "TSSA")
+    p0 = read_parameters(cfgp, net)[44]
+    lo, hi = lambda_bounds(cfgp, net)
+    ics = R.initial_conditions(cfgp, net, 44, p0)
+    upd = R.ProcessUpdater("Multiplicative", 0.1, net, lo, hi, p0,
+                           R.rng_for(cfgp.seed_root, "TSSA", "Multiplicative", 44, "C1", 0.1, 10.0, 31))
+    tr = R.simulate(net, cfgp, p0, ics[31]; updater=upd, interval=10.0)
+    @test minimum(tr.x) >= 0
+end
+
 @testset "seeds" begin
     @test R.derive_seed(1, "TS", 0.1) == R.derive_seed(1, "TS", 0.1)
     @test R.derive_seed(1, "TS", 0.1, 1) != R.derive_seed(1, "TS", 0.1, 2)

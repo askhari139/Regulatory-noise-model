@@ -94,6 +94,8 @@ end
 
 window_times(cfg::Config) = collect(cfg.t_burn:cfg.saveat:cfg.t_end)
 
+nonnegative_violated(u, p, t) = any(x -> x < 0, u)
+
 """
 Integrate one trajectory. `updater === nothing` gives a deterministic run with λ = p0;
 otherwise `updater` is applied every `interval` time units (first at t = interval).
@@ -118,9 +120,12 @@ function simulate(net::Network, cfg::Config, p0::Vector{Float64}, u0::Vector{Flo
         push!(cbs, PeriodicCallback(updater, interval; save_positions=(false, false)))
     end
     prob = ODEProblem(RHS(net), copy(u0), (0.0, cfg.t_end), p)
+    # Expression is non-negative analytically. With long λ hold intervals the adaptive solver can
+    # step a near-zero node below 0, where the Hill terms change sign and the solution diverges.
+    # isoutofdomain rejects such steps and retries with a smaller one; accepted steps are unchanged.
     sol = solve(prob, Tsit5(); saveat=ts, reltol=reltol, abstol=abstol,
                 callback=isempty(cbs) ? nothing : CallbackSet(cbs...),
-                maxiters=10^8)
+                isoutofdomain=nonnegative_violated, maxiters=10^8)
     SciMLBase.successful_retcode(sol) || error("ODE solve failed: retcode $(sol.retcode)")
     length(sol.t) == length(ts) || error("ODE solve saved $(length(sol.t)) points, expected $(length(ts))")
     lam = nothing

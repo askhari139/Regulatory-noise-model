@@ -190,6 +190,7 @@ conditions and dt (R3.2).
 | solver | Tsit5, reltol 1e-4, abstol 1e-5 (§15-D7) |
 | initial conditions | x_i(0) = U(0,1) · g_i / k_i, independent per node |
 | IC pairing | IC r is identical across C0, C1 (all σ, dt), C3, C4 for the same ParamID; C2 draw d uses IC (d mod 100) |
+| non-negativity | `isoutofdomain`: steps that would make any expression negative are rejected and retried with a smaller step (added 2026-10-24; without it, long λ holds let the solver overshoot a near-zero node below 0, where the Hill terms change sign and self-activating networks diverge) |
 | retcode | any non-`Success` retcode → error (logged with seed for replay) |
 
 Blocks for convergence (R1 minor 3, R3.6): occupancy is also reported for the five
@@ -390,3 +391,8 @@ check validation, timings, and that C2 at n = 1000 has converged; (3) full Addit
 6. λ bounds [0.01, 1] / [1, 100] (old code: [0.001, 0.999] / [1.001, 100]); uniform
    selection within class (old: balance-weighted); tolerance unchanged (1e-4 / 1e-5).
 7. Single code location (git), single config, validation gate.
+8. Solver failures are errors. The old pipeline never checked the ODE return code, so a diverged
+   trajectory (seen in production for TSSA, Multiplicative, Δt = 10) would have been discretized
+   silently (NaN counts as "low"). The new code rejects negative-expression steps and errors on any
+   failed solve. Production run `2026-10-csbj` was cancelled after this was found and restarted as
+   `2026-10-csbj-v2` with the fix, so the whole run comes from one commit.
