@@ -41,6 +41,8 @@ save_fig <- function(p, name, w, h) {
 }
 
 d[, StabilityClass := factor(StabilityClass, levels = c("monostable", "bistable", "tristable"))]
+netOrder <- c("TS", "TSSA", "TT", "TTSA", "TS4", "TT4", "TT4SA")      # order used in the paper
+d[, Network := factor(Network, levels = c(intersect(netOrder, unique(Network)), setdiff(sort(unique(Network)), netOrder)))]
 
 # One row per parameter set and condition cell for the target state class.
 target <- function(mode) d[NoiseMode == mode & StateClass == targetClass[[mode]]]
@@ -138,7 +140,7 @@ fig_scatter <- function(mode, sigma = 0.1) {
 	ggplot(s, aes(X, Y, colour = StabilityClass, shape = StabilityClass)) +
 		geom_abline(slope = 1, intercept = 0, linetype = "dashed", colour = "grey55") +
 		geom_point(size = 1.6, alpha = 0.7) +
-		facet_grid(Network ~ Panel) +
+		facet_grid(Panel ~ Network) +
 		coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
 		scale_colour_manual(values = classColors, name = NULL) +
 		scale_shape_manual(values = classShapes, name = NULL) +
@@ -172,7 +174,7 @@ fig_ladder <- function(mode) {
 		geom_label(data = ref, aes(x = 160, y = LabY, label = Label, colour = Family),
 				   hjust = 0, size = 2.7, linewidth = 0, fill = "white", label.padding = unit(0.08, "lines"),
 				   show.legend = FALSE) +
-		geom_ribbon(aes(ymin = Mean - 1.96 * SE, ymax = Mean + 1.96 * SE), fill = famColors[["Hold"]], alpha = 0.2) +
+		geom_ribbon(aes(ymin = pmax(0, Mean - 1.96 * SE), ymax = pmin(1, Mean + 1.96 * SE)), fill = famColors[["Hold"]], alpha = 0.2) +
 		geom_line(colour = famColors[["Hold"]], linewidth = 0.8) +
 		geom_point(colour = famColors[["Hold"]], size = 2.2) +
 		facet_grid(Network ~ SigmaLab) +
@@ -191,11 +193,12 @@ warnCounts <- list()
 for (mode in intersect(c("Additive", "Multiplicative", "LogAdditive", "Stationary"), unique(d$NoiseMode))) {
 	withCallingHandlers({
 	tag <- c(Additive = "addi", Multiplicative = "mult", LogAdditive = "logadd", Stationary = "stat")[[mode]]
-	for (net in sort(unique(d[NoiseMode == mode, Network]))) save_fig(fig_conditions(mode, net), paste0("fig1_conditions_", tag, "_", net), 11, 8)
-	save_fig(fig_effects(mode), paste0("fig2a_effects_", tag), 10, 6.5)
-	save_fig(fig_decomposition(mode), paste0("fig2b_decomposition_", tag), 11, 6.5)
-	save_fig(fig_scatter(mode), paste0("fig3_scatter_", tag), 9, 8.5)
-	save_fig(fig_ladder(mode), paste0("fig4_ladder_", tag), 11, 6.5)
+	for (net in as.character(sort(unique(d[NoiseMode == mode, Network])))) save_fig(fig_conditions(mode, net), paste0("fig1_conditions_", tag, "_", net), 11, 8)
+	nNet <- uniqueN(d[NoiseMode == mode, Network])       # figure height scales with the number of networks
+	save_fig(fig_effects(mode), paste0("fig2a_effects_", tag), 10, 1.9 * nNet + 2.7)
+	save_fig(fig_decomposition(mode), paste0("fig2b_decomposition_", tag), 11, 1.9 * nNet + 2.7)
+	save_fig(fig_scatter(mode), paste0("fig3_scatter_", tag), 2.3 * nNet + 1.5, 6.8)
+	save_fig(fig_ladder(mode), paste0("fig4_ladder_", tag), 11, 1.9 * nNet + 2.7)
 	}, warning = function(w) { msg <- conditionMessage(w); if (!grepl("built under", msg)) warnCounts[[msg]] <<- (if (is.null(warnCounts[[msg]])) 0 else warnCounts[[msg]]) + 1; invokeRestart("muffleWarning") })
 }
 if (length(warnCounts)) { cat("warnings:\n"); for (m in names(warnCounts)) cat(sprintf("  [%d×] %s\n", warnCounts[[m]], m)) }

@@ -15,8 +15,10 @@ end
 out = DataFrame()
 for f in sort(readdir(o["collected"]))
     endswith(f, "_occupancy.csv.gz") || continue
+    # stringtype=String: CSV.jl otherwise picks fixed-width string types per file (String3 for
+    # "TS"), which cannot hold longer values from the next file ("TSSA") when appending
     occ = CSV.read(GzipDecompressorStream(open(joinpath(o["collected"], f))), DataFrame;
-                   types=Dict(:State => String, :StabilityClass => String))
+                   stringtype=String, types=Dict(:State => String, :StabilityClass => String))
     occ = filter(r -> r.Block == 0 && r.ThresholdMult == 1.0, occ)
     occ.StateClass = class_name.(occ.State)
     g = combine(groupby(occ, [:Network, :NoiseMode, :ParamID, :StabilityClass, :Condition,
