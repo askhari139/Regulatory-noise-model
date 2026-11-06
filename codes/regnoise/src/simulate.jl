@@ -18,7 +18,7 @@ rng_for(parts...) = Xoshiro(derive_seed(parts...))
 
 "Noise process of SPEC §3 (C1)."
 struct ProcessUpdater
-    mode::Symbol              # :Additive, :Multiplicative, :Stationary
+    mode::Symbol              # :Additive, :Multiplicative, :Stationary, :LogAdditive, :Geometric
     sigma::Float64
     lam_idx::Vector{Int}
     lo::Vector{Float64}
@@ -32,7 +32,7 @@ end
 function ProcessUpdater(mode::AbstractString, sigma, net::Network, lo, hi, p0, rng)
     acts = [e.act for e in net.edges]
     m = Symbol(mode)
-    m in (:Additive, :Multiplicative, :Stationary, :LogAdditive) || error("unknown noise mode $mode")
+    m in (:Additive, :Multiplicative, :Stationary, :LogAdditive, :Geometric) || error("unknown noise mode $mode")
     # Additive/Stationary: step in λ units (σ for inhibition, σ·λ_max for activation).
     # LogAdditive: step in log10 λ, scaled by the edge's log10 range (2 decades for both types).
     seff = m === :LogAdditive ?
@@ -51,6 +51,13 @@ end
         λ + abs(target - λ) * sigma * ξ
     elseif mode === :LogAdditive
         λ * exp10(sigma_eff * ξ)          # log10 λ ← log10 λ + σ_eff ξ; clamping λ = clamping log λ
+    elseif mode === :Geometric
+        # The fold-change term that full regulation removes (λ for inhibition, 1/λ for
+        # activation) is multiplied by (1 + σξ). Its target 0 lies outside the bounds, so λ
+        # reflects off the full-strength bound instead of absorbing there. A factor ≤ 0 sends
+        # the edge to full strength. `target` is λ_max for activation edges (> 1), λ_min otherwise.
+        f = 1 + sigma * ξ
+        target > 1 ? (f <= 0 ? hi : λ / f) : λ * f
     else # :Stationary
         λ0 + sigma_eff * ξ
     end

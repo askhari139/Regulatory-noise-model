@@ -92,12 +92,21 @@ bounds (not "absorbing": the next update can move it back inside — fixes R3 mi
 | Multiplicative | λ ← clip(λ + \|λ* − λ\| σ ξ), λ* = λ_min (inh), λ_max (act) | raw σ |
 | Stationary | λ ← clip(λ(0) + σ_eff ξ) | as Additive |
 | LogAdditive (candidate, piloted 2026-10) | log10 λ ← clip(log10 λ + σ_eff ξ) | σ × (log10 λ_max − log10 λ_min) = 2σ decades, both edge types |
+| Geometric (candidate, piloted 2026-11) | inh: λ ← clip(λ(1 + σξ)); act: λ ← clip(λ / (1 + σξ)); 1 + σξ ≤ 0 → full-strength bound | raw σ |
 
 LogAdditive is the additive walk on the fold-change scale. RACIPE samples the fold-change
 uniformly on [1, 100], so inhibitory λ starts concentrated near 0.01; the linear-scale Additive walk
 spreads λ uniformly over [0.01, 1] (stationary mean ≈ 0.5, i.e. at most 2-fold repression), which
 the first pilot showed drives most of the additive effect. Whether LogAdditive joins production is
 decided after pilot 2.
+
+Geometric restores the old inhibitory rule λ(1 + σξ) and mirrors it for activation on 1/λ (in the
+shifted Hill an activating edge leaves its target at 1/λ of maximal production, the counterpart of
+λ for inhibition). The term multiplied is driven toward 0, which lies outside the bounds, so λ
+reflects off the full-strength bound (λ_min for inh, λ_max for act) rather than being absorbed as
+under the target-based Multiplicative rule, where λ* is the bound itself. Stationary law,
+independent of σ for σ ≲ 0.1: the full-strength fold change (1/λ for inh, λ for act) is uniform
+on [1, 1/λ_min] or [1, λ_max]. Without √Δt scaling the fluctuation rate is set by σ²/Δt.
 
 At σ = 0 every rule is the identity (unit-tested). The manuscript's Eq. 10 must be
 corrected to `λ(t+Δt) = λ(t) + |λ* − λ(t)| η` (R3.1 is a typo in the paper; the code

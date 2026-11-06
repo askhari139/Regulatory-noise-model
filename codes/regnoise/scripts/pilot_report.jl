@@ -12,7 +12,7 @@ readgz(path) = CSV.read(GzipDecompressorStream(open(path)), DataFrame;
                         types=Dict(:State => String, :From => String, :To => String), validate=false)
 files = readdir(o["collected"])
 combos = unique([(m[1], m[2]) for f in files
-                 for m in (match(r"^(\w+?)_(Additive|Multiplicative|Stationary)_occupancy\.csv\.gz$", f),)
+                 for m in (match(r"^(\w+?)_(Additive|Multiplicative|Stationary|LogAdditive|Geometric)_occupancy\.csv\.gz$", f),)
                  if m !== nothing])
 out = IOBuffer()
 say(args...) = (println(out, args...); println(args...))

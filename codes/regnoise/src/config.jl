@@ -23,7 +23,7 @@ const SCHEMA = Dict(
     "inputs"     => Dict("sha256" => Dict),
 )
 
-const NOISE_MODES = ("Additive", "Multiplicative", "Stationary", "LogAdditive")
+const NOISE_MODES = ("Additive", "Multiplicative", "Stationary", "LogAdditive", "Geometric")
 const STABILITY_CLASSES = ("monostable", "bistable", "tristable", "tetrastable")
 
 struct Config

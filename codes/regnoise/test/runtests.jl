@@ -25,7 +25,7 @@ cfg_tmp() = load_config(TESTCFG; data_dir=ENV["REGNOISE_DATA"], results_root=mkt
 end
 
 @testset "λ update rules" begin
-    for mode in (:Additive, :Multiplicative, :Stationary, :LogAdditive), ξ in (-2.3, 0.0, 1.7)
+    for mode in (:Additive, :Multiplicative, :Stationary, :LogAdditive, :Geometric), ξ in (-2.3, 0.0, 1.7)
         # σ = 0 is the identity whenever λ = λ0
         @test R.update_lambda(mode, 0.3, 0.3, 0.0, 0.0, 0.01, 0.01, 1.0, ξ) == 0.3
     end
@@ -39,6 +39,14 @@ end
     @test R.update_lambda(:LogAdditive, 0.1, 0.1, 0.1, 0.2, 0.01, 0.01, 1.0, 1.0) ≈ 0.1 * 10^0.2
     @test R.update_lambda(:LogAdditive, 0.5, 0.5, 1.0, 2.0, 0.01, 0.01, 1.0, 3.0) == 1.0
     @test R.update_lambda(:LogAdditive, 0.5, 0.5, 1.0, 2.0, 0.01, 0.01, 1.0, -3.0) == 0.01
+    # geometric: λ(1 + σξ) for inhibition, λ/(1 + σξ) for activation; factor ≤ 0 → full strength
+    @test R.update_lambda(:Geometric, 0.2, 0.2, 0.1, 0.0, 0.01, 0.01, 1.0, 1.0) ≈ 0.2 * 1.1
+    @test R.update_lambda(:Geometric, 20.0, 20.0, 0.1, 0.0, 100.0, 1.0, 100.0, 1.0) ≈ 20.0 / 1.1
+    @test R.update_lambda(:Geometric, 0.2, 0.2, 1.0, 0.0, 0.01, 0.01, 1.0, -1.5) == 0.01
+    @test R.update_lambda(:Geometric, 20.0, 20.0, 1.0, 0.0, 100.0, 1.0, 100.0, -1.5) == 100.0
+    @test R.update_lambda(:Geometric, 20.0, 20.0, 1.0, 0.0, 100.0, 1.0, 100.0, -0.999) == 100.0
+    @test R.update_lambda(:Geometric, 0.012, 0.012, 0.5, 0.0, 0.01, 0.01, 1.0, -1.0) == 0.01   # reflects, not absorbs:
+    @test R.update_lambda(:Geometric, 0.01, 0.01, 0.5, 0.0, 0.01, 0.01, 1.0, 1.0) ≈ 0.015      # it moves off the floor again
     # stationary always restarts from λ0
     @test R.update_lambda(:Stationary, 0.9, 0.3, 0.1, 0.1, 0.01, 0.01, 1.0, 1.0) ≈ 0.4
     # activation edges use σ·λ_max for Additive
