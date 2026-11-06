@@ -127,7 +127,9 @@ dt grid (λ update interval): {0.01, 1.0, 10.0}.
 2. Stability class of a parameter set = number of **distinct discrete states** among its
    RACIPE steady states (1 = monostable, 2 = bistable, 3 = tristable, 4 = tetrastable).
 3. For each class present, draw `n_per_class = 1000` sets without replacement (all sets
-   if the class has fewer), uniformly at random (§15-D2).
+   if the class has fewer), uniformly at random (§15-D2). Optional `subsample_of = N`
+   (pilots): first make the selection that `n_per_class = N` would make (same RNG stream),
+   then draw `n_per_class` of those, so a small pilot runs on a subset of a larger run's sets.
 4. Save `selection/<NET>.csv`: ParamID, StabilityClass, selection weight, class size in
    the full ensemble, class prevalence (class size / 10,000), seed.
 5. **The same selection is used by every noise mode and every condition.** Selection is
@@ -156,7 +158,7 @@ Threshold sensitivity (R3.6): every occupancy observable is also computed at
 |---|---|---|---|---|
 | C0 | Deterministic, original λ | RACIPE λ, fixed | — | 100 ICs |
 | C1 | Stochastic | noise process (§3) | σ ∈ grid \ {0} × dt ∈ grid | 100 trajectories |
-| C2 | Deterministic resampled | one λ vector per draw, held fixed, drawn from C1's pool (§7) | same (σ, dt) as C1 | 1000 draws × 1 IC each |
+| C2 | Deterministic resampled | one λ vector per draw, held fixed, drawn from C1's pool (§7) | same (σ, dt) as C1 | 1000 draws × `n_det_ics` ICs each (default 1) |
 | C3 | Hold-resample | redrawn i.i.d. from C1's pool every T_hold | σ ∈ S_ctrl × T_hold ∈ {0.01, 0.1, 1, 10, 100}; pool from dt = 0.01 | 100 trajectories |
 | C4 | Deterministic, mean λ | each edge fixed at its pool mean | σ ∈ S_ctrl; pool from dt = 0.01 | 100 ICs |
 
@@ -202,7 +204,7 @@ conditions and dt (R3.2).
 | saveat | 1.0 (uniform samples; occupancy = fraction of samples) |
 | solver | Tsit5, reltol 1e-4, abstol 1e-5 (§15-D7) |
 | initial conditions | x_i(0) = U(0,1) · g_i / k_i, independent per node |
-| IC pairing | IC r is identical across C0, C1 (all σ, dt), C3, C4 for the same ParamID; C2 draw d uses IC (d mod 100) |
+| IC pairing | IC r is identical across C0, C1 (all σ, dt), C3, C4 for the same ParamID; C2 draw d, IC j uses IC ((d−1)·n_det_ics + j mod 100); replicates are stored draw-major |
 | non-negativity | `isoutofdomain`: steps that would make any expression negative are rejected and retried with a smaller step (added 2026-10-24; without it, long λ holds let the solver overshoot a near-zero node below 0, where the Hill terms change sign and self-activating networks diverge) |
 | retcode | any non-`Success` retcode → error (logged with seed for replay) |
 
@@ -230,7 +232,7 @@ all-high state (R1.5).
 fraction of samples at λ_min and at λ_max, autocorrelation at lags {1, 5, 10, 50} saved
 samples.
 
-9.5 **C2 convergence**: occupancy estimates from the first n draws for
+9.5 **C2 convergence** (on per-draw occupancy, i.e. averaged over a draw's `n_det_ics` ICs): occupancy estimates from the first n draws for
 n ∈ {10, 30, 100, 300, 1000}, plus bootstrap SE (200 resamples) at n = 1000 (R1 minor 2,
 R3.5.1).
 

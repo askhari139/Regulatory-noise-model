@@ -47,13 +47,17 @@ function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
         trajs = nothing
         run_controls || continue
 
-        # C2: λ drawn once per draw from the pool and held fixed; one IC per draw
+        # C2: λ drawn once per draw from the pool and held fixed; n_det_ics ICs per draw,
+        # stored draw-major (replicate (d-1)·n_det_ics + j is draw d, IC j)
         acc = CellAccumulator(nnodes(net))
         rng = seed("C2", σ, dt)
         for d in 1:cfg.n_det_draws
             p = copy(p0)
             p[net.lam_idx] .= pool[:, rand(rng, 1:size(pool, 2))]
-            add_replicate!(acc, cfg, simulate(net, cfg, p, ics[mod1(d, cfg.n_ics)]), θ)
+            for j in 1:cfg.n_det_ics
+                ic = ics[mod1((d - 1) * cfg.n_det_ics + j, cfg.n_ics)]
+                add_replicate!(acc, cfg, simulate(net, cfg, p, ic), θ)
+            end
         end
         key2 = cellkey("C2", σ, dt, 0.0, nreplicates(acc))
         emit!(key2, acc)
@@ -93,7 +97,7 @@ function expected_cells(cfg::Config, mode::AbstractString)
         σ == 0.0 && continue
         push!(cells, ("C1", σ, dt, 0.0, cfg.n_traj))
         mode in cfg.ctrl_modes || continue
-        push!(cells, ("C2", σ, dt, 0.0, cfg.n_det_draws))
+        push!(cells, ("C2", σ, dt, 0.0, cfg.n_det_draws * cfg.n_det_ics))
         if dt == cfg.pool_dt && σ in cfg.ctrl_sigmas
             append!(cells, [("C3", σ, dt, th, cfg.n_traj) for th in cfg.hold_times])
             push!(cells, ("C4", σ, dt, 0.0, cfg.n_ics))

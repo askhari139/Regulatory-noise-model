@@ -223,9 +223,10 @@ mean_or_nan(x) = isempty(x) ? NaN : mean(x)
 # ---------------------------------------------------------------------------
 
 function convergence_rows!(rows, key, a::CellAccumulator, cfg::Config, rng)
-    O = reduce(hcat, a.occ)                       # nstates × ndraws (in draw order)
-    nd = size(O, 2)
-    nd == cfg.n_det_draws || error("convergence: have $nd draws, expected $(cfg.n_det_draws)")
+    O = reduce(hcat, a.occ)                       # nstates × (ndraws · n_det_ics), draw-major
+    m, nd = cfg.n_det_ics, cfg.n_det_draws
+    size(O, 2) == nd * m || error("convergence: have $(size(O, 2)) replicates, expected $nd draws × $m ICs")
+    m > 1 && (O = reduce(hcat, [mean(O[:, (d-1)*m+1:d*m]; dims=2) for d in 1:nd]))   # per-draw occupancy
     boot = [mean(O[:, rand(rng, 1:nd, nd)]; dims=2) for _ in 1:cfg.n_bootstrap]
     B = reduce(hcat, boot)
     for s in 1:a.nstates

@@ -23,6 +23,17 @@ const SCHEMA = Dict(
     "inputs"     => Dict("sha256" => Dict),
 )
 
+# Optional keys: absent means the default, and absent keys do not enter config_hash, so adding
+# an optional key never changes the hash of an existing config.
+const OPTIONAL = Dict(
+    # draw the n_per_class = subsample_of selection, then keep n_per_class of those
+    # (0: draw n_per_class directly); a smaller pilot on a subset of a larger run's sets
+    "selection" => Dict("subsample_of" => (Integer, 0)),
+    # initial conditions per frozen C2 draw (1: one IC per draw)
+    "controls"  => Dict("n_det_ics" => (Integer, 1)),
+)
+opt(raw, sec, k) = get(raw[sec], k, OPTIONAL[sec][k][2])
+
 const NOISE_MODES = ("Additive", "Multiplicative", "Stationary", "LogAdditive", "Geometric")
 const STABILITY_CLASSES = ("monostable", "bistable", "tristable", "tetrastable")
 
@@ -39,6 +50,7 @@ struct Config
     results_root::String
     n_per_class::Int
     classes::Vector{String}
+    subsample_of::Int
     inh_bounds::Tuple{Float64,Float64}
     act_bounds::Tuple{Float64,Float64}
     sigmas::Vector{Float64}
@@ -54,6 +66,7 @@ struct Config
     threshold_multipliers::Vector{Float64}
     ctrl_modes::Vector{String}
     n_det_draws::Int
+    n_det_ics::Int
     convergence_ns::Vector{Int}
     n_bootstrap::Int
     ctrl_sigmas::Vector{Float64}
@@ -74,7 +87,12 @@ function check_schema(raw::Dict)
             haskey(raw[sec], k) || error("config: missing key [$sec].$k")
             raw[sec][k] isa T || error("config: [$sec].$k must be $T, got $(typeof(raw[sec][k]))")
         end
-        extra = setdiff(keys(raw[sec]), keys(keys_))
+        optional = get(OPTIONAL, sec, Dict())
+        for (k, (T, _)) in optional
+            haskey(raw[sec], k) && !(raw[sec][k] isa T) &&
+                error("config: [$sec].$k must be $T, got $(typeof(raw[sec][k]))")
+        end
+        extra = setdiff(keys(raw[sec]), keys(keys_), keys(optional))
         isempty(extra) || error("config: unknown key(s) in [$sec]: $(join(extra, ", "))")
     end
     extra = setdiff(keys(raw), keys(SCHEMA))
@@ -110,6 +128,11 @@ function load_config(path::AbstractString; data_dir=nothing, results_root=nothin
     c["pool_dt"] in raw["noise"]["dts"] || error("config: pool_dt must be one of noise.dts")
     maximum(c["convergence_ns"]) == c["n_det_draws"] ||
         error("config: the largest convergence_n must equal n_det_draws")
+    sub = opt(raw, "selection", "subsample_of")
+    sub == 0 || sub >= raw["selection"]["n_per_class"] ||
+        error("config: subsample_of must be 0 or >= n_per_class")
+    nic = opt(raw, "controls", "n_det_ics")
+    1 <= nic <= s["n_ics"] || error("config: n_det_ics must be in 1:n_ics")
     0 < s["t_burn"] < s["t_end"] || error("config: need 0 < t_burn < t_end")
     s["n_traj"] <= s["n_ics"] || error("config: n_traj must be <= n_ics (trajectory r uses IC r)")
     window = s["t_end"] - s["t_burn"]
@@ -138,11 +161,11 @@ function load_config(path::AbstractString; data_dir=nothing, results_root=nothin
     return Config(raw, config_hash(raw), abspath(path),
         r["run_id"], r["seed_root"], String.(r["networks"]), modes,
         ddir, rroot,
-        raw["selection"]["n_per_class"], classes, inh, act,
+        raw["selection"]["n_per_class"], classes, sub, inh, act,
         sig, Float64.(raw["noise"]["dts"]),
         s["t_end"], s["t_burn"], s["saveat"], s["reltol"], s["abstol"],
         s["n_ics"], s["n_traj"], s["n_blocks"], Float64.(s["threshold_multipliers"]),
-        String.(c["modes"]), c["n_det_draws"], Int.(c["convergence_ns"]), c["n_bootstrap"],
+        String.(c["modes"]), c["n_det_draws"], nic, Int.(c["convergence_ns"]), c["n_bootstrap"],
         Float64.(c["ctrl_sigmas"]), Float64.(c["hold_times"]), c["pool_dt"],
         Int.(c["acf_lags"]), Float64.(c["lambda_quantiles"]),
         ob["replicates_stored"], Float64.(ob["lfc_lags"]), Float64.(ob["lfc_log2_thresholds"]),

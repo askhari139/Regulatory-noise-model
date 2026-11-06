@@ -31,7 +31,13 @@ function select_parameters(cfg::Config, netname::AbstractString)
         isempty(ids) && continue
         n = min(cfg.n_per_class, length(ids))
         rng = rng_for(cfg.seed_root, netname, "selection", c)
-        chosen = sort(sample(rng, ids, n; replace=false))
+        chosen = if cfg.subsample_of == 0
+            sort(sample(rng, ids, n; replace=false))
+        else
+            # the selection a config with n_per_class = subsample_of makes, then n of those
+            sup = sort(sample(rng, ids, min(cfg.subsample_of, length(ids)); replace=false))
+            sort(sample(rng_for(cfg.seed_root, netname, "subselection", c), sup, n; replace=false))
+        end
         for pid in chosen
             push!(out, (pid, c, length(ids), length(ids) / ntotal, n, n / length(ids)))
         end

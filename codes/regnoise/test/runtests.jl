@@ -1,5 +1,5 @@
 # Run with: REGNOISE_DATA=/path/to/RACIPE/data julia --project test/runtests.jl
-using RegNoise, Test, Random, DataFrames, Statistics
+using RegNoise, Test, Random, DataFrames, Statistics, TOML
 using OrdinaryDiffEq
 const R = RegNoise
 
@@ -155,6 +155,44 @@ end
     @test s1 == s2
     @test Set(s1.StabilityClass) ⊆ Set(cfg.classes)
     @test all(s1.NSelected .== min.(cfg.n_per_class, s1.ClassSize))
+end
+
+@testset "optional keys: subsample_of, n_det_ics" begin
+    raw = TOML.parsefile(TESTCFG)
+    base = cfg_tmp()
+    @test base.subsample_of == 0 && base.n_det_ics == 1
+    # n_per_class = 2 drawn from the n_per_class = 4 selection
+    raw["selection"]["n_per_class"] = 4
+    path4 = joinpath(mktempdir(), "four.toml"); open(io -> TOML.print(io, raw), path4, "w")
+    raw["selection"]["n_per_class"] = 2; raw["selection"]["subsample_of"] = 4
+    raw["controls"]["n_det_ics"] = 3
+    path2 = joinpath(mktempdir(), "sub.toml"); open(io -> TOML.print(io, raw), path2, "w")
+    c4 = load_config(path4; data_dir=ENV["REGNOISE_DATA"], results_root=mktempdir())
+    c2 = load_config(path2; data_dir=ENV["REGNOISE_DATA"], results_root=mktempdir())
+    s4 = select_parameters(c4, "TS"); s2 = select_parameters(c2, "TS")
+    @test c2.subsample_of == 4 && c2.n_det_ics == 3
+    @test issubset(s2.ParamID, s4.ParamID)
+    @test all(s2.NSelected .== min.(2, s2.ClassSize))
+    raw["controls"]["n_det_ics"] = 0
+    bad = joinpath(mktempdir(), "bad.toml"); open(io -> TOML.print(io, raw), bad, "w")
+    @test_throws ErrorException load_config(bad)
+    # C2 with 3 ICs per draw: draw-major replicates, convergence on per-draw occupancy
+    net = load_network(c2, "TS")
+    sel, θ, _ = load_selection(c2, "TS")
+    params = read_parameters(c2, net)
+    lo, hi = lambda_bounds(c2, net)
+    pid = sel.ParamID[1]
+    rows = run_unit(c2, net, "Additive", pid, params[pid], θ)
+    path = write_unit(c2, net, "Additive", pid, sel.StabilityClass[1], θ, rows, 0.0)
+    @test isempty(validate_unit(c2, path, "Additive", lo, hi))
+    occ = DataFrame(rows[:occupancy])
+    @test all(occ[occ.Condition .== "C2", :NReplicates] .== c2.n_det_draws * 3)
+    conv = DataFrame(rows[:convergence])
+    @test Set(conv.NDraws) == Set(c2.convergence_ns)
+    # full-n estimate equals the cell's mean occupancy
+    k = (conv.NDraws .== c2.n_det_draws) .& (conv.Sigma .== 0.1) .& (conv.DT .== 0.01)
+    o = occ[(occ.Condition .== "C2") .& (occ.Sigma .== 0.1) .& (occ.DT .== 0.01) .& (occ.Block .== 0) .& (occ.ThresholdMult .== 1.0), :]
+    @test sort(conv[k, [:State, :Estimate]], :State).Estimate ≈ sort(o, :State).Mean
 end
 
 @testset "end to end: run, write, validate, determinism" begin
