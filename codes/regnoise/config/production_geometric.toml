@@ -1,7 +1,8 @@
 # Production configuration for the Geometric (multiplicative) noise mode, CSBJ revision. See SPEC.md.
 # Same seed, selection and settings as 2026-10-csbj-v2 (Additive, Stationary), so ParamIDs and ICs
-# pair across runs. Only difference: the inhibitory floor is 0.001 (maximal repression 1000-fold),
-# the strong-binding limit the multiplicative mechanism represents (SPEC §3, §15-D12).
+# pair across runs. Only difference: every edge's leakiness floor is 0.001 (inhibitory λ ≥ 0.001,
+# activating λ ≤ 1000: maximal regulation 1000-fold, 10× the RACIPE range), the strong-binding
+# limit the multiplicative mechanism represents (SPEC §3, §15-D12; chosen from pilot 4).
 # Every number used by the pipeline lives here. Do not edit after a run starts:
 # the SHA-256 of everything except [paths] is stamped into every output file.
 
@@ -22,7 +23,7 @@ classes = ["monostable", "bistable", "tristable"]
 
 [model]
 lambda_inh_bounds = [0.001, 1.0]
-lambda_act_bounds = [1.0, 100.0]
+lambda_act_bounds = [1.0, 1000.0]
 
 [noise]
 sigmas = [0.0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0]

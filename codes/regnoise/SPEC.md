@@ -107,7 +107,7 @@ reflects off the full-strength bound (λ_min for inh, λ_max for act) rather tha
 under the target-based Multiplicative rule, where λ* is the bound itself. Stationary law,
 independent of σ for σ ≲ 0.1: the full-strength fold change (1/λ for inh, λ for act) is uniform
 on [1, 1/λ_min] or [1, λ_max]. Without √Δt scaling the fluctuation rate is set by σ²/Δt.
-Production uses an inhibitory floor of 0.001 for this mode (§15-D12). The floor matters: when λ
+Production uses an inhibitory floor of 0.001 and an activation cap of 1000 for this mode (§15-D12). The floor matters: when λ
 fluctuates faster than expression, inhibition acts through the time-averaged λ,
 E[λ] = λ_min(1 + ln(1/λ_min)), i.e. about 127-fold repression at 0.001 versus 18-fold at 0.01
 (pilot 3: at 0.01, TT4/TT4SA lose almost all the single-high enrichment of the old runs).
@@ -391,7 +391,7 @@ check validation, timings, and that C2 at n = 1000 has converged; (3) full Addit
 | D9 | Expression outputs (2026-10-22) | Per-replicate mean and SD of every node, first 100 replicates per cell (9.7) |
 | D10 | Continuous dynamics measure (2026-10-22) | Windowed log fold-change at lags 1–100, 2- and 4-fold (9.8), C1 and C3 only |
 | D11 | LogAdditive noise mode (2026-10-22) | Piloted on TT (pilot 2) before deciding on production |
-| D12 | Multiplicative noise (2026-11-06) | Geometric mode replaces the target-based rule in the paper; inhibitory floor 0.001 (1000-fold maximal repression) for this mode only: induced-fit binding and epigenetic locking are stronger than typical transcriptional repression. Run `2026-11-csbj-geometric` (config/production_geometric.toml); Additive and Stationary stay in `2026-10-csbj-v2` with floor 0.01 |
+| D12 | Multiplicative noise (2026-11-06) | Geometric mode replaces the target-based rule in the paper; leakiness floor 0.001 on every edge for this mode only (inhibitory λ ≥ 0.001, activating λ ≤ 1000: 1000-fold maximal regulation; cap chosen over 100 from pilot 4, amplification 2–7× in pilot 5): induced-fit binding and epigenetic locking are stronger than typical transcriptional repression. Run `2026-11-csbj-geometric` (config/production_geometric.toml); Additive and Stationary stay in `2026-10-csbj-v2` with floor 0.01 |
 
 ## 16. Changes from the old pipeline (for Methods / rebuttal)
 
