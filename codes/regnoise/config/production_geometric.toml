@@ -43,6 +43,8 @@ threshold_multipliers = [0.5, 2.0]
 [controls]
 modes = ["Geometric"]
 n_det_draws = 1000
+# C5: the first 100 C2 draws, each from all 100 ICs (basins table; SPEC §9.5b)
+n_c5_draws = 100
 convergence_ns = [10, 30, 100, 300, 1000]
 n_bootstrap = 200
 ctrl_sigmas = [0.01, 0.1, 1.0]

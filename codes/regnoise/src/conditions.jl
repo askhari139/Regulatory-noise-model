@@ -1,7 +1,7 @@
 # All conditions for one (network, noise mode, ParamID) unit (SPEC §6, §7).
 
 const TABLES = (:occupancy, :transitions, :dwell, :cells, :expression, :lambda, :convergence,
-                :replicates, :lfc)
+                :replicates, :lfc, :basins)
 
 "Run C0–C4 for one parameter set and noise mode. Returns Dict(table => Vector of rows)."
 function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
@@ -51,9 +51,11 @@ function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
         # stored draw-major (replicate (d-1)·n_det_ics + j is draw d, IC j)
         acc = CellAccumulator(nnodes(net))
         rng = seed("C2", σ, dt)
+        draws = Int[]
         for d in 1:cfg.n_det_draws
             p = copy(p0)
-            p[net.lam_idx] .= pool[:, rand(rng, 1:size(pool, 2))]
+            push!(draws, rand(rng, 1:size(pool, 2)))
+            p[net.lam_idx] .= pool[:, draws[end]]
             for j in 1:cfg.n_det_ics
                 ic = ics[mod1((d - 1) * cfg.n_det_ics + j, cfg.n_ics)]
                 add_replicate!(acc, cfg, simulate(net, cfg, p, ic), θ)
@@ -62,6 +64,22 @@ function run_unit(cfg::Config, net::Network, mode::AbstractString, pid::Int,
         key2 = cellkey("C2", σ, dt, 0.0, nreplicates(acc))
         emit!(key2, acc)
         convergence_rows!(rows[:convergence], key2, acc, cfg, seed("C2boot", σ, dt))
+
+        # C5: the first n_c5_draws C2 draws (same λ vectors), each from all n_ics ICs, so
+        # IC r is C1 trajectory r's IC; per-draw basins go to the `basins` table
+        if cfg.n_c5_draws > 0
+            acc = CellAccumulator(nnodes(net))
+            for d in 1:cfg.n_c5_draws
+                p = copy(p0)
+                p[net.lam_idx] .= pool[:, draws[d]]
+                for r in 1:cfg.n_ics
+                    add_replicate!(acc, cfg, simulate(net, cfg, p, ics[r]), θ)
+                end
+            end
+            key5 = cellkey("C5", σ, dt, 0.0, nreplicates(acc))
+            emit!(key5, acc)
+            basin_rows!(rows[:basins], key5, acc, pool, draws, net, cfg)
+        end
 
         (dt == cfg.pool_dt && σ in cfg.ctrl_sigmas) || continue
 
@@ -98,6 +116,7 @@ function expected_cells(cfg::Config, mode::AbstractString)
         push!(cells, ("C1", σ, dt, 0.0, cfg.n_traj))
         mode in cfg.ctrl_modes || continue
         push!(cells, ("C2", σ, dt, 0.0, cfg.n_det_draws * cfg.n_det_ics))
+        cfg.n_c5_draws > 0 && push!(cells, ("C5", σ, dt, 0.0, cfg.n_c5_draws * cfg.n_ics))
         if dt == cfg.pool_dt && σ in cfg.ctrl_sigmas
             append!(cells, [("C3", σ, dt, th, cfg.n_traj) for th in cfg.hold_times])
             push!(cells, ("C4", σ, dt, 0.0, cfg.n_ics))

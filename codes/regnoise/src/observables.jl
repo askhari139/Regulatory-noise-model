@@ -158,7 +158,7 @@ function replicate_rows!(rows, key, a::CellAccumulator, net::Network, cfg::Confi
     names = Tuple(Symbol(s, "_", n) for n in net.nodes for s in ("Mean", "SD"))
     for r in 1:min(nreplicates(a), cfg.replicates_stored)
         vals = Tuple(Float32(s == 1 ? a.node_mean[r][i] : a.node_sd[r][i]) for i in eachindex(net.nodes) for s in 1:2)
-        push!(rows, (; key..., Replicate=Int32(r), NamedTuple{names}(vals)...))
+        push!(rows, (; key..., Replicate=Int32(r), Switches=Int32(a.switches[r]), NamedTuple{names}(vals)...))
     end
 end
 
@@ -217,6 +217,23 @@ function lambda_rows!(rows, key, trajs::Vector{Trajectory}, net::Network, lo, hi
 end
 
 mean_or_nan(x) = isempty(x) ? NaN : mean(x)
+
+"""
+C5 basins (SPEC §9.6): one row per frozen draw: its pool column and λ vector, the number of
+distinct dominant states over its n_ics ICs, and each IC's dominant state as one base-32 digit
+(the state code; IC order = C1 trajectory order).
+"""
+function basin_rows!(rows, key, a::CellAccumulator, pool, draws, net::Network, cfg::Config)
+    a.nstates <= 32 || error("basins: more than 32 states do not fit one base-32 digit")
+    m = cfg.n_ics
+    lnames = Tuple(Symbol("Lambda_", e.name) for e in net.edges)
+    for d in 1:cfg.n_c5_draws
+        dom = [argmax(a.occ[(d - 1) * m + j]) - 1 for j in 1:m]
+        push!(rows, (; key..., Draw=Int32(d), PoolIndex=Int32(draws[d]),
+                     NStates=Int32(length(unique(dom))), ICStates=join(string(c; base=32) for c in dom),
+                     NamedTuple{lnames}(Tuple(pool[:, draws[d]]))...))
+    end
+end
 
 # ---------------------------------------------------------------------------
 # C2 convergence (SPEC §9.5)

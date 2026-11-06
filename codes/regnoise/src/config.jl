@@ -30,7 +30,8 @@ const OPTIONAL = Dict(
     # (0: draw n_per_class directly); a smaller pilot on a subset of a larger run's sets
     "selection" => Dict("subsample_of" => (Integer, 0)),
     # initial conditions per frozen C2 draw (1: one IC per draw)
-    "controls"  => Dict("n_det_ics" => (Integer, 1)),
+    # C5: the first n_c5_draws C2 draws, each run from all n_ics ICs (0: no C5)
+    "controls"  => Dict("n_det_ics" => (Integer, 1), "n_c5_draws" => (Integer, 0)),
 )
 opt(raw, sec, k) = get(raw[sec], k, OPTIONAL[sec][k][2])
 
@@ -67,6 +68,7 @@ struct Config
     ctrl_modes::Vector{String}
     n_det_draws::Int
     n_det_ics::Int
+    n_c5_draws::Int
     convergence_ns::Vector{Int}
     n_bootstrap::Int
     ctrl_sigmas::Vector{Float64}
@@ -133,6 +135,8 @@ function load_config(path::AbstractString; data_dir=nothing, results_root=nothin
         error("config: subsample_of must be 0 or >= n_per_class")
     nic = opt(raw, "controls", "n_det_ics")
     1 <= nic <= s["n_ics"] || error("config: n_det_ics must be in 1:n_ics")
+    nc5 = opt(raw, "controls", "n_c5_draws")
+    0 <= nc5 <= c["n_det_draws"] || error("config: n_c5_draws must be in 0:n_det_draws")
     0 < s["t_burn"] < s["t_end"] || error("config: need 0 < t_burn < t_end")
     s["n_traj"] <= s["n_ics"] || error("config: n_traj must be <= n_ics (trajectory r uses IC r)")
     window = s["t_end"] - s["t_burn"]
@@ -165,7 +169,7 @@ function load_config(path::AbstractString; data_dir=nothing, results_root=nothin
         sig, Float64.(raw["noise"]["dts"]),
         s["t_end"], s["t_burn"], s["saveat"], s["reltol"], s["abstol"],
         s["n_ics"], s["n_traj"], s["n_blocks"], Float64.(s["threshold_multipliers"]),
-        String.(c["modes"]), c["n_det_draws"], nic, Int.(c["convergence_ns"]), c["n_bootstrap"],
+        String.(c["modes"]), c["n_det_draws"], nic, nc5, Int.(c["convergence_ns"]), c["n_bootstrap"],
         Float64.(c["ctrl_sigmas"]), Float64.(c["hold_times"]), c["pool_dt"],
         Int.(c["acf_lags"]), Float64.(c["lambda_quantiles"]),
         ob["replicates_stored"], Float64.(ob["lfc_lags"]), Float64.(ob["lfc_log2_thresholds"]),

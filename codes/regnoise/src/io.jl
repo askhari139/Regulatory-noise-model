@@ -104,7 +104,7 @@ function validate_unit(cfg::Config, path, mode, lo, hi)
 
     # per-replicate tables: first `replicates_stored` replicates × nodes per cell;
     # the windowed fold-change only for the time-varying conditions C1 and C3
-    for (tname, conds) in (("replicates", ("C0", "C1", "C2", "C3", "C4")), ("lfc", ("C1", "C3")))
+    for (tname, conds) in (("replicates", ("C0", "C1", "C2", "C3", "C4", "C5")), ("lfc", ("C1", "C3")))
         haskey(T, tname) || (push!(problems, "missing table $tname"); continue)
         t = T[tname]
         cnt = nrow(t) == 0 ? Dict() :
@@ -114,6 +114,12 @@ function validate_unit(cfg::Config, path, mode, lo, hi)
             want = min(c[5], cfg.replicates_stored)
             get(cnt, c[1:4], 0) == want || push!(problems, "$tname: cell $(c[1:4]) has $(get(cnt, c[1:4], 0)) rows, expected $want")
         end
+    end
+
+    n5 = count(c -> c[1] == "C5", expected_cells(cfg, mode))
+    if n5 > 0
+        nb = haskey(T, "basins") ? nrow(T["basins"]) : 0
+        nb == n5 * cfg.n_c5_draws || push!(problems, "basins: $nb rows, expected $(n5 * cfg.n_c5_draws)")
     end
 
     lam = T["lambda"]

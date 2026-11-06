@@ -161,6 +161,7 @@ Threshold sensitivity (R3.6): every occupancy observable is also computed at
 | C2 | Deterministic resampled | one λ vector per draw, held fixed, drawn from C1's pool (§7) | same (σ, dt) as C1 | 1000 draws × `n_det_ics` ICs each (default 1) |
 | C3 | Hold-resample | redrawn i.i.d. from C1's pool every T_hold | σ ∈ S_ctrl × T_hold ∈ {0.01, 0.1, 1, 10, 100}; pool from dt = 0.01 | 100 trajectories |
 | C4 | Deterministic, mean λ | each edge fixed at its pool mean | σ ∈ S_ctrl; pool from dt = 0.01 | 100 ICs |
+| C5 | Frozen draws × all ICs | the first `n_c5_draws` C2 λ vectors, each held fixed | same (σ, dt) as C1 | `n_c5_draws` draws × 100 ICs (IC r = C1 trajectory r's IC); optional, default off |
 
 Notes:
 - C3 with T_hold = 0.01 is the shuffled-surrogate control (R1.4): same marginal, no memory.
@@ -236,14 +237,20 @@ samples.
 n ∈ {10, 30, 100, 300, 1000}, plus bootstrap SE (200 resamples) at n = 1000 (R1 minor 2,
 R3.5.1).
 
+9.5b **C5 basins** (`basins` table): one row per frozen C5 draw: its pool column, λ vector
+(`Lambda_<edge>`), the number of distinct dominant states over the 100 ICs (`NStates`), and each IC's
+dominant state code as one base-32 digit (`ICStates`, IC order = C1 trajectory order). Paired with the
+per-replicate `Switches` of C1 (9.7), this tests whether trajectories that switch more come from
+parameter sets whose frozen λ landscapes are multistable.
+
 9.6 **Node expression** per node (analysis window): mean and SD, averaged over replicates.
 Note: averaging over replicates blends replicates that sit in different states; use 9.7 for
 distributions and joint states.
 
 9.7 **Per-replicate expression** (`replicates` table): for the first `replicates_stored` (100)
 replicates of every cell (for C2, the first 100 of the 1,000 draws), the time-averaged mean and the
-within-trajectory SD of every node, one row per replicate (columns `Mean_<node>`, `SD_<node>`,
-Float32). This replaces the old pipeline's rounded-and-grouped per-node statistics: states and
+within-trajectory SD of every node and the number of discrete-state switches in the window, one row
+per replicate (columns `Mean_<node>`, `SD_<node>`, Float32; `Switches`, Int32). This replaces the old pipeline's rounded-and-grouped per-node statistics: states and
 joint node configurations are kept exactly, and clustering (e.g. round and count) is done in
 post-processing.
 

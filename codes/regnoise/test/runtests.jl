@@ -165,7 +165,7 @@ end
     raw["selection"]["n_per_class"] = 4
     path4 = joinpath(mktempdir(), "four.toml"); open(io -> TOML.print(io, raw), path4, "w")
     raw["selection"]["n_per_class"] = 2; raw["selection"]["subsample_of"] = 4
-    raw["controls"]["n_det_ics"] = 3
+    raw["controls"]["n_det_ics"] = 3; raw["controls"]["n_c5_draws"] = 2
     path2 = joinpath(mktempdir(), "sub.toml"); open(io -> TOML.print(io, raw), path2, "w")
     c4 = load_config(path4; data_dir=ENV["REGNOISE_DATA"], results_root=mktempdir())
     c2 = load_config(path2; data_dir=ENV["REGNOISE_DATA"], results_root=mktempdir())
@@ -189,6 +189,14 @@ end
     @test all(occ[occ.Condition .== "C2", :NReplicates] .== c2.n_det_draws * 3)
     conv = DataFrame(rows[:convergence])
     @test Set(conv.NDraws) == Set(c2.convergence_ns)
+    # C5: 2 draws × all ICs per C1 cell; basins rows carry one state digit per IC
+    @test all(occ[occ.Condition .== "C5", :NReplicates] .== 2 * c2.n_ics)
+    bas = DataFrame(rows[:basins])
+    @test nrow(bas) == 2 * count(c -> c[1] == "C5", expected_cells(c2, "Additive"))
+    @test all(length.(bas.ICStates) .== c2.n_ics) && all(1 .<= bas.NStates .<= c2.n_ics)
+    @test all(bas.NStates .== [length(unique(x)) for x in bas.ICStates])
+    @test "Lambda_" * net.edges[1].name in names(bas)
+    @test "Switches" in names(DataFrame(rows[:replicates]))
     # full-n estimate equals the cell's mean occupancy
     k = (conv.NDraws .== c2.n_det_draws) .& (conv.Sigma .== 0.1) .& (conv.DT .== 0.01)
     o = occ[(occ.Condition .== "C2") .& (occ.Sigma .== 0.1) .& (occ.DT .== 0.01) .& (occ.Block .== 0) .& (occ.ThresholdMult .== 1.0), :]
