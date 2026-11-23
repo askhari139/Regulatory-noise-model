@@ -81,17 +81,18 @@
     $^1$ Center for Theoretical Biological Physics \& Department of Physics, Northeastern University, Boston, MA, USA\\
     $^2$ Indian Institute of Science Education and Research Mohali, Mohali, PB, India\\
     $^3$ Department of Bioengineering, Indian Institute of Science, Bengaluru, KA, India \\
-    $^4$ Department of Medical Oncology and Therapeutics Research, Hope National Medical Center, Duarte, CA, USA
+    $^4$ Department of Medical Oncology and Therapeutics Research, City of Hope National Medical Center, Duarte, CA, USA
     $^5$ Department of Systems Biology, City of Hope National Medical Center, Duarte, CA, USA 
 \end{center}
 \begin{center}
     \small \textbf{Current address:} Abhay Gupta - Department of Biology, University of Virginia, Charlottesville, USA\\
     \small \textbf{Current Address:} Lakshmi Malvadi - Department of Physics, University of California Merced, Merced, USA\\
 \end{center}
+\small Correspondence: h.levine@northeastern.edu, a.hari@northeastern.edu
 \begin{abstract}
 Models of gene regulatory networks (GRNs) underlying cell-fate decision systems treat regulatory parameters as fixed quantities, although transcription-factor efficacy varies with molecular context. We asked how temporal fluctuations in interaction strength, rather than molecular abundance, alter phenotype occupancy in multistable regulatory networks. We applied three stochastic update rules to fold-change parameters—independent fluctuations anchored to their initial values, a bounded additive random walk, and a bounded multiplicative random walk—across RACIPE ensembles of mutually inhibitory circuits, and tested analogous perturbations in Boolean models of epithelial–mesenchymal plasticity and gonadal-fate determination. Anchored fluctuations largely preserved deterministic occupancies of network states. Additive fluctuations increased occupancy of all-high co-expression states, particularly in multistable regimes and when high expression was readily accessible; this effect extended to hybrid team-expression states in both biological networks. Multiplicative fluctuations biased inhibitory fold changes toward stronger repression and favored single-high states in a topology-dependent manner. Fixed-parameter controls sampled from the same noise-induced distributions did not fully reproduce the additive effect or the multiplicative effect in several circuits. Our analysis traced the additional additive bias to an asymmetry between unconditional derepression and conditional repression. Thus, temporally evolving regulatory parameters can redistribute phenotype occupancy in ways not predicted from static parameter ensembles, with outcomes jointly determined by fluctuation dynamics and network topology.
 \end{abstract}
-
+\newpage
 \section{Introduction}\label{sec:Intro}
 
 GRNs are biological regulatory circuits that constitute a complex collection of molecular regulators including transcription factors (TFs), signaling molecules, and DNA segments that interact to regulate gene expression. They determine the spatiotemporal patterns of gene expression involved in determining cellular development, identity, and environmental responses. They also play a central role in determining the organism’s body plan, which is central to evolutionary developmental biology \cite{Davidson2005, Davidson2006, Maizels2026}. GRNs are conventionally modeled as deterministic systems with fixed interaction parameters although it is clear that the effective strength of any regulatory interaction is subject to continuous fluctuation in vivo. Nonetheless, an overwhelming fraction ($\approx$90\%) of TFs are intrinsically disordered proteins (IDPs) \cite{Staby2017} with significant disordered regions \cite{Ferrie2022Structure-functionRegulation, Holehouse2023TheRegions}. These disordered regions mediate conformationally heterogeneous, post-translational modification (PTM)-sensitive contacts with DNA and co-factors, causing regulatory affinities to vary dynamically rather than assume a fixed value . Therefore, understanding IDP conformational noise is paramount for understanding cell-fate specification. Although the individual conformers in an IDP ensemble are in fast exchange, certain conformations are stabilized by specific PTMs, especially phosphorylation, that exist with half-lives that range from minutes to hours, contributing to ``conformational noise'' \cite{Kulkarni2022, Kulkarni2019}. Non-specific TF binding to genomic decoy sites further modulates the effective regulatory signal in an affinity- and abundance-dependent manner \cite{Dey2020EnhancementSites, Burger2012InfluenceExpression}. Enhancer dynamics and transcriptional bursting add a third layer, coupling stochastic TF occupancy at cis-regulatory elements directly to fluctuations in target gene activation \cite{Raj2006StochasticCells, Fukaya2016EnhancerBursting}. The availability of TF binding sites can also vary over the course of transcription, due to noise in chromatin folding states \cite{Gamble2025}. Collectively, these mechanisms argue that the parameters governing regulatory interactions are not static; instead, they are stochastic quantities. Consequently, the impact of such regulatory noise—temporal stochasticity in these parameters—on the dynamics of multistable GRN motifs underlying cell-fate decisions remains poorly understood.
@@ -107,6 +108,120 @@ The effect of stochasticity on toggle switch dynamics has been studied extensive
 
 
 In this manuscript, we study how regulatory noise – that is, the fluctuations of the parameters governing the interactions in GRNs – systematically shapes the dynamics of these motifs. We focus on the fold-change parameter \cite{Huang2017}, which describes the change in the production rate of a target node due to an upstream transcription factor. We couple stochastic fold-change perturbations with the Random Circuit Perturbation (RACIPE) framework \cite{Huang2017}. RACIPE generates large ensembles of ODE models with randomly sampled kinetic parameters, enabling topology-level inferences that are robust to parameter uncertainty. By superimposing continuous stochastic noise on the fold-change parameters of these ensembles, we successfully isolated the effect of regulatory noise from parameter-set-specific idiosyncrasies and characterized how mean residence times and switching frequencies depend on noise magnitude, noise mode, and attractor stability class. Our results reveal that regulatory noise is sufficient to induce state transitions that are inaccessible in the deterministic limit, and that bistable and tristable parameter regimes differ qualitatively in their susceptibility to such noise. Therefore, our results demonstrate that the type of regulatory noise, not just its magnitude, is a key determinant of phenotypic plasticity in cell-fate circuits.
+
+\section{Methods}
+
+\subsection{Network models and RACIPE ensemble generation}\label{sec:RACIPE}
+
+Each network motif is modeled as a system of ordinary differential equations (ODE), one ODE per node, following the shifted Hill formalism of RACIPE~\cite{Huang2017}:
+\begin{equation}
+\frac{dX}{dt} = g_X \prod_{i \in P} \frac{H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i})}{\lambda_{Y_i}} \prod_{i \in N} H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) - d_X X
+\label{eq:odeM}
+\end{equation}
+\begin{equation}
+H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) = \lambda_{Y_i} \frac{Y_i^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}} + \frac{Y_{i0}^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}}
+\label{eq:hillM}
+\end{equation}
+where $g_X$ and $d_X$ are the production and degradation rates of node $X$, $P$ and $N$ index its activating and inhibiting regulators, and $\lambda_{Y_i}$ is the fold-change by which regulator $Y_i$ modulates $X$'s production ($\lambda_{Y_i} > 1$ for activation, $\lambda_{Y_i} < 1$ for inhibition).
+
+For each network topology, RACIPE~\cite{Huang2017} was used to generate an ensemble of $10{,}000$ parameter sets by uniform sampling within standard biologically plausible ranges, with each parameter set solved from 100 random initial conditions to identify its steady-state attractor(s). The resultant ensemble of steady states was used to calculate thresholds of individual node expressions ($\theta_X$) as the average expression across the ensemble, which were then used to discretize the steady states into strings of 1's and 0's. Based on the number of such discretized steady states allowed, each parameter set was assigned a multistability class (monostable, bistable, tristable, tetrastable). A representative subset of up to 1000 parameter sets was selected from each stability class present for a given network for downstream stochastic analysis (fewer where a stability class had fewer available parameter sets).
+
+\subsection{Regulatory noise model} \label{sec:noise}
+
+To simulate regulatory noise, we allowed the fold-change parameters $\lambda_{Y_i}$ to vary stochastically over time rather than remaining fixed at their RACIPE-sampled value, using a periodic update applied every $dt = 0.01$ (a.u.) during ODE integration. Three noise modes were implemented, differing in how each update depends on the parameter's current value:
+\begin{align}
+\text{Stationary:} \quad & \lambda(t+dt) = \lambda(0) + \mathcal{N}(0, \sigma_{\text{eff}}^2),\\
+\text{Multiplicative:} \quad & \lambda(t+dt) = \lambda(t) + |\lambda_0 - \lambda(t)|*\mathcal{N}(0, \sigma^2)\\
+\text{Additive:} \quad & \lambda(t+dt) = \lambda(t) + \mathcal{N}(0, \sigma_{\text{eff}}^2)
+\end{align}
+where $\sigma_{\text{eff}} = \sigma \cdot \lambda_{\max}$, with $\lambda_{\max}$ the upper bound of the relevant fold-change (inhibitory: $\lambda_{\max} = 1$, so $\sigma_{\text{eff}} \approx \sigma$; activatory: $\lambda_{\max} = 100$), so that a given nominal noise level $\sigma$ corresponds to a comparable proportion of each parameter's admissible range regardless of whether it governs activation or inhibition.  For multiplicative noise, the scaling is done such that the noise always pushes the system towards maximum interaction strength, i.e., $\lambda_0 = 0.01$ for inhibitory links and $\lambda_0 = 100$ for activatory links. After each update, $\lambda$ was clamped to its biologically admissible bounds ($[0.01, 0.999]$ for inhibitory, $[1.01, \lambda_{\max}]$ for activatory parameters). Noise levels $\sigma \in \{0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1\}$ were tested for each noise mode and network.
+
+\subsection{Stochastic simulation and mean residence time}
+
+For each selected parameter set and noise level, 100 independent stochastic trajectories were simulated, each initialized from an independently drawn initial condition $u_i(0) = U(0,1) \times (g_i/d_i)$ for every node $i$ (i.e.\ uniformly between zero and that node's maximal attainable expression). Trajectories were integrated over $t \in [0, 1000]$ (a.u.) using the Tsit5 adaptive-step solver (relative tolerance $10^{-4}$, absolute tolerance $10^{-5}$). Each trajectory was discretized into a sequence of Boolean node states using the RACIPE-derived thresholds, and the first 50\% of each trajectory was discarded as transient. Mean residence time (MRT) for a given discrete state was computed as the fraction of the remaining trajectory (across all 100 stochastic realizations) spent in that state.
+
+\subsection{Deterministic $\lambda$-resampling comparison}
+
+To test whether a given noise mode's effect on state occupancy could be explained purely by the stationary distribution of $\lambda$ it induces, rather than by any dynamical (non-adiabatic) contribution, we compared stochastic MRT against a deterministic control: for each parameter set and noise level, $\lambda$ values were resampled from the empirical stationary distribution generated by that noise mode (via \texttt{get\_lambda\_dist}), and the corresponding deterministic steady state was solved; this was repeated over 10 resampled draws per parameter set, and the resulting basin-occupancy fractions (MRT$_{\text{det}}$) were compared directly against the stochastic MRT from the same parameter set and noise level.
+
+
+\subsection{Boolean simulations of large cell-fate networks}
+
+For larger networks, we used Boolean modeling to simulate network dynamics, as opposed to the ODE models of RACIPE. We used a threshold-based Boolean formalism \cite{FontClos2018}, inspired by the Ising model of spin-glass systems. A network is defined by $N$ nodes, $E$ edges, and a topology, i.e., the arrangement of $E$ edges among $N$ nodes. The Ising model employs discretized expressions of nodes, with $s_i \in \{-1, 1\}$; $i \in 1, \ldots, N$, where $s_i = 1$ and $s_i = -1$ represent an active node and an inactive node, respectively. A state at any time $t$ is the set of expression levels of all nodes, $S(t) = \{s_i(t)\}$; $i \in 1, \ldots, N$.
+
+The system state is updated in discrete time steps using an asymmetric adjacency matrix ($\adj$), which stores the nature of pairwise interactions between nodes. In a static network, activating and inhibiting edges carry edge weights of $+1$ or $-1$, respectively, with $0$ indicating no interaction. The expression level of node $i$ at time $t$ is given by:
+\begin{equation} \label{eq:bool}
+    s_i(t) = 
+\begin{cases}
+    +1, & \text{if } \sum_j \adj_{ij} s_j(t-1) > 0 \\
+    -1, & \text{if } \sum_j \adj_{ij} s_j(t-1) < 0 \\
+    s_i(t-1), & \text{if } \sum_j \adj_{ij} s_j(t-1) = 0
+\end{cases}
+\end{equation}
+where $\sum_j \adj_{ij} s_j$ represents the net regulatory input to node $i$. A steady state is defined as a state $S(t)$ satisfying $S(t+1) = S(t)$.
+
+\subsection{Large network metrics}
+
+\subsubsection{Influence matrix}
+The influence matrix is formulated as:
+\begin{equation}
+    \inm_{l_\mathrm{max}} \equiv \inm = \frac{\sum_{l=1}^{l_\mathrm{max}} \frac{\adj^l}{\adj_{\mathrm{max}}^l}}{l_\mathrm{max}},
+\end{equation}
+where $l$ is the path length, representing a path of $l$ edges connecting a pair of nodes, and $l_\mathrm{max} = 10$ is the maximum path length considered. The influence matrix captures the net bidirectional effect between a pair of nodes mediated by all paths of length $l \in \{1, \ldots, l_\mathrm{max}\}$. $\adj_{\mathrm{max}}^l$ is derived from $\adj^l$ by setting all non-zero entries to $1$, and the division $\frac{\adj^l}{\adj_{\mathrm{max}}^l}$ is element-wise.
+
+\subsubsection{Teams}
+The wild-type influence matrices of the biological networks considered in this study are displayed in Figure~\ref{fig:7S1}. Each network can be partitioned into two ``teams'' of nodes, defined such that the influence between any pair of nodes is positive if they belong to the same team and negative otherwise. The team strength of a two-teamed network is defined as:
+\begin{align} \label{eq:ts_def}
+    \ts_{kl} &= \frac{\sum_{i \in T_k, j \in T_l} \inm_{ij}}{n_{kl}}, \quad k, l \in \{1, 2\} \\
+    \ts &= \frac{\sum_{k,l \in \{1,2\}} |\ts_{kl}|}{4},
+\end{align}
+where $T_k$ is the $k$-th team.
+
+\noindent\textbf{\textit{Team expression}}\label{text:team_exp}: For a given state $S$, team expression is defined as the fraction of nodes belonging to a team that are active (i.e., $s_i = 1$).
+
+% \paragraph{Artificial networks} For artificial networks, the team identities are decided before generating the networks, and they are used directly without requiring the calculation of influence matrix.
+
+\noindent\textbf{\textit{Nature of stable states}}: Stable states of two-team networks are classified as either dominant (most frequent) or hybrid (non-dominant). Due to the bimodal phenotypic distribution characteristic of toggle switch-like networks, dominant states are those in which only one team is active, i.e., states with team expressions of $(0,1)$ and $(1,0)$.
+
+\subsection{Stochastic simulation of large networks}
+
+\subsubsection{Inducing noise}\label{sssec:noise_def}
+
+We model the regulatory noise by perturbing the edge weights of the adjacency matrix over time. Three noise modes are implemented, mirroring those used in the ODE-based simulations of small motifs (Section~\ref{sec:RACIPE}):
+
+\paragraph{Additive (state-independent) noise}
+At each time step, a perturbation drawn from $\mathcal{N}(0, \sigma^2)$ is added to each edge weight independently of its current value:
+\begin{equation}
+    \mathrm{EW}(t) = \mathrm{EW}(t-1) + \delta, \quad \delta \sim \mathcal{N}(0, \sigma^2).
+\end{equation}
+Edge weights are clipped to $[-1, 1]$ after each update to preserve the biological interpretation of interaction strengths.
+
+\paragraph{Multiplicative (state-dependent) noise}
+At each time step, each edge weight is scaled by a factor drawn from $\mathcal{N}(1, \sigma^2)$, so that the magnitude of the perturbation scales with the current edge weight:
+\begin{equation}
+    \mathrm{EW}(t) = \mathrm{EW}(t-1) \cdot (1 + \delta), \quad \delta \sim \mathcal{N}(0, \sigma^2).
+\end{equation}
+
+\paragraph{Stationary (mean-reverting) noise}
+At each time step, each edge weight is redrawn as its wild-type value plus an independent perturbation, so that the weight fluctuates around its nominal value without drift:
+\begin{equation}
+    \mathrm{EW}(t) = \mathrm{EW}_0 + \delta, \quad \delta \sim \mathcal{N}(0, \sigma^2),
+\end{equation}
+where $\mathrm{EW}_0$ denotes the wild-type edge weight. Unlike the additive mode, this formulation prevents long-range drift in parameter values and models a situation where molecular fluctuations are transient and the nominal interaction strength is effectively restored between perturbation events.
+
+In all three modes, \edit{the edge weights are bound between 0 and -1 for inhibitions and 0 and 1 for activations, ensuring that the network structure is conserved.} We used $\sigma^2 \in {0.0, 0.001, 0.005, 0.01, 0.02, 0.05}$ as the noise variance. Each biological network is simulated for $1000$ trajectories of $10{,}000$ time steps each; artificial networks are simulated for $100$ trajectories of $1{,}000$ time steps each.
+
+\subsubsection{Method of state update}
+In practice, the system can be updated in two ways \cite{garg2008synchronous, schwab2020concepts}:
+\begin{itemize}
+    \item \textbf{Synchronous update}: At each time step, every node is updated simultaneously using Eq.~\ref{eq:bool}.
+    \item \textbf{Asynchronous update}: At each time step, a single randomly chosen node is updated using Eq.~\ref{eq:bool}.
+\end{itemize}
+While synchronous updates are computationally efficient, they can produce limit cycles from which the system cannot escape. Asynchronous updates are less efficient but avoid limit cycles and implicitly capture reaction noise by assuming that only one regulatory event occurs per time step. To combine the benefits of both schemes, we check for steady states synchronously every $200$ time steps while updating the network asynchronously. For continuous perturbation simulations, synchronous updates are used throughout, as persistent perturbations make entrapment in limit cycles unlikely.
+
+\subsubsection{Initial conditions}
+
+Peripheral nodes — those involved in interactions without feedback — are excluded from the analysis, as the focus of this study is on teaming behavior arising from mutual regulatory effects. Initial conditions are drawn from the terminal states and the most dominant hybrid states identified in the unperturbed network's steady-state distribution.
 
 \section{Results}
 
@@ -127,7 +242,7 @@ In this manuscript, we study how regulatory noise – that is, the fluctuations 
 
 We begin by analyzing the binary and tertiary cell-fate decision motifs --- the toggle switch (TS) and the toggle triad (TT) and their extensions that include self-activation edges (TSSA and TTSA). A toggle switch consists of two mutually inhibiting transcription factors (Figure~\ref{fig:1}A(i-ii)), whereas a toggle triad consists of three mutually inhibiting transcription factors (Figure~\ref{fig:1}A(iii-iv)). TS represents the core motif underlying binary cell-fate decision networks. The phenotypic landscape emergent from TS is dominated by two states with mutually exclusive expression patterns - one of the nodes has low expression while the other is high - $(0,1)$ or $(1,0)$. Under appropriate parametric conditions, the toggle switch also exhibits bistability, enabling transitions between $(1,0)$ and $(0,1)$ states \cite{gardner2000construction}. The addition of self-activation (TSSA) stabilizes the $(1,1)$ state in which both nodes are co-expressed. This co-expression state, often referred to as a ``hybrid'' state, has been associated with stemness in development \cite{Roeder2006TowardsPU.1} and with high plasticity and pro-metastatic features in cancer \cite{jolly2015implications,jolly2018hybrid,Pastushenko2019EMTMetastasis}.
 
-While binary cell-fate decision systems dominate biology owing to their stability and robustness to internal and external perturbations \cite{harlapur2022functional, Shyam2025MutuallyNetworks}, some instances of tertiary cell-fate systems --- such as T-cell differentiation --- employ a toggle triad architecture. A toggle triad consists of three mutually inhibiting transcription factors (Figure~\ref{fig:1}A(iii)) and permits three differentiated, single-high states where one of the three nodes has a high expression while the other two have low expression ($(0,0,1)$, $(1,0,0)$, and $(0,1,0)$) as well as three hybrid, double-high states with two out of three nodes having high expression (e.g.\ $(1,1,0)$). Parameter sweeps of the toggle triad result predominantly in monostable and bistable configurations, with a relatively smaller fraction exhibiting tristability. Single network architectures that allow the co-existence of four or more mutually exclusive states are not currently known~\cite{Bv2026GeneDecisions}.
+While binary cell-fate decision systems dominate biology owing to their stability and robustness to internal and external perturbations \cite{harlapur2022functional, Shyam2025MutuallyNetworks}, some instances of tertiary cell-fate systems --- such as T-cell differentiation --- employ a toggle triad architecture. A toggle triad consists of three mutually inhibiting transcription factors (Figure~\ref{fig:1}A(iii)) and permits three differentiated, single-high states where one of the three nodes has a high expression while the other two have low expression ($(0,0,1)$, $(1,0,0)$, and $(0,1,0)$) as well as three hybrid, double-high states with two out of three nodes having high expression (e.g.\ $(1,1,0)$). Parameter sweeps of the toggle triad result predominantly in monostable and bistable configurations, with a relatively smaller fraction exhibiting tristability \cite{doi:10.1098/rsif.2020.0631}. Co-existence of more than three mutually exclusive states can theoretically be achieved by similar mutually inhibiting network architectures~\cite{Bv2026GeneDecisions}.
 
 We model these networks using a Hill-equation kinetics-based ODE system (Equation~\ref{eq:ode}, \ref{eq:hill}, Section~\ref{sec:RACIPE}). 
 \begin{equation}
@@ -147,7 +262,7 @@ We explored three noise modes, described by the equations below:
 \begin{equation}
 \begin{aligned}
 \text{Additive:} \quad & \lambda(t+dt) = \lambda(t) + \mathcal{N}(0, \sigma_{\text{eff}}^2) \\
-\text{Multiplicative:} \quad & \lambda(t+dt) = |\lambda_0 - \lambda(t)|\left(1 + \mathcal{N}(0, \sigma^2)\right) \\
+\text{Multiplicative:} \quad & \lambda(t+dt) = \lambda(t) + |\lambda_0 - \lambda(t)|*\mathcal{N}(0, \sigma^2)\\
 \text{Stationary:} \quad & \lambda(t+dt) = \lambda(0) + \mathcal{N}(0, \sigma_{\text{eff}}^2) \\
 \text{Where,} \quad & \sigma_{\text{eff}} = \sigma\lambda_{\text{max}}\text{;} \\
 & \lambda_0 = 0.01 \text{ for inhibitory edges, and } \lambda_0 = 100 \text{ for activatory edges}
@@ -361,123 +476,13 @@ Despite the novelty and the promising potential, the present study, like any oth
 % Finally, our treatment of multiplicative noise, particularly for activating interactions, remains incomplete; large networks were studied only in a Boolean formalism; and noise was applied uniformly to all regulatory edges even though IDP mutations, PTMs, and chromatin changes are likely to affect restricted subsets of interactions. Future work should therefore examine edge-specific noise, the relationship between noisy-edge identity and network structure, and the way multistability modifies susceptibility to different fluctuation modes. Extending the framework to include slow epigenetic feedback would provide a natural next step toward a multiscale model in which fast molecular fluctuations generate plasticity, regulatory memory resolves cell fate, and chromatin remodeling locks that choice over longer timescales.
 
 
-\section{Methods}
-
-\subsection{Network models and RACIPE ensemble generation}\label{sec:RACIPE}
-
-Each network motif is modeled as a system of ordinary differential equations (ODE), one ODE per node, following the shifted Hill formalism of RACIPE~\cite{Huang2017}:
-\begin{equation}
-\frac{dX}{dt} = g_X \prod_{i \in P} \frac{H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i})}{\lambda_{Y_i}} \prod_{i \in N} H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) - d_X X
-\label{eq:odeM}
-\end{equation}
-\begin{equation}
-H(Y_i, Y_{i0}, n_{Y_i}, \lambda_{Y_i}) = \lambda_{Y_i} \frac{Y_i^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}} + \frac{Y_{i0}^{\,n_{Y_i}}}{Y_{i0}^{\,n_{Y_i}} + Y_i^{\,n_{Y_i}}}
-\label{eq:hillM}
-\end{equation}
-where $g_X$ and $d_X$ are the production and degradation rates of node $X$, $P$ and $N$ index its activating and inhibiting regulators, and $\lambda_{Y_i}$ is the fold-change by which regulator $Y_i$ modulates $X$'s production ($\lambda_{Y_i} > 1$ for activation, $\lambda_{Y_i} < 1$ for inhibition).
-
-For each network topology, RACIPE~\cite{Huang2017} was used to generate an ensemble of $10{,}000$ parameter sets by uniform sampling within standard biologically plausible ranges, with each parameter set solved from 100 random initial conditions to identify its steady-state attractor(s). The resultant ensemble of steady states was used to calculate thresholds of individual node expressions ($\theta_X$) as the average expression across the ensemble, which were then used to discretize the steady states into strings of 1's and 0's. Based on the number of such discretized steady states allowed, each parameter set was assigned a multistability class (monostable, bistable, tristable, tetrastable). A representative subset of up to 1000 parameter sets was selected from each stability class present for a given network for downstream stochastic analysis (fewer where a stability class had fewer available parameter sets).
-
-\subsection{Regulatory noise model} \label{sec:noise}
-
-To simulate regulatory noise, we allowed the fold-change parameters $\lambda_{Y_i}$ to vary stochastically over time rather than remaining fixed at their RACIPE-sampled value, using a periodic update applied every $dt = 0.01$ (a.u.) during ODE integration. Three noise modes were implemented, differing in how each update depends on the parameter's current value:
-\begin{align}
-\text{Stationary:} \quad & \lambda(t+dt) = \lambda(0) + \mathcal{N}(0, \sigma_{\text{eff}}^2),\\
-\text{Multiplicative:} \quad & \lambda(t+dt) = |\lambda_0 - \lambda(t)|\left(1 + \mathcal{N}(0, \sigma^2)\right)\\
-\text{Additive:} \quad & \lambda(t+dt) = \lambda(t) + \mathcal{N}(0, \sigma_{\text{eff}}^2)
-\end{align}
-where $\sigma_{\text{eff}} = \sigma \cdot \lambda_{\max}$, with $\lambda_{\max}$ the upper bound of the relevant fold-change (inhibitory: $\lambda_{\max} = 1$, so $\sigma_{\text{eff}} \approx \sigma$; activatory: $\lambda_{\max} = 100$), so that a given nominal noise level $\sigma$ corresponds to a comparable proportion of each parameter's admissible range regardless of whether it governs activation or inhibition.  For multiplicative noise, the scaling is done such that the noise always pushes the system towards maximum interaction strength, i.e., $\lambda_0 = 0.01$ for inhibitory links and $\lambda_0 = 100$ for activatory links. After each update, $\lambda$ was clamped to its biologically admissible bounds ($[0.01, 0.999]$ for inhibitory, $[1.01, \lambda_{\max}]$ for activatory parameters). Noise levels $\sigma \in \{0, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1\}$ were tested for each noise mode and network.
-
-\subsection{Stochastic simulation and mean residence time}
-
-For each selected parameter set and noise level, 100 independent stochastic trajectories were simulated, each initialized from an independently drawn initial condition $u_i(0) = U(0,1) \times (g_i/d_i)$ for every node $i$ (i.e.\ uniformly between zero and that node's maximal attainable expression). Trajectories were integrated over $t \in [0, 1000]$ (a.u.) using the Tsit5 adaptive-step solver (relative tolerance $10^{-4}$, absolute tolerance $10^{-5}$). Each trajectory was discretized into a sequence of Boolean node states using the RACIPE-derived thresholds, and the first 50\% of each trajectory was discarded as transient. Mean residence time (MRT) for a given discrete state was computed as the fraction of the remaining trajectory (across all 100 stochastic realizations) spent in that state.
-
-\subsection{Deterministic $\lambda$-resampling comparison}
-
-To test whether a given noise mode's effect on state occupancy could be explained purely by the stationary distribution of $\lambda$ it induces, rather than by any dynamical (non-adiabatic) contribution, we compared stochastic MRT against a deterministic control: for each parameter set and noise level, $\lambda$ values were resampled from the empirical stationary distribution generated by that noise mode (via \texttt{get\_lambda\_dist}), and the corresponding deterministic steady state was solved; this was repeated over 10 resampled draws per parameter set, and the resulting basin-occupancy fractions (MRT$_{\text{det}}$) were compared directly against the stochastic MRT from the same parameter set and noise level.
 
 
-\subsection{Boolean simulations of large cell-fate networks}
+\section{Funding and acknowledgements}
 
-For larger networks, we used Boolean modeling to simulate network dynamics, as opposed to the ODE models of RACIPE. We used a threshold-based Boolean formalism \cite{FontClos2018}, inspired by the Ising model of spin-glass systems. A network is defined by $N$ nodes, $E$ edges, and a topology, i.e., the arrangement of $E$ edges among $N$ nodes. The Ising model employs discretized expressions of nodes, with $s_i \in \{-1, 1\}$; $i \in 1, \ldots, N$, where $s_i = 1$ and $s_i = -1$ represent an active node and an inactive node, respectively. A state at any time $t$ is the set of expression levels of all nodes, $S(t) = \{s_i(t)\}$; $i \in 1, \ldots, N$.
+MKJ was supported by the Ramanujan Fellowship (SB/S2/RJN-049/2018) awarded by the Science and Engineering Research Board (SERB), Department of Science and Technology, Government of India. MKJ was also supported by Param Hansa Philanthropies. KH and HL were supported by the Center for Theoretical Biological Physics, NSF PHY-2019745, and under Award Number MCB-2114191. 
 
-The system state is updated in discrete time steps using an asymmetric adjacency matrix ($\adj$), which stores the nature of pairwise interactions between nodes. In a static network, activating and inhibiting edges carry edge weights of $+1$ or $-1$, respectively, with $0$ indicating no interaction. The expression level of node $i$ at time $t$ is given by:
-\begin{equation} \label{eq:bool}
-    s_i(t) = 
-\begin{cases}
-    +1, & \text{if } \sum_j \adj_{ij} s_j(t-1) > 0 \\
-    -1, & \text{if } \sum_j \adj_{ij} s_j(t-1) < 0 \\
-    s_i(t-1), & \text{if } \sum_j \adj_{ij} s_j(t-1) = 0
-\end{cases}
-\end{equation}
-where $\sum_j \adj_{ij} s_j$ represents the net regulatory input to node $i$. A steady state is defined as a state $S(t)$ satisfying $S(t+1) = S(t)$.
-
-\subsection{Large network metrics}
-
-\subsubsection{Influence matrix}
-The influence matrix is formulated as:
-\begin{equation}
-    \inm_{l_\mathrm{max}} \equiv \inm = \frac{\sum_{l=1}^{l_\mathrm{max}} \frac{\adj^l}{\adj_{\mathrm{max}}^l}}{l_\mathrm{max}},
-\end{equation}
-where $l$ is the path length, representing a path of $l$ edges connecting a pair of nodes, and $l_\mathrm{max} = 10$ is the maximum path length considered. The influence matrix captures the net bidirectional effect between a pair of nodes mediated by all paths of length $l \in \{1, \ldots, l_\mathrm{max}\}$. $\adj_{\mathrm{max}}^l$ is derived from $\adj^l$ by setting all non-zero entries to $1$, and the division $\frac{\adj^l}{\adj_{\mathrm{max}}^l}$ is element-wise.
-
-\subsubsection{Teams}
-The wild-type influence matrices of the biological networks considered in this study are displayed in Figure~\ref{fig:7S1}. Each network can be partitioned into two ``teams'' of nodes, defined such that the influence between any pair of nodes is positive if they belong to the same team and negative otherwise. The team strength of a two-teamed network is defined as:
-\begin{align} \label{eq:ts_def}
-    \ts_{kl} &= \frac{\sum_{i \in T_k, j \in T_l} \inm_{ij}}{n_{kl}}, \quad k, l \in \{1, 2\} \\
-    \ts &= \frac{\sum_{k,l \in \{1,2\}} |\ts_{kl}|}{4},
-\end{align}
-where $T_k$ is the $k$-th team.
-
-\noindent\textbf{\textit{Team expression}}\label{text:team_exp}: For a given state $S$, team expression is defined as the fraction of nodes belonging to a team that are active (i.e., $s_i = 1$).
-
-% \paragraph{Artificial networks} For artificial networks, the team identities are decided before generating the networks, and they are used directly without requiring the calculation of influence matrix.
-
-\noindent\textbf{\textit{Nature of stable states}}: Stable states of two-team networks are classified as either dominant (most frequent) or hybrid (non-dominant). Due to the bimodal phenotypic distribution characteristic of toggle switch-like networks, dominant states are those in which only one team is active, i.e., states with team expressions of $(0,1)$ and $(1,0)$.
-
-\subsection{Stochastic simulation of large networks}
-
-\subsubsection{Inducing noise}\label{sssec:noise_def}
-
-In biological networks, the strengths of regulatory interactions are subject to temporal variation arising from fluctuations in protein concentrations, post-translational modifications, and other molecular sources. We model this regulatory noise by perturbing the edge weights of the adjacency matrix over time. Three noise modes are implemented, mirroring those used in the ODE-based simulations of small motifs (Section~\ref{sec:RACIPE}):
-
-\paragraph{Additive (state-independent) noise}
-At each time step, a perturbation drawn from $\mathcal{N}(0, \sigma^2)$ is added to each edge weight independently of its current value:
-\begin{equation}
-    \mathrm{EW}(t) = \mathrm{EW}(t-1) + \delta, \quad \delta \sim \mathcal{N}(0, \sigma^2).
-\end{equation}
-Edge weights are clipped to $[-1, 1]$ after each update to preserve the biological interpretation of interaction strengths.
-
-\paragraph{Multiplicative (state-dependent) noise}
-At each time step, each edge weight is scaled by a factor drawn from $\mathcal{N}(1, \sigma^2)$, so that the magnitude of the perturbation scales with the current edge weight:
-\begin{equation}
-    \mathrm{EW}(t) = \mathrm{EW}(t-1) \cdot (1 + \delta), \quad \delta \sim \mathcal{N}(0, \sigma^2).
-\end{equation}
-
-\paragraph{Stationary (mean-reverting) noise}
-At each time step, each edge weight is redrawn as its wild-type value plus an independent perturbation, so that the weight fluctuates around its nominal value without drift:
-\begin{equation}
-    \mathrm{EW}(t) = \mathrm{EW}_0 + \delta, \quad \delta \sim \mathcal{N}(0, \sigma^2),
-\end{equation}
-where $\mathrm{EW}_0$ denotes the wild-type edge weight. Unlike the additive mode, this formulation prevents long-range drift in parameter values and models a situation where molecular fluctuations are transient and the nominal interaction strength is effectively restored between perturbation events.
-
-In all three modes, $\sigma^2 = 0.01$ is used as the noise variance. Each biological network is simulated for $1000$ trajectories of $10{,}000$ time steps each; artificial networks are simulated for $100$ trajectories of $1{,}000$ time steps each.
-
-\subsubsection{Method of state update}
-In practice, the system can be updated in two ways \cite{garg2008synchronous, schwab2020concepts}:
-\begin{itemize}
-    \item \textbf{Synchronous update}: At each time step, every node is updated simultaneously using Eq.~\ref{eq:bool}.
-    \item \textbf{Asynchronous update}: At each time step, a single randomly chosen node is updated using Eq.~\ref{eq:bool}.
-\end{itemize}
-While synchronous updates are computationally efficient, they can produce limit cycles from which the system cannot escape. Asynchronous updates are less efficient but avoid limit cycles and implicitly capture reaction noise by assuming that only one regulatory event occurs per time step. To combine the benefits of both schemes, we check for steady states synchronously every $200$ time steps while updating the network asynchronously. For continuous perturbation simulations, synchronous updates are used throughout, as persistent perturbations make entrapment in limit cycles unlikely.
-
-\subsubsection{Initial conditions}
-
-Peripheral nodes — those involved in interactions without feedback — are excluded from the analysis, as the focus of this study is on teaming behavior arising from mutual regulatory effects. Initial conditions are drawn from the terminal states and the most dominant hybrid states identified in the unperturbed network's steady-state distribution.
-
-\section{Acknowledgments}
-
-MKJ was supported by the Ramanujan Fellowship (SB/S2/RJN-049/2018) awarded by the Science and Engineering Research Board (SERB), Department of Science and Technology, Government of India. MKJ was also supported by Param Hansa Philanthropies. KH and HL were supported by the Center for Theoretical Biological Physics, NSF PHY-2019745, and under Award Number MCB-2114191.
+Claude Sonnet 5 and ChatGPT Sol 5 were used to assist with coding and manuscript editing. The authors reviewed and verified all AI-assisted outputs and take full responsibility for the content of the manuscript.
 
 \section{Data Availability}
 
