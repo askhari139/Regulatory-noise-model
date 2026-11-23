@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  22 NOV 2026 23:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  23 NOV 2026 13:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,9 +821,9 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 [1
 
-{/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+{/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
 
-[2]
+[2{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 [3{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
 
@@ -1287,7 +1287,7 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  75i,27n,108p,2901b,1487s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (56 pages, 42709238 bytes).
+Output written on main.pdf (56 pages, 42709504 bytes).
 PDF statistics:
  1136 PDF objects out of 1200 (max. 8388607)
  975 compressed objects within 10 object streams
