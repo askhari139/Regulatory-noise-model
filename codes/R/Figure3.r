@@ -134,7 +134,7 @@ plot_stateclass_transition <- function(nets, noiseType, resultsFolder, dt = 0.01
 		facet_wrap(vars(Network), ncol = ncol) +
 		theme_Publication() +
 		theme(axis.text.x = element_text(angle = 60, hjust = 1, vjust = 1)) +
-		labs(x = "Noise Level", y = "Average MRT")
+		labs(x = "Noise Level", y = "Average occupancy")
 
 	if (!is.null(outFile)) {
 		n_panels <- length(unique(dAll$Network))
@@ -174,7 +174,7 @@ plot_reach_correlation <- function(net, noiseType, dt, dataFolder, resultsFolder
 
 	# "All-high" if every discretized dimension in the state tuple is 1
 	# (e.g. "(1, 1)"), otherwise fall back to the literal state label.
-	y_label <- if (!str_detect(state, "0")) "MRT of all-high state" else paste0("MRT of ", state)
+	y_label <- if (!str_detect(state, "0")) "Occupancy of all-high state" else paste0("Occupancy of ", state)
 
 	# Bigger font, no exact p-value text -- just a single "*" appended when
 	# p < 0.05 (output.type = "text" so r.label is plain "R = 0.42", not a
@@ -317,13 +317,13 @@ pC <- plot_reach_scatter("TS", noiseType, dt, dataFolder, resultsFolder,
 	outFile = file.path(figDir, "fig3_panelD_reachScatter.jpg")) +
     coord_cartesian(xlim = c(-300, 1000), ylim = c(-300, 1000)) +
     theme(legend.position = c(0.15, 0.5), legend.direction = "vertical", legend.key.height = unit(0.8, "cm"), legend.background = element_rect(fill = NA), legend.key.width = unit(0.1, "cm")) +
-	theme(strip.text = element_text(size = rel(1.2))) + labs(color = "MRT of\nall-high\nstate")
+	theme(strip.text = element_text(size = rel(1.2))) + labs(color = "All-high\noccupancy")
 
 # ── Panel D ──
 pD <- plot_reach_correlation("TS", noiseType, dt, dataFolder, resultsFolder,
 	state = "(1, 1)", sigma = c(0.001, 0.01, 0.1, 1), param_type = "monostable",
 	outFile = file.path(figDir, "fig3_panelE_correlation.jpg")) +
-    scale_color_discrete() + labs(y = "All-high state MRT") +
+    scale_color_discrete() + labs(y = "All-high occupancy") +
 	theme(axis.title.y = element_text(hjust = 1)) +
 	theme(strip.text = element_text(size = rel(1.2)))
 

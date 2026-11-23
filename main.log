@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  24 AUG 2026 07:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.15)  22 NOV 2026 23:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.tex
-(/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.tex
+**main.tex
+(./main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
 (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -666,30 +666,30 @@ Package: threeparttable 2003/06/13  v 3.0
 )
 \@quotelevel=\count445
 \@quotereset=\count446
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 78.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 76.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.aux (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.aux))
+) (./main.aux (./shifted_hill_derivation.aux) (./Additive_boolean.aux) (./suppFigs.aux) (./suppTables.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -726,7 +726,7 @@ LaTeX Font Info:    ... okay on input line 78.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package chemgreek Info: Activating mapping `default' on line 78.
+Package chemgreek Info: Activating mapping `default' on line 76.
 
 (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -734,8 +734,8 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 78.
- (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.out) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.out)
+Package hyperref Info: Link coloring OFF on input line 76.
+ (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -751,68 +751,72 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
- (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.bbl)
-Package biblatex Info: Reference section=0 on input line 78.
-Package biblatex Info: Reference segment=0 on input line 78.
+ (./main.bbl)
+Package biblatex Info: Reference section=0 on input line 76.
+Package biblatex Info: Reference segment=0 on input line 76.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 78.
-Package microtype Info: Applying patch `item' on input line 78.
-Package microtype Info: Applying patch `toc' on input line 78.
-Package microtype Info: Applying patch `eqnum' on input line 78.
-Package microtype Info: Applying patch `footnote' on input line 78.
-Package microtype Info: Applying patch `verbatim' on input line 78.
-LaTeX Info: Redefining \microtypesetup on input line 78.
+LaTeX Info: Redefining \microtypecontext on input line 76.
+Package microtype Info: Applying patch `item' on input line 76.
+Package microtype Info: Applying patch `toc' on input line 76.
+Package microtype Info: Applying patch `eqnum' on input line 76.
+Package microtype Info: Applying patch `footnote' on input line 76.
+Package microtype Info: Applying patch `verbatim' on input line 76.
+LaTeX Info: Redefining \microtypesetup on input line 76.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 78.
+LaTeX Info: Redefining \showhyphens on input line 76.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 82.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 80.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 82.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 80.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 82.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 80.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 82.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 80.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 82.
+(Font)              <12> on input line 80.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 82.
+(Font)              <8> on input line 80.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 82.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
+(Font)              <6> on input line 80.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 80.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 80.
  (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
+Overfull \hbox (7.74405pt too wide) in paragraph at lines 80--80
+ [][] 
+ []
+
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 83.
+(Font)              <10.95> on input line 81.
 
 
 [1
@@ -820,120 +824,121 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 {/Users/kishorehari/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 [2]
-<Figs/Fig1.jpg, id=251, 2007.5pt x 2580.64125pt>
-File: Figs/Fig1.jpg Graphic file (type jpg)
-<use Figs/Fig1.jpg>
-Package pdftex.def Info: Figs/Fig1.jpg  used on input line 120.
+
+[3{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+
+[4]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 150.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[5{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+
+[6]
+<Fig1.jpg, id=296, 2007.5pt x 2580.64125pt>
+File: Fig1.jpg Graphic file (type jpg)
+<use Fig1.jpg>
+Package pdftex.def Info: Fig1.jpg  used on input line 240.
 (pdftex.def)             Requested size: 410.49464pt x 527.69606pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 126.
-
-
-[3{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
-
-[4 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig1.jpg>]
-
-[5{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-<Figs/Fig2.jpg, id=324, 2007.5pt x 1204.5pt>
-File: Figs/Fig2.jpg Graphic file (type jpg)
-<use Figs/Fig2.jpg>
-Package pdftex.def Info: Figs/Fig2.jpg  used on input line 170.
-(pdftex.def)             Requested size: 513.11636pt x 307.86942pt.
-
-
-[6 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig2.jpg>]
-<Figs/Fig3.jpg, id=342, 2007.5pt x 1739.49875pt>
-File: Figs/Fig3.jpg Graphic file (type jpg)
-<use Figs/Fig3.jpg>
-Package pdftex.def Info: Figs/Fig3.jpg  used on input line 193.
-(pdftex.def)             Requested size: 513.11636pt x 444.61475pt.
+(Font)              <5> on input line 246.
 
 
 [7]
 
-[8 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig3.jpg>]
+[8]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 211.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 211.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 211.
-
-
-
-[9]
-<Figs/Fig4.jpg, id=388, 4818.0pt x 6022.5pt>
-File: Figs/Fig4.jpg Graphic file (type jpg)
-<use Figs/Fig4.jpg>
-Package pdftex.def Info: Figs/Fig4.jpg  used on input line 221.
-(pdftex.def)             Requested size: 461.80159pt x 577.19772pt.
+[9 <./Fig1.jpg>]
+<Fig2.jpg, id=361, 6022.5pt x 3613.5pt>
+File: Fig2.jpg Graphic file (type jpg)
+<use Fig2.jpg>
+Package pdftex.def Info: Fig2.jpg  used on input line 294.
+(pdftex.def)             Requested size: 513.11636pt x 307.83266pt.
 
 
 [10]
 
-[11 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig4.jpg>]
-<Figs/Fig5.jpg, id=405, 2007.5pt x 1756.5625pt>
-File: Figs/Fig5.jpg Graphic file (type jpg)
-<use Figs/Fig5.jpg>
-Package pdftex.def Info: Figs/Fig5.jpg  used on input line 252.
-(pdftex.def)             Requested size: 513.11636pt x 448.97623pt.
+[11 <./Fig2.jpg>]
+<Fig3.jpg, id=384, 4215.75pt x 4977.59625pt>
+File: Fig3.jpg Graphic file (type jpg)
+<use Fig3.jpg>
+Package pdftex.def Info: Fig3.jpg  used on input line 317.
+(pdftex.def)             Requested size: 436.15204pt x 514.95392pt.
 
 
 [12]
 
-[13 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig5.jpg>]
-<Figs/Fig6.jpg, id=445, 5420.25pt x 6624.75pt>
-File: Figs/Fig6.jpg Graphic file (type jpg)
-<use Figs/Fig6.jpg>
-Package pdftex.def Info: Figs/Fig6.jpg  used on input line 271.
-(pdftex.def)             Requested size: 461.80159pt x 564.35988pt.
-
+[13 <./Fig3.jpg>]
 
 [14]
 
-[15 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig6.jpg>]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 339.
 
-[16]
-<Figs/Fig7.jpg, id=498, 2007.5pt x 1045.9075pt>
-File: Figs/Fig7.jpg Graphic file (type jpg)
-<use Figs/Fig7.jpg>
-Package pdftex.def Info: Figs/Fig7.jpg  used on input line 302.
-(pdftex.def)             Requested size: 513.11636pt x 267.33327pt.
-<Figs/Schematic.png, id=508, 963.6pt x 468.7914pt>
-File: Figs/Schematic.png Graphic file (type png)
-<use Figs/Schematic.png>
-Package pdftex.def Info: Figs/Schematic.png  used on input line 312.
-(pdftex.def)             Requested size: 513.11636pt x 249.63853pt.
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 339.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 339.
+
+<Fig4.jpg, id=428, 4818.0pt x 5556.76pt>
+File: Fig4.jpg Graphic file (type jpg)
+<use Fig4.jpg>
+Package pdftex.def Info: Fig4.jpg  used on input line 350.
+(pdftex.def)             Requested size: 461.80159pt x 532.5611pt.
+
+LaTeX Warning: Float too large for page by 4.26973pt on input line 358.
+
+
+
+[15]
+
+[16 <./Fig4.jpg>]
 
 [17]
+<Fig5.jpg, id=460, 4818.0pt x 4215.75pt>
+File: Fig5.jpg Graphic file (type jpg)
+<use Fig5.jpg>
+Package pdftex.def Info: Fig5.jpg  used on input line 384.
+(pdftex.def)             Requested size: 513.11636pt x 448.9387pt.
 
-[18 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7.jpg>]
 
-[19 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Schematic.png>]
+[18]
+
+[19 <./Fig5.jpg>]
+<Fig6.jpg, id=499, 5420.25pt x 6624.75pt>
+File: Fig6.jpg Graphic file (type jpg)
+<use Fig6.jpg>
+Package pdftex.def Info: Fig6.jpg  used on input line 405.
+(pdftex.def)             Requested size: 461.80159pt x 564.35988pt.
+
 
 [20]
 
-[21]
+[21 <./Fig6.jpg>]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 395.
+[22]
+<Fig7.jpg, id=555, 5219.5pt x 2710.125pt>
+File: Fig7.jpg Graphic file (type jpg)
+<use Fig7.jpg>
+Package pdftex.def Info: Fig7.jpg  used on input line 444.
+(pdftex.def)             Requested size: 513.11636pt x 266.39682pt.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 395.
+[23]
 
+[24 <./Fig7.jpg>]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 395.
+[25]
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 397.
-(/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+[26]
+
+[27]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 517.
+ (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -941,17 +946,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-
-[22]
-
-[23]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 469.
- (/Users/kishorehari/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-[24{/Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-Overfull \hbox (7.22716pt too wide) in paragraph at lines 484--485
+Overfull \hbox (7.22716pt too wide) in paragraph at lines 517--518
 \T1/lmr/m/n/10.95 (-20) stochas-tic sim-u-la-tion pipeline and all figure-generation scripts, is avail-able at github.com/askhari139/Regulatory-
  []
 
@@ -960,42 +955,42 @@ Package microtype Info: Character `029' is missing
 (microtype)             Ignoring protrusion settings for this character.
 
 
-[25]
+[28]
 
-[26]
-
-[27]
-Overfull \hbox (8.63818pt too wide) in paragraph at lines 487--487
-[]\T1/lmr/m/n/10.95 (-20) Mubasher Rashid et al. ``Net-work topol-ogy met-rics ex-plain-ing en-rich-ment of hy-brid ep-ithe-lial/mesenchymal
- []
-
-
-Overfull \hbox (9.04984pt too wide) in paragraph at lines 487--487
+[29]
+Overfull \hbox (9.04984pt too wide) in paragraph at lines 520--520
 []\T1/lmr/m/n/10.95 (-20) Francesc Font-Clos, Ste-fano Zap-peri, and Cate-rina A. M. La Porta. ``To-pog-ra-phy of ep-ithe-lial^^Umesenchymal
  []
 
 
 
-[28]
+[30]
 
-[29]
+[31]
+Overfull \hbox (8.63818pt too wide) in paragraph at lines 520--520
+[]\T1/lmr/m/n/10.95 (-20) Mubasher Rashid et al. ``Net-work topol-ogy met-rics ex-plain-ing en-rich-ment of hy-brid ep-ithe-lial/mesenchymal
+ []
+
+
+
+[32]
 \openout2 = `shifted_hill_derivation.aux'.
 
- (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.tex
+ (./shifted_hill_derivation.tex
 pdfTeX warning (ext4): destination with the same identifier (name{section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1 ...n{Derivation of the shifted Hill functions}
                                                   
 
-[30
+[33
 
 ])
 
-[31]
+[34]
 \openout2 = `Additive_boolean.aux'.
 
- (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.tex
+ (./Additive_boolean.tex
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1004,7 +999,7 @@ l.1 ...n enhancement of the double-positive state}
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.10 ... two $\lambda$ extremes are not symmetric}
+l.10 ...ffer in their dependence on the regulator}
                                                   
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1022,119 +1017,36 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.40 \subsection{Boolean reduction}
+l.42 \subsection{Boolean reduction}
                                    
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.63 ...=1$, $\lambda$ drawn once and held fixed)}
+l.65 ...=1$, $\lambda$ drawn once and held fixed)}
                                                   
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 63.
+(hyperref)                removing `math shift' on input line 65.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sigma' on input line 63.
+(hyperref)                removing `\sigma' on input line 65.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 63.
+(hyperref)                removing `math shift' on input line 65.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 63.
+(hyperref)                removing `math shift' on input line 65.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 63.
+(hyperref)                removing `\lambda' on input line 65.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 63.
-
-
-
-[32
-
-
-
-]
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.98 ...n{Stochastic case ($\lambda$ fluctuating)}
-                                                  
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 98.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 98.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 98.
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.5}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.129 ... toward $11$ under fluctuating $\lambda$}
-                                                  
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 129.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 129.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 129.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 129.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 129.
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.6}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.149 \subsection{Comparison}
-                             
-
-[33])
-
-[34]
-\openout2 = `boolean_static.aux'.
-
- (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.tex
-pdfTeX warning (ext4): destination with the same identifier (name{section.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1 ...e-scale binary cell-fate decision networks}
-                                                   \label{ssec:stat_pert}
-
-LaTeX Warning: Reference `fig:S1' on page 35 undefined on input line 2.
-
-
-LaTeX Warning: Reference `fig:S2' on page 35 undefined on input line 7.
-
-
-LaTeX Warning: Reference `ap:ts_jsd_dist' on page 35 undefined on input line 7.
-
-
-LaTeX Warning: Reference `tt:ew_range_num' on page 35 undefined on input line 12.
-
-
-LaTeX Warning: Reference `fig:S2' on page 35 undefined on input line 12.
+(hyperref)                removing `math shift' on input line 65.
 
 
 
@@ -1143,239 +1055,242 @@ LaTeX Warning: Reference `fig:S2' on page 35 undefined on input line 12.
 
 
 ]
-
-LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 14.
-
-
-LaTeX Warning: Reference `{sssec:jsd_def}' on page 36 undefined on input line 14.
-
-
-LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 14.
-
-
-LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 18.
-
-
-LaTeX Warning: Reference `tab:ew_art_all' on page 36 undefined on input line 24.
-
-
-LaTeX Warning: Reference `tab:ew_art_all' on page 36 undefined on input line 24.
-
-
-LaTeX Warning: Reference `fig:S2' on page 36 undefined on input line 24.
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{section.4}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 \section{Methods}
-                      
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.4.1}) has been already used, duplicate ignored
+l.100 ...{Stochastic case ($\lambda$ fluctuating)}
+                                                  
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 100.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 100.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 100.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 \subsection{Jensen--Shannon divergence}
-                                            \label{sssec:jsd_def}
-pdfTeX warning (ext4): destination with the same identifier (name{section.5}) has been already used, duplicate ignored
+l.131 ... toward $11$ under fluctuating $\lambda$}
+                                                  
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 131.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 131.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 131.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lambda' on input line 131.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 131.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{subsection.2.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.36 \section{Fitting and error propagation}
-                                            \label{ssec:fit_meth}
+l.151 \subsection{Comparison}
+                             
 
 [36])
 
 [37]
-\openout2 = `Anaytical.aux'.
+\openout2 = `suppFigs.aux'.
 
- (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.tex
-pdfTeX warning (ext4): destination with the same identifier (name{section.6}) has been already used, duplicate ignored
+ (./suppFigs.tex
+pdfTeX warning (ext4): destination with the same identifier (name{section.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1 ...ribution of $\lambda$ under additive noise}
-                                                  \label{AdditiveStationary}
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 1.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 1.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 1.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 1.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1.
-
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 3.
-
-
+l.1 \section{Supplementary Figures}
+                                   
+<Fig1S1.jpg, id=853, 3613.5pt x 2409.0pt>
+File: Fig1S1.jpg Graphic file (type jpg)
+<use Fig1S1.jpg>
+Package pdftex.def Info: Fig1S1.jpg  used on input line 5.
+(pdftex.def)             Requested size: 410.49464pt x 273.62903pt.
+<Fig2S1.jpg, id=856, 2007.5pt x 1517.67pt>
+File: Fig2S1.jpg Graphic file (type jpg)
+<use Fig2S1.jpg>
+Package pdftex.def Info: Fig2S1.jpg  used on input line 13.
+(pdftex.def)             Requested size: 410.49464pt x 310.337pt.
+<Fig3S1.jpg, id=857, 2006.49625pt x 2315.65125pt>
+File: Fig3S1.jpg Graphic file (type jpg)
+<use Fig3S1.jpg>
+Package pdftex.def Info: Fig3S1.jpg  used on input line 20.
+(pdftex.def)             Requested size: 410.49464pt x 473.72223pt.
+<FigS_expr_joint_TS.png, id=860, 686.565pt x 1228.59pt>
+File: FigS_expr_joint_TS.png Graphic file (type png)
+<use FigS_expr_joint_TS.png>
+Package pdftex.def Info: FigS_expr_joint_TS.png  used on input line 27.
+(pdftex.def)             Requested size: 251.42982pt x 449.922pt.
+<FigS_expr_joint_TT.png, id=861, 686.565pt x 1228.59pt>
+File: FigS_expr_joint_TT.png Graphic file (type png)
+<use FigS_expr_joint_TT.png>
+Package pdftex.def Info: FigS_expr_joint_TT.png  used on input line 28.
+(pdftex.def)             Requested size: 251.42982pt x 449.922pt.
+<Fig4S1.jpg, id=864, 2007.5pt x 1606.0pt>
+File: Fig4S1.jpg Graphic file (type jpg)
+<use Fig4S1.jpg>
+Package pdftex.def Info: Fig4S1.jpg  used on input line 35.
+(pdftex.def)             Requested size: 410.49464pt x 328.39894pt.
+<Fig4S2.jpg, id=867, 2007.5pt x 1337.99875pt>
+File: Fig4S2.jpg Graphic file (type jpg)
+<use Fig4S2.jpg>
+Package pdftex.def Info: Fig4S2.jpg  used on input line 42.
+(pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
+<Fig4S3.jpg, id=870, 2007.5pt x 2823.54875pt>
+File: Fig4S3.jpg Graphic file (type jpg)
+<use Fig4S3.jpg>
+Package pdftex.def Info: Fig4S3.jpg  used on input line 50.
+(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
+<FigS_ladder_addi.png, id=871, 794.97pt x 1156.32pt>
+File: FigS_ladder_addi.png Graphic file (type png)
+<use FigS_ladder_addi.png>
+Package pdftex.def Info: FigS_ladder_addi.png  used on input line 57.
+(pdftex.def)             Requested size: 436.15204pt x 634.42531pt.
+<FigS_mult_controls.png, id=872, 794.97pt x 469.755pt>
+File: FigS_mult_controls.png Graphic file (type png)
+<use FigS_mult_controls.png>
+Package pdftex.def Info: FigS_mult_controls.png  used on input line 64.
+(pdftex.def)             Requested size: 513.11636pt x 303.21544pt.
+<FigS_allhigh_rates.png, id=873, 722.7pt x 404.712pt>
+File: FigS_allhigh_rates.png Graphic file (type png)
+<use FigS_allhigh_rates.png>
+Package pdftex.def Info: FigS_allhigh_rates.png  used on input line 71.
+(pdftex.def)             Requested size: 513.11636pt x 287.34753pt.
+<Fig5S1.jpg, id=874, 3613.5pt x 3011.25pt>
+File: Fig5S1.jpg Graphic file (type jpg)
+<use Fig5S1.jpg>
+Package pdftex.def Info: Fig5S1.jpg  used on input line 79.
+(pdftex.def)             Requested size: 410.49464pt x 342.03629pt.
+<Fig5S2.jpg, id=879, 3613.5pt x 2792.4325pt>
+File: Fig5S2.jpg Graphic file (type jpg)
+<use Fig5S2.jpg>
+Package pdftex.def Info: Fig5S2.jpg  used on input line 87.
+(pdftex.def)             Requested size: 410.49464pt x 317.18166pt.
+<Fig5S3.jpg, id=880, 3613.5pt x 2134.97626pt>
+File: Fig5S3.jpg Graphic file (type jpg)
+<use Fig5S3.jpg>
+Package pdftex.def Info: Fig5S3.jpg  used on input line 95.
+(pdftex.def)             Requested size: 410.49464pt x 242.50372pt.
+<Fig6S1.jpg, id=881, 5420.25pt x 3613.5pt>
+File: Fig6S1.jpg Graphic file (type jpg)
+<use Fig6S1.jpg>
+Package pdftex.def Info: Fig6S1.jpg  used on input line 102.
+(pdftex.def)             Requested size: 410.49464pt x 273.6474pt.
+<Fig6S2.jpg, id=882, 6022.5pt x 4818.0pt>
+File: Fig6S2.jpg Graphic file (type jpg)
+<use Fig6S2.jpg>
+Package pdftex.def Info: Fig6S2.jpg  used on input line 111.
+(pdftex.def)             Requested size: 410.49464pt x 328.32542pt.
+<Fig6S3.jpg, id=883, 7829.25pt x 4215.75pt>
+File: Fig6S3.jpg Graphic file (type jpg)
+<use Fig6S3.jpg>
+Package pdftex.def Info: Fig6S3.jpg  used on input line 120.
+(pdftex.def)             Requested size: 513.11636pt x 276.28482pt.
+<Fig7S1.jpg, id=890, 2007.5pt x 1635.10875pt>
+File: Fig7S1.jpg Graphic file (type jpg)
+<use Fig7S1.jpg>
+Package pdftex.def Info: Fig7S1.jpg  used on input line 129.
+(pdftex.def)             Requested size: 410.49464pt x 334.35118pt.
+<Fig7S2.jpg, id=891, 3613.5pt x 2609.75pt>
+File: Fig7S2.jpg Graphic file (type jpg)
+<use Fig7S2.jpg>
+Package pdftex.def Info: Fig7S2.jpg  used on input line 147.
+(pdftex.def)             Requested size: 410.49464pt x 296.43144pt.
+)
 
 [38
 
 
 
-]
 
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+ <./Fig1S1.jpg>]
 
- []
+[39 <./Fig2S1.jpg>]
 
-)
+[40 <./Fig3S1.jpg>]
 
-[40]
-<Figs/Fig1S1.jpg, id=895, 2007.5pt x 1337.99875pt>
-File: Figs/Fig1S1.jpg Graphic file (type jpg)
-<use Figs/Fig1S1.jpg>
-Package pdftex.def Info: Figs/Fig1S1.jpg  used on input line 499.
-(pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
-<Figs/Fig2S1.jpg, id=898, 2007.5pt x 1517.67pt>
-File: Figs/Fig2S1.jpg Graphic file (type jpg)
-<use Figs/Fig2S1.jpg>
-Package pdftex.def Info: Figs/Fig2S1.jpg  used on input line 507.
-(pdftex.def)             Requested size: 410.49464pt x 310.337pt.
-<Figs/Fig3S1.jpg, id=899, 2007.5pt x 2315.65125pt>
-File: Figs/Fig3S1.jpg Graphic file (type jpg)
-<use Figs/Fig3S1.jpg>
-Package pdftex.def Info: Figs/Fig3S1.jpg  used on input line 514.
-(pdftex.def)             Requested size: 410.49464pt x 473.51022pt.
-<Figs/Fig4S1.jpg, id=902, 2007.5pt x 1606.0pt>
-File: Figs/Fig4S1.jpg Graphic file (type jpg)
-<use Figs/Fig4S1.jpg>
-Package pdftex.def Info: Figs/Fig4S1.jpg  used on input line 521.
-(pdftex.def)             Requested size: 410.49464pt x 328.39894pt.
-<Figs/Fig4S2.jpg, id=905, 2007.5pt x 1337.99875pt>
-File: Figs/Fig4S2.jpg Graphic file (type jpg)
-<use Figs/Fig4S2.jpg>
-Package pdftex.def Info: Figs/Fig4S2.jpg  used on input line 528.
-(pdftex.def)             Requested size: 410.49464pt x 273.59737pt.
-<Figs/Fig4S3.jpg, id=908, 2007.5pt x 2823.54875pt>
-File: Figs/Fig4S3.jpg Graphic file (type jpg)
-<use Figs/Fig4S3.jpg>
-Package pdftex.def Info: Figs/Fig4S3.jpg  used on input line 536.
-(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
-<Figs/Fig5S1.jpg, id=909, 2007.5pt x 1672.2475pt>
-File: Figs/Fig5S1.jpg Graphic file (type jpg)
-<use Figs/Fig5S1.jpg>
-Package pdftex.def Info: Figs/Fig5S1.jpg  used on input line 544.
-(pdftex.def)             Requested size: 410.49464pt x 341.9454pt.
-<Figs/Fig5S2.jpg, id=914, 2007.5pt x 2371.86125pt>
-File: Figs/Fig5S2.jpg Graphic file (type jpg)
-<use Figs/Fig5S2.jpg>
-Package pdftex.def Info: Figs/Fig5S2.jpg  used on input line 552.
-(pdftex.def)             Requested size: 410.49464pt x 485.0042pt.
-<Figs/Fig5S3.jpg, id=915, 2007.5pt x 2823.54875pt>
-File: Figs/Fig5S3.jpg Graphic file (type jpg)
-<use Figs/Fig5S3.jpg>
-Package pdftex.def Info: Figs/Fig5S3.jpg  used on input line 560.
-(pdftex.def)             Requested size: 410.49464pt x 577.36641pt.
-<Figs/Fig6S1.jpg, id=916, 5420.25pt x 3613.5pt>
-File: Figs/Fig6S1.jpg Graphic file (type jpg)
-<use Figs/Fig6S1.jpg>
-Package pdftex.def Info: Figs/Fig6S1.jpg  used on input line 567.
-(pdftex.def)             Requested size: 410.49464pt x 273.6474pt.
-<Figs/Fig6S2.jpg, id=917, 6022.5pt x 4818.0pt>
-File: Figs/Fig6S2.jpg Graphic file (type jpg)
-<use Figs/Fig6S2.jpg>
-Package pdftex.def Info: Figs/Fig6S2.jpg  used on input line 576.
-(pdftex.def)             Requested size: 410.49464pt x 328.32542pt.
-<Figs/Fig6S3.jpg, id=918, 7829.25pt x 4215.75pt>
-File: Figs/Fig6S3.jpg Graphic file (type jpg)
-<use Figs/Fig6S3.jpg>
-Package pdftex.def Info: Figs/Fig6S3.jpg  used on input line 585.
-(pdftex.def)             Requested size: 513.11636pt x 276.28482pt.
-<Figs/Fig7S1.jpg, id=925, 2007.5pt x 1635.10875pt>
-File: Figs/Fig7S1.jpg Graphic file (type jpg)
-<use Figs/Fig7S1.jpg>
-Package pdftex.def Info: Figs/Fig7S1.jpg  used on input line 594.
-(pdftex.def)             Requested size: 410.49464pt x 334.35118pt.
-<Figs/Fig7S2.jpg, id=926, 2007.5pt x 1932.21875pt>
-File: Figs/Fig7S2.jpg Graphic file (type jpg)
-<use Figs/Fig7S2.jpg>
-Package pdftex.def Info: Figs/Fig7S2.jpg  used on input line 612.
-(pdftex.def)             Requested size: 410.49464pt x 395.10498pt.
+[41 <./FigS_expr_joint_TS.png> <./FigS_expr_joint_TT.png>]
 
+[42 <./Fig4S1.jpg> <./Fig4S2.jpg>]
 
-[41
+[43 <./Fig4S3.jpg>]
+
+[44 <./FigS_ladder_addi.png>]
+
+[45 <./FigS_mult_controls.png> <./FigS_allhigh_rates.png>]
+
+[46 <./Fig5S1.jpg>]
+
+[47 <./Fig5S2.jpg> <./Fig5S3.jpg>]
+
+[48 <./Fig6S1.jpg> <./Fig6S2.jpg>]
+
+[49 <./Fig6S3.jpg>]
+
+[50 <./Fig7S1.jpg>]
+
+[51 <./Fig7S2.jpg>]
+\openout2 = `suppTables.aux'.
+
+ (./suppTables.tex
+pdfTeX warning (ext4): destination with the same identifier (name{section.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 \section{Supplementary Tables}
+                                  
+
+[52
 
 
 
- </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig1S1.jpg>]
 
-[42 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig2S1.jpg>]
+])
 
-[43 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig3S1.jpg>]
-
-[44 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig4S1.jpg> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig4S2.jpg>]
-
-[45 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig4S3.jpg>]
-
-[46 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig5S1.jpg>]
-
-[47 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig5S2.jpg>]
-
-[48 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig5S3.jpg>]
-
-[49 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig6S1.jpg> </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig6S2.jpg>]
-
-[50 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig6S3.jpg>]
-
-[51 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7S1.jpg>]
-
-[52 </Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Figs/Fig7S2.jpg>]
-
-[53
-
-]
+[53]
 
 [54]
 
 [55]
 
-[56]
-
-[57]
-Overfull \hbox (94.59277pt too wide) in paragraph at lines 996--1014
-[] 
- []
-
-
-
-[58] (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.aux (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/shifted_hill_derivation.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Additive_boolean.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/boolean_static.aux) (/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/Anaytical.aux))
+[56] (./main.aux (./shifted_hill_derivation.aux) (./Additive_boolean.aux) (./suppFigs.aux) (./suppTables.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5817DB3DF4778D76C9478FF04AF29355;11516.
+(rerunfilecheck)             Checksum: B1080F73BF20E5D981675392435A55FD;10442.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24741 strings out of 471546
- 447711 string characters out of 5518556
- 1326372 words of memory out of 5000000
- 50308 multiletter control sequences out of 15000+600000
- 728829 words of font info for 327 fonts, out of 8000000 for 9000
+ 24702 strings out of 471546
+ 443475 string characters out of 5518556
+ 1332140 words of memory out of 5000000
+ 50270 multiletter control sequences out of 15000+600000
+ 720719 words of font info for 324 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 75i,27n,108p,3345b,1562s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on /Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/Regulatory-noise-model/main.pdf (58 pages, 29779400 bytes).
+ 75i,27n,108p,2901b,1487s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></Users/kishorehari/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (56 pages, 42709238 bytes).
 PDF statistics:
- 1164 PDF objects out of 1200 (max. 8388607)
- 1012 compressed objects within 11 object streams
- 234 named destinations out of 1000 (max. 500000)
- 50135 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1136 PDF objects out of 1200 (max. 8388607)
+ 975 compressed objects within 10 object streams
+ 214 named destinations out of 1000 (max. 500000)
+ 46003 words of extra memory for PDF output out of 51595 (max. 10000000)
 

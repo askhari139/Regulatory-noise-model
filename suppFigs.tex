@@ -4,35 +4,43 @@
     \centering
     \includegraphics[width=0.8\linewidth]{Fig1S1.jpg}
     \caption{
-    \textbf{(A)} Heatmap of RACIPE steady-state expression for nodes A and B in TS network, across all sampled parameter combinations. The steady states are sorted in increasing order of expression of node A. The color scale is in $log_2$ scale and centered at the mean of the two nodes' thresholds. \textbf{(B)} Same design as Figure~\ref{fig:1}D, but for a fold-change of an activatory edge ($\lambda \in [1,100]$, $\lambda_0 = 20$).}
+    \textbf{(A)} Heatmap of RACIPE steady-state expression for nodes A and B in TS network, across all sampled parameter combinations. The steady states are sorted in increasing order of expression of node A. The color scale is in $log_2$ scale and centered at the mean of the two nodes' thresholds. \textbf{(B)} Same design as Figure~\ref{fig:1}D, but for a fold-change of an activatory edge ($\lambda_0 = 20$). Stationary and additive noise use $\lambda \in [1,100]$ with $\sigma_{\text{eff}} = 100\,\sigma$; multiplicative noise follows the geometric rule, $\lambda(t+dt) = \lambda(t)/(1+\sigma\eta)$ with $\lambda \in [1, 10^{3}]$, so $\lambda$ rises toward the maximal-strength bound (note the different $y$ scale).}
     \label{fig:1S1}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig2S1.jpg}
-    \caption{MRT vs.\ noise level, colored by discrete state, mean $\pm$ SD across parameter sets, for \textbf{(A)} TS (all parameter sets), \textbf{(B)} TSSA (monostable + tristable), \textbf{(C)} TT (monostable + tristable), and \textbf{(D)} TTSA (monostable + tristable).}
+    \caption{Occupancy vs.\ noise level, colored by discrete state, mean $\pm$ SD across parameter sets, for \textbf{(A)} TS (all parameter sets), \textbf{(B)} TSSA (monostable + tristable), \textbf{(C)} TT (monostable + tristable), and \textbf{(D)} TTSA (monostable + tristable).}
     \label{fig:2S1}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig3S1.jpg}
-    \caption{\textbf{(A)} MRT boxplots (as in Fig.\ 3B) for TSSA, TT, and TTSA, stacked vertically. \textbf{(B)} Reachability scatter (as in Figure~\ref{fig:3}C) for the TS network at $\sigma = 0.001, 0.01, 1.0$ (the noise levels not shown in the main figure), stacked vertically. \textbf{(C)} Reachability scatter for the TSSA network at $\sigma = 0.001, 0.01, 0.1, 1.0$.}
+    \caption{\textbf{(A)} Occupancy boxplots (as in Fig.\ 3B) for TSSA, TT, and TTSA, stacked vertically. \textbf{(B)} Reachability scatter (as in Figure~\ref{fig:3}C) for the TS network at $\sigma = 0.001, 0.01, 1.0$ (the noise levels not shown in the main figure), stacked vertically. \textbf{(C)} Reachability scatter for the TSSA network at $\sigma = 0.001, 0.01, 0.1, 1.0$.}
     \label{fig:3S1}
 \end{figure}
 
 \begin{figure}
     \centering
+    \begin{minipage}{0.49\linewidth}\centering \textbf{(A)} TS\\ \includegraphics[width=\linewidth]{FigS_expr_joint_TS.png}\end{minipage}
+    \begin{minipage}{0.49\linewidth}\centering \textbf{(B)} TT\\ \includegraphics[width=\linewidth]{FigS_expr_joint_TT.png}\end{minipage}
+    \caption{\textbf{Expression levels behind the discrete states, additive noise.} Joint time-averaged expression of nodes A and B per trajectory, as a fraction of each parameter set's maximum ($g/k$), for \textbf{(A)} TS and \textbf{(B)} TT (node C not shown). Rows: control conditions (Section~\ref{sec:controls}); C0 is repeated in every column. Columns: $\sigma = 0.01$, 0.1, 1 at $\Delta t = 0.01$. Colour: fraction of trajectories per bin (log scale). Dashed box: both nodes at intermediate levels (0.15--0.85 of maximum). Numbers give the fraction of trajectories inside the box and the fraction classified as all-high by the discretization thresholds. Under stochastic noise (C1), fast hold-resampling (C3, hold 0.01 and 1) and the mean-$\lambda$ control (C5), expression sits on the floor set by the average fold change (about 0.5 of maximum in TS, 0.25 in TT); the frozen control (C4) spreads expression over the full range.}
+    \label{fig:3S_expr}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[width=0.8\linewidth]{Fig4S1.jpg}
-    \caption{\textbf{(A)} Resampling effect (as in Figure~\ref{fig:3b}B), collapsed to a single per-parameter-set difference and shown across all noise levels, faceted by state class (all-high/single-high/double-high) and network (TS, TSSA, TT, TTSA). \textbf{(B)} Same, for the stochastic effect. \textbf{(C)} Paramwise scatter of resampled-$\lambda$ deterministic vs.\ stochastic MRT of the all-high state, all four networks, at each of four noise levels (0.001, 0.01, 0.1, 1.0).}
+    \caption{\textbf{(A)} Resampling effect (as in Figure~\ref{fig:3b}B), collapsed to a single per-parameter-set difference and shown across all noise levels, faceted by state class (all-high/single-high/double-high) and network (TS, TSSA, TT, TTSA). \textbf{(B)} Same, for the stochastic effect. \textbf{(C)} Paramwise scatter of resampled-$\lambda$ deterministic vs.\ stochastic occupancy of the all-high state, all four networks, at each of four noise levels (0.001, 0.01, 0.1, 1.0).}
     \label{fig:3bS1}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig4S2.jpg}
-    \caption{All-high \textbf{(A)}, single-high \textbf{(B)}, and double-high \textbf{(C)} state MRT comparisons (as in Figure~\ref{fig:3b}D: original/resampled/stochastic, faceted by stability class), repeated at four noise levels (columns: 0.001, 0.01, 0.1, 1.0), for TS, TSSA, TT, TTSA. 2-node networks (TS, TSSA) have no double-high state distinct from all-high, so they are absent from that row.
+    \caption{All-high \textbf{(A)}, single-high \textbf{(B)}, and double-high \textbf{(C)} state occupancy comparisons (as in Figure~\ref{fig:3b}D: original/resampled/stochastic, faceted by stability class), repeated at four noise levels (columns: 0.001, 0.01, 0.1, 1.0), for TS, TSSA, TT, TTSA. 2-node networks (TS, TSSA) have no double-high state distinct from all-high, so they are absent from that row.
 }
     \label{fig:3bS2}
 \end{figure}
@@ -40,15 +48,36 @@
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig4S3.jpg}
-    \caption{Comparison of MRTs for additive noise simulated at different values of $dt$}
+    \caption{Comparison of occupancies for additive noise simulated at different values of $dt$}
     \label{fig:3bS3}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.85\linewidth]{FigS_ladder_addi.png}
+    \caption{\textbf{Additive noise: occupancy versus the persistence time of $\lambda$ at fixed distribution.} Mean all-high occupancy under the hold-resample control C3 (green; mean $\pm$ 95\% CI over parameter sets), in which $\lambda$ is drawn from the values visited by the stochastic simulation and redrawn every $T_\text{hold}$. Lines show the stochastic simulation (C1, blue), the mean-$\lambda$ control (C4, dashed) and frozen draws (C2, dotted) at the same $\sigma$ ($dt = 0.01$). Rows, networks; columns, $\sigma$.}
+    \label{fig:S_ladder}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{FigS_mult_controls.png}
+    \caption{\textbf{Multiplicative noise: slow fluctuations act like frozen $\lambda$, fast fluctuations average out.} Single-high occupancy for TT4 and TT4SA under the geometric multiplicative rule, for the stochastic simulation (C1), frozen draws from the visited $\lambda$ distribution (C2) and the mean-$\lambda$ control (C4), at $dt = 0.01$. Columns, bounds on the fold-change (activation cap / inhibition floor). Labels, mean paired difference from C1; * BH-adjusted paired Wilcoxon $p < 0.05$. Pilot run, 100 parameter sets per stability class.}
+    \label{fig:S_mult_controls}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{FigS_allhigh_rates.png}
+    \caption{\textbf{Rates of entry into and exit from the all-high state under additive noise.} For each network and $\sigma$ ($dt = 0.01$), the entry rate is the number of transitions into all-high divided by the time spent outside it, and the exit rate is the number of transitions out of all-high divided by the time spent in it, pooled over parameter sets (100 trajectories each, unit sampling over $t = 500$--1000). Open markers, $\sigma = 0.001$, where occupancy is not yet stationary within $t = 1000$. At low noise the entry rate rises much faster than the exit rate; at high noise the exit rate falls faster than the entry rate.}
+    \label{fig:S_rates}
 \end{figure}
 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig5S1.jpg}
-    \caption{\textbf{(A)} MRT vs.\ noise level (as in Figure~\ref{fig:4}A, each showing a random sample of 100 parameter-set trajectories with the mean across the full population) for TS, TSSA, and TT; single-high and double-high state classes. For TS and TSSA, whose fully-active state is intrinsically ``all-high'' rather than a distinct ``double-high'' state, this facet is relabeled ``double-high'' for consistency with the other panels, but shows the same all-high data. \textbf{(B)} $\lambda$ distributions (as in Figure~\ref{fig:3b}A) under Multiplicative noise. \textbf{(C)} Network topology diagrams for TT4, TT4SA, and TS4. \textbf{(D)} Deterministic attractor-combination frequency (as in Fig.\ 1C, but from the noise-simulation pipeline's zero-noise runs rather than RACIPE's own steady-state search) for TT4, TT4SA, and TS4.
+    \caption{\textbf{(A)} Occupancy vs.\ noise level (as in Figure~\ref{fig:4}A, each showing a random sample of 100 parameter-set trajectories with the mean across the full population) for TS, TSSA, and TT; single-high and double-high state classes. For TS and TSSA, whose fully-active state is intrinsically ``all-high'' rather than a distinct ``double-high'' state, this facet is relabeled ``double-high'' for consistency with the other panels, but shows the same all-high data. \textbf{(B)} Distribution of $\lambda$ visited during the stochastic simulations (as in Figure~\ref{fig:3b}A) under multiplicative noise, inhibitory (TS, A$\to$B) and activating (TSSA, A$\to$A) edges, log scale. At $\sigma = 0.001$ the walk has not yet reached the bound within the analysis window; for $\sigma \geq 0.01$, $\lambda$ concentrates within about tenfold of maximal strength ($10^{-3}$ for inhibition, $10^{3}$ for activation). \textbf{(C)} Network topology diagrams for TT4, TT4SA, and TS4. \textbf{(D)} Deterministic attractor-combination frequency (as in Fig.\ 1C, but from the noise-simulation pipeline's zero-noise runs rather than RACIPE's own steady-state search) for TT4, TT4SA, and TS4.
 }
     \label{fig:4S1}
 \end{figure}
@@ -56,7 +85,7 @@
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig5S2.jpg}
-    \caption{\textbf{(A, B)} MRT vs.\ noise level for TT4, TT4SA, and TS4; single-high, double-high, and all-high states, faceted by stability class, under Additive (A) and Multiplicative (B) noise. \textbf{(C)} State-wise MRT vs.\ noise level for each of TS4's six double-high states individually (Multiplicative noise), showing that the same subset of states dominates at every noise level; grey lines show a random sample of 100 parameter-set trajectories, with the mean across the full parameter population shown separately. \textbf{(D)} Stochastic effect for the single-high state, across noise levels, for TSSA, TTSA, TT4, and TS4. \textbf{(E)} Stochastic effect for the all-high and double-high states, for TS, TT, and TT4. \textbf{(D$'$, E$'$)} Same networks/state classes as D and E, respectively, but showing the resampling effect instead of the stochastic effect.
+    \caption{\textbf{(A, B)} Occupancy vs.\ noise level for TT4, TT4SA, and TS4; single-high, double-high, and all-high states, faceted by stability class, under Additive (A) and Multiplicative (B) noise. \textbf{(C)} State-wise occupancy vs.\ noise level for each of TS4's six double-high states individually (Multiplicative noise), showing that the same subset of states dominates at every noise level; grey lines show a random sample of 100 parameter-set trajectories, with the mean across the full parameter population shown separately. Mean $\pm$ SD over parameter sets; multiplicative noise follows the geometric rule ($\mu_{\min} = 10^{-3}$), $dt = 0.01$.
 }
     \label{fig:4S2}
 \end{figure}
@@ -64,7 +93,7 @@
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig5S3.jpg}
-    \caption{Comparison of MRTs for multiplicative noise simulated at different values of $dt$}
+    \caption{\textbf{Multiplicative noise depends on $\sigma$ and $dt$ only through $\sigma^2/dt$.} \textbf{(A)} Single-high occupancy of the stochastic simulation (mean $\pm$ 95\% CI over parameter sets) against $\sigma^2/dt$, for $dt = 0.01$, 1 and 10. Curves for different $dt$ overlap wherever they share $\sigma^2/dt$; they separate only at $\sigma \geq 0.5$, $dt = 0.01$, where $\lambda$ fluctuates faster than expression relaxes. \textbf{(B)} Single-high occupancy against $\sigma$ for each $dt$, by stability class (mean $\pm$ SD over parameter sets; paired Wilcoxon tests between adjacent $dt$; dashed line, noise-free value). Geometric rule, $\mu_{\min} = 10^{-3}$.}
     \label{fig:4S3}
 \end{figure}
 
@@ -72,7 +101,7 @@
     \centering
     \includegraphics[width=0.8\linewidth]{Fig6S1.jpg}
     \caption{\textbf{Switching-event rates generalize across networks and stability classes.}
-    Distribution of switching-event counts per timestep by noise level (Additive vs.\ Multiplicative), for TS, TSSA, TT, TTSA, and TT4SA, faceted by network (columns) and deterministic stability class (rows). TS has no Tristable class (a 2-node network cannot support 3+ distinct stable states), so that facet is empty.
+    Distribution of switching-event counts per timestep by noise level (Additive vs.\ Multiplicative), for TS, TSSA, TT, TTSA, and TT4SA, faceted by network (columns) and deterministic stability class (rows). TS has no Tristable class (a 2-node network cannot support 3+ distinct stable states), so that facet is empty. Multiplicative noise follows the geometric rule ($\mu_{\min} = 10^{-3}$), $dt = 0.01$.
 }
     \label{fig:6S1}
 \end{figure}
@@ -81,7 +110,7 @@
     \centering
     \includegraphics[width=0.8\linewidth]{Fig6S2.jpg}
     \caption{\textbf{Nearest-fate resolution holds for every individual double-high attractor.}
-    Per-parameter MRT distribution at noise = 0.01, shown separately for each monostable double-high attractor combination (one facet per combination), for \textbf{(A)} TT, \textbf{(B)} TTSA, \textbf{(C)} TT4, and \textbf{(D)} TT4SA.
+    Per-parameter occupancy distribution at noise = 0.01, shown separately for each monostable double-high attractor combination (one facet per combination), for \textbf{(A)} TT, \textbf{(B)} TTSA, \textbf{(C)} TT4, and \textbf{(D)} TT4SA. Multiplicative noise (geometric rule, $\mu_{\min} = 10^{-3}$), $dt = 0.01$.
 }
     \label{fig:6S2}
 \end{figure}
@@ -90,7 +119,7 @@
     \centering
     \includegraphics[width=\linewidth]{Fig6S3.jpg}
     \caption{\textbf{Noise-level $\to$ fate alluvials for the bistable double-high classes.}
-    Noise-level $\to$ outcome alluvial (as in Figure~\ref{fig:6}E), colored by the multistability classification from Figure~\ref{fig:6}C, for the bistable double-high stability class: \textbf{(A)} TT and \textbf{(B)} TTSA, non-mirror only (mirror bistability is structurally impossible for these 3-node networks). \textbf{(C)} TT4, mirror \textbf{(i)} and non-mirror \textbf{(ii)} shown separately. \textbf{(D)} TT4SA, monostable double-high class \textbf{(i)} (as in Figure~\ref{fig:6}E, for this network) and bistable double-high class \textbf{(ii)}, with mirror and non-mirror populations pooled (TT4SA's mirror-bistable population alone is too sparse, $\approx$13 parameter sets, to interpret on its own).
+    Noise-level $\to$ outcome alluvial (as in Figure~\ref{fig:6}E), colored by the multistability classification from Figure~\ref{fig:6}C, for the bistable double-high stability class: \textbf{(A)} TT and \textbf{(B)} TTSA, non-mirror only (mirror bistability is structurally impossible for these 3-node networks). \textbf{(C)} TT4, mirror \textbf{(i)} and non-mirror \textbf{(ii)} shown separately. \textbf{(D)} TT4SA, monostable double-high class \textbf{(i)} (as in Figure~\ref{fig:6}E, for this network) and bistable double-high class \textbf{(ii)}, with mirror and non-mirror populations pooled (TT4SA's mirror-bistable population alone is too sparse, 14 parameter sets, to interpret on its own). Multiplicative noise (geometric rule, $\mu_{\min} = 10^{-3}$), $dt = 0.01$.
 }
     \label{fig:6S3}
 \end{figure}
@@ -116,13 +145,11 @@
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{Fig7S2.jpg}
-    \caption{\textbf{Effect of multiplicative and stationary noise on phenotypic
-    distributions in biological networks.}
-    A) Team score density maps for the Gonadal network under additive noise at
-    $\sigma = 0.05$, displayed as in Figure~\ref{fig:4}B. Left panel (``Rand'') shows
-    the team score distribution sampled from stochastic simulation trajectories; right
-    panel (``WT'') shows the distribution obtained from the steady states of the
-    unperturbed network. B) Relative frequency of phenotypic scores across 1000
-    simulation trajectories for the Gonadal network under (i) multiplicative noise and (ii) stationary noise.}
+    \caption{\textbf{Gonadal team-score density and stationary noise in the Boolean models.}
+    A) Team-score density for the gonadal network, displayed as in Figure~\ref{fig:7}B: steady states of the
+    unperturbed network (WT) and stochastic trajectories under additive noise at $\sigma = 0.05$ (ODE-equivalent
+    threshold rule, Eq.~\ref{eq:boolbias}). B) Fraction of time at each phenotypic score under stationary noise,
+    mean and interquartile range over 1000 trajectories, for the (i) EMT and (ii) gonadal networks, as in Figure~\ref{fig:7}C.
+    C) Fraction of time in mixed states against $\sigma$ under stationary noise, for stochastic weights, frozen weights and the standard threshold rule, as in Figure~\ref{fig:7}D.}
     \label{fig:7S2}
 \end{figure}

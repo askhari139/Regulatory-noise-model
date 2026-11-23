@@ -1,0 +1,138 @@
+\section{Derivation of the shifted Hill functions}
+
+A coarse-grained model of transcription and translation is used to describe gene
+regulatory networks. The shifted Hill function captures a non-zero basal
+expression rate together with a regulated expression rate that is higher
+(activation) or lower (repression) than the basal level. The derivation rests on
+the following assumptions.
+
+\subsection{Assumptions}
+
+\begin{enumerate}
+    \item \emph{Quasi-steady-state binding:} DNA--TF binding and unbinding occur
+    much faster than transcription and translation.
+    \item \emph{TF in excess:} the transcription factor is abundant relative to
+    the DNA, so its free concentration is approximately its total concentration.
+\end{enumerate}
+
+\subsection{Single-regulator model}
+
+For a single regulator (TF), the reactions producing protein $P$ through
+transcription and translation of the target gene are
+
+\begin{align}
+    \ce{DNA + TF &<=>[$k_f$][$k_r$] DNA{-}TF} \label{rxn:complex} \\
+    \ce{DNA &->[$k_{ub}$] P + DNA} \label{rxn:unbound} \\
+    \ce{DNA{-}TF &->[$k_{b}$] P + DNA + TF} \label{rxn:bound}
+\end{align}
+
+Reaction~\eqref{rxn:complex} describes formation of the DNA--TF complex.
+Reactions~\eqref{rxn:unbound} and~\eqref{rxn:bound} together account for protein
+production: for an activating TF, $k_b > k_{ub}$, and for an inhibiting TF,
+$k_{ub} > k_b$. The corresponding production rate is
+
+\begin{equation}
+    \frac{d[P]}{dt} = k_{ub}\,[D] + k_{b}\,[DT],
+    \label{eq:rate}
+\end{equation}
+
+where $[D]$ is the concentration of free DNA and $[DT]$ that of the DNA--TF
+complex. The first term on the right-hand side is the basal expression and the
+second is the regulated expression (with the roles of ``basal'' and
+``regulated'' set by whether the link activates or inhibits).
+
+Applying the quasi-steady-state assumption to TF binding,
+
+\begin{equation}
+    \frac{[DT]}{[D]\,[T]} = \frac{k_f}{k_r} \equiv K_{eq},
+    \label{eq:qssa}
+\end{equation}
+
+where $[T]$ is the free TF concentration. Because the TF is in excess,
+$[T]$ equals the total TF concentration. Conservation of DNA gives
+
+\begin{equation}
+    [D_0] = [D] + [DT],
+    \label{eq:conservation}
+\end{equation}
+
+with $[D_0]$ the (constant) total DNA concentration. Substituting
+Eq.~\eqref{eq:qssa} into Eq.~\eqref{eq:conservation},
+
+\begin{equation}
+    [D_0] = [D]\,\bigl(1 + K_{eq}\,[T]\bigr)
+    \quad\Longrightarrow\quad
+    [D] = \frac{[D_0]}{1 + K_{eq}\,[T]}.
+    \label{eq:freeDNA}
+\end{equation}
+
+Using $[DT] = [D_0] - [D]$, Eq.~\eqref{eq:rate} becomes
+
+\begin{equation}
+    \frac{d[P]}{dt}
+    = k_{ub}\,[D_0]\,\frac{1}{1 + K_{eq}\,[T]}
+    + k_{b}\,[D_0]\,\frac{K_{eq}\,[T]}{1 + K_{eq}\,[T]}.
+    \label{eq:inter}
+\end{equation}
+
+Defining the unbound and bound occupancy fractions
+
+\begin{equation}
+    H^{-} = \frac{1}{1 + K_{eq}\,[T]},
+    \qquad
+    H^{+} = \frac{K_{eq}\,[T]}{1 + K_{eq}\,[T]},
+    \qquad H^{-} + H^{+} = 1,
+    \label{eq:Hpm}
+\end{equation}
+
+Eq.~\eqref{eq:inter} reads
+
+\begin{equation}
+    \frac{d[P]}{dt}
+    = k_{ub}\,[D_0]\,H^{-} + k_{b}\,[D_0]\,H^{+}
+    = k_{ub}\,[D_0]\,\bigl(H^{-} + \lambda\,H^{+}\bigr),
+    \label{eq:preNorm}
+\end{equation}
+
+where $\lambda \equiv k_b / k_{ub}$.
+
+Let $g$ denote the maximal protein production rate. For an inhibitory link the
+maximum is the unbound rate, $g = k_{ub}\,[D_0]$; for an activating link it is the
+bound rate, $g = k_{b}\,[D_0] = \lambda\,k_{ub}\,[D_0]$. Normalizing
+Eq.~\eqref{eq:preNorm} by $g$ therefore yields the two branches of the shifted
+Hill function,
+
+\begin{equation}
+    \left.\frac{d[P]}{dt}\right._{-}
+        = g\,\bigl(H^{-} + \lambda\,H^{+}\bigr),
+    \qquad (\lambda \le 1,\ \text{repression})
+    \label{eq:branchRep}
+\end{equation}
+\begin{equation}
+    \left.\frac{d[P]}{dt}\right._{+}
+        = \frac{g}{\lambda}\,\bigl(H^{-} + \lambda\,H^{+}\bigr)
+        = g\,\Bigl(\frac{H^{-}}{\lambda} + H^{+}\Bigr).
+    \qquad (\lambda \ge 1,\ \text{activation})
+    \label{eq:branchAct}
+\end{equation}
+
+The two regulatory constants entering the production term are thus
+
+\begin{equation}
+    \lambda = \frac{k_b}{k_{ub}},
+    \qquad
+    K_{eq} = \frac{k_f}{k_r}.
+\end{equation}
+
+Here $\lambda$ is the ratio of the transcription rate with the TF bound to that
+with it unbound---possibly set by TF-mediated condensate formation or RNA
+polymerase recruitment---while $K_{eq}$ is the ratio of the TF's DNA binding and
+unbinding rates. The half-maximal regulator concentration (threshold) follows
+from $H^{-} = H^{+} = \tfrac{1}{2}$, i.e.\ $[T]_{1/2} = 1/K_{eq}$.
+
+\paragraph{Remark (continuity and cooperativity).}
+Both branches coincide at $\lambda = 1$, where $H^{-} + H^{+} = 1$ and production
+equals the maximal rate $g$ independent of $[T]$: the no-regulation limit.
+Cooperative binding of $n$ TF molecules replaces $K_{eq}[T]$ by
+$\bigl(K_{eq}[T]\bigr)^{n}$ in Eq.~\eqref{eq:Hpm}, giving the Hill coefficient $n$
+and recovering the usual sharp (switch-like) form used in the simulations.

@@ -1,0 +1,15 @@
+
+# CSBJ revision: local-only material
+.claude/
+CSBJ_review/
+Cover_letter_CSBJ.*
+~$*
+main_tracked.*
+!main_tracked.tex
+!main_tracked.pdf
+main_highlighted.*
+!main_highlighted.tex
+!main_highlighted.pdf
+suppFigs.aux
+suppTables.aux
+*-SAVE-ERROR

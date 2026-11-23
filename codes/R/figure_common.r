@@ -9,7 +9,13 @@
 #   source("/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/RACIPEdata/scripts/figure_common.r")
 # ============================================================
 
-resultsFolder <- "/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/RACIPEdata/final"
+# REGNOISE_RESULTS_FOLDER points the figures at a regnoise run converted by
+# regnoise_to_legacy.r (e.g. RACIPEdata/regnoise/2026-10-csbj-v2/legacy);
+# unset, the original results are used. When set, the lambda-distribution
+# panels also read the run's own lambda pool instead of the histogram cache.
+resultsFolder <- Sys.getenv("REGNOISE_RESULTS_FOLDER",
+                            unset = "/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/RACIPEdata/final")
+lambdaFromPool <- nzchar(Sys.getenv("REGNOISE_RESULTS_FOLDER"))
 dataFolder    <- "/Users/kishorehari/Desktop/PostDoc/Abhay_Lakshmi/RACIPEdata/data"
 # LS (plot_grid label size) is left alone if a caller (run_all_figures.r) has
 # already set it -- lets the master script pick a per-figure LS while each
@@ -322,7 +328,7 @@ plot_mrt_trajectories <- function(net, noiseType, resultsFolder, dt = 0.01,
         facet_wrap(vars(.data[[facet_var]]), ncol = ncol, scales = "free_y") +
         theme_Publication() +
         theme(axis.text.x = element_text(angle = 60, hjust = 1, vjust = 1)) +
-        labs(x = "Noise Level", y = "MRT")
+        labs(x = "Noise Level", y = "Occupancy")
 
     if (!is.null(outFile)) {
         n_panels <- length(unique(df[[facet_var]]))
@@ -333,6 +339,31 @@ plot_mrt_trajectories <- function(net, noiseType, resultsFolder, dt = 0.01,
     }
 
     invisible(p)
+}
+
+# Lambda-pool draws in the histogram-cache shape (BinMid, Count = 1 per
+# draw), for plot_lambda_density() on a regnoise run: inhibitory = TS A->B,
+# activatory = TSSA A->A, all ParamIDs. Reads the run's collected lambda
+# table (one level above resultsFolder) and takes 50 points per ParamID off
+# the pool's quantile function (Min/Max at p = 0/1) -- 10 points per ParamID
+# stack up at the same values and make the violins ripple.
+read_pool_lambdas <- function(noiseType, lambda_type, dt) {
+    src  <- list(inh = c("TS", "AToB"), act = c("TSSA", "AToA"))
+    mode <- c(Fluctuating = "Stationary", MultiplicativeInvLambda = "Multiplicative")
+    mode <- if (noiseType %in% names(mode)) mode[[noiseType]] else noiseType
+    qp <- c(0, 0.01, 0.05, 0.25, 0.5, 0.75, 0.95, 0.99, 1)
+    qc <- c("Min", "Q01", "Q05", "Q25", "Q50", "Q75", "Q95", "Q99", "Max")
+    pd <- (seq_len(50) - 0.5) / 50
+    map_dfr(tolower(lambda_type), function(lt) {
+        f <- file.path(dirname(resultsFolder), "collected",
+                       paste0(src[[lt]][1], "_", mode, "_lambda.csv.gz"))
+        d <- read_csv(f, show_col_types = FALSE) %>%
+            filter(Condition == "C1", DT %in% dt, Edge == src[[lt]][2])
+        q <- as.matrix(d[, qc])
+        draws <- t(apply(q, 1, function(x) approx(qp, x, xout = pd, ties = "ordered")$y))
+        tibble(NoiseLevel = rep(d$Sigma, each = length(pd)), DT = rep(d$DT, each = length(pd)),
+               BinMid = as.vector(t(draws)), Count = 1, LambdaType = lt)
+    })
 }
 
 # Violin of lambda distribution (Inh or Act edge multiplier) across noise
@@ -348,7 +379,7 @@ plot_lambda_density <- function(noiseType, dataFolder, noise_levels, dt,
     # two full standalone plots produces.
     lambda_type <- match.arg(lambda_type, several.ok = TRUE)
 
-    d <- map_dfr(lambda_type, function(this_type) {
+    d <- if (lambdaFromPool) read_pool_lambdas(noiseType, lambda_type, dt) else map_dfr(lambda_type, function(this_type) {
         ltype_key <- tolower(this_type)   # "inh" or "act" -- matches LambdaType column
         if (ltype_key == "inh") {
             # Inh_of_AToB is naturally in [0, 1] in steps of 0.01, matching the
@@ -499,10 +530,10 @@ plot_paramwise_comparison <- function(nets, noiseType, dt, dataFolder, resultsFo
 
 	if (compare == "resample") {
 		xcol <- "MRT_orig"; ycol <- "MRT_det"
-		xlab <- "Original (point λ) MRT"; ylab <- "Deterministic (resampled λ) MRT"
+		xlab <- "Original (point λ) occupancy"; ylab <- "Deterministic (resampled λ) occupancy"
 	} else {
 		xcol <- "MRT_det"; ycol <- "MRT"
-		xlab <- "Deterministic (resampled λ) MRT"; ylab <- "Stochastic MRT"
+		xlab <- "Deterministic (resampled λ) occupancy"; ylab <- "Stochastic occupancy"
 	}
 
 	d <- d %>%
@@ -651,8 +682,8 @@ plot_det_stoch_network_comparison <- function(nets, noiseType, dt, dataFolder, r
 					manual = TRUE, inherit.aes = FALSE, tip_length = 0.01, size = 0.4, textsize = 3.2) +
 		theme_Publication() +
 		labs(x = NULL,
-			 y = if (multiSigma) paste0("MRT of ", state_class %||% "all-high", " state")
-			     else paste0("MRT of ", state_class %||% "all-high", " state (σ = ", sigma, ")"),
+			 y = if (multiSigma) paste0("Occupancy of ", state_class %||% "all-high", " state")
+			     else paste0("Occupancy of ", state_class %||% "all-high", " state (σ = ", sigma, ")"),
 			 color = "")
 
 	# Single sigma: unchanged facet_wrap(StabilityClass) behavior. Multiple:
@@ -702,11 +733,11 @@ plot_class_diff_violin <- function(nets, noiseType, dt, dataFolder, resultsFolde
 
 	if (compare == "resample") {
 		d <- d %>% mutate(Diff = MRT_det - MRT_orig)
-		ylab <- "Resampled - Original MRT"
+		ylab <- "Resampled - Original occupancy"
 		ttl  <- "Resampling effect"
 	} else {
 		d <- d %>% mutate(Diff = MRT - MRT_det)
-		ylab <- "Stochastic - Resampled MRT"
+		ylab <- "Stochastic - Resampled occupancy"
 		ttl  <- "Stochastic effect"
 	}
 
@@ -794,7 +825,7 @@ mrt_boxplot_stability <- function(net, noiseType, resultsFolder, dt = 0.01,
 		facet_wrap(vars(ParamType)) +
 		theme_Publication() +
 		theme(axis.text.x = element_text(angle = 60, hjust = 1, vjust = 1)) +
-		labs(x = "Noise Level", y = "MRT")
+		labs(x = "Noise Level", y = "Occupancy")
 
 	if (!is.null(outFile)) {
 		n_panels <- length(unique(d$ParamType))
@@ -1035,7 +1066,7 @@ plot_stateclass_by_stability <- function(nets, noiseType, resultsFolder, dt = 0.
         facet_grid(rows = vars(StabilityClass), cols = vars(Network), scales = "free_y") +
         theme_Publication() +
         theme(axis.text.x = element_text(angle = 60, hjust = 1, vjust = 1)) +
-        labs(x = "Noise Level", y = "Average MRT")
+        labs(x = "Noise Level", y = "Average occupancy")
 
     if (!is.null(outFile)) {
         n_col <- length(unique(dAll$Network))
@@ -1180,7 +1211,7 @@ plot_mrt_by_dt <- function(nets, noiseType, resultsFolder,
         facet_grid(rows = vars(StateClass, StabilityClass), cols = vars(Network), scales = "free_y") +
         theme_Publication() +
         theme(axis.text.x = element_text(angle = 60, hjust = 1, vjust = 1)) +
-        labs(x = "Noise Level", y = "MRT", title = noiseType)
+        labs(x = "Noise Level", y = "Occupancy", title = noiseType)
 
     if (!is.null(outFile)) {
         n_col <- length(unique(dAll$Network))
@@ -1336,7 +1367,7 @@ plot_access_heatmap <- function(accessData, sigmas, outFile = NULL, width = 18, 
     p <- ggplot(dF, aes(x = Role, y = OriginalLabel, fill = MeanMRT)) +
         geom_tile(color = "white") +
         facet_wrap(vars(NoiseLevel), nrow = 1) +
-        scale_fill_viridis_c(name = "Mean MRT") +
+        scale_fill_viridis_c(name = "Mean occupancy") +
         theme_Publication() +
         theme(axis.text.y = element_text(size = 9)) +
         labs(x = "Accessed state", y = "Original (deterministic) attractor")
@@ -1381,7 +1412,7 @@ plot_access_ratio <- function(accessData, sigmas, ratio_cutoff = 0.1,
         facet_wrap(vars(NoiseLevel)) +
         theme_Publication() +
         theme(axis.text.x = element_text(angle = 60, hjust = 1, vjust = 1)) +
-        labs(x = "Original (deterministic) attractor", y = "Max / Min MRT ratio (accessed single-high states)",
+        labs(x = "Original (deterministic) attractor", y = "Max / Min occupancy ratio (accessed single-high states)",
              fill = "# single-high\nstates accessed")
 
     if (!is.null(outFile)) {
@@ -1786,7 +1817,7 @@ plot_example_mrt_violin <- function(accessData, originalLabel, sigma = 0.01,
         geom_violin(fill = "steelblue", alpha = 0.5, scale = "width", color = NA) +
         stat_summary(fun = mean, geom = "point", shape = 23, size = 1.6, fill = "white", color = "black") +
         theme_Publication() +
-        labs(x = "Accessed state", y = "MRT (per parameter set)",
+        labs(x = "Accessed state", y = "Occupancy (per parameter set)",
              title = paste0(originalLabel, " (noise level = ", sigma, ")"))
 
     if (!is.null(outFile)) {
@@ -1882,7 +1913,7 @@ plot_double_high_circular_alluvial <- function(accessData, sigma = 0.01, outFile
     p <- ggraph(g, layout = "linear", circular = TRUE) +
         geom_edge_arc(aes(width = MRT, color = MRT), alpha = 0.7, strength = 0.6, lineend = "round") +
         scale_edge_width(range = c(0.2, 4), guide = "none") +
-        scale_edge_color_viridis(name = "MRT", guide = guide_edge_colorbar()) +
+        scale_edge_color_viridis(name = "Occupancy", guide = guide_edge_colorbar()) +
         geom_node_point(aes(color = Type), size = 4) +
         geom_node_text(aes(label = name), repel = TRUE, size = 3.5) +
         scale_color_manual(values = c("Double-high" = "#e41a1c", "Single-high" = "grey40"), name = NULL) +
@@ -2156,7 +2187,7 @@ plot_reach_scatter <- function(net, noiseType, dt, dataFolder, resultsFolder,
 		theme(legend.key.width = unit(1.2, "cm"), legend.key.height = unit(0.4, "cm")) +
 		labs(x = paste0("Max ", nodes[1], " - Threshold ", nodes[1]),
 			 y = paste0("Max ", nodes[2], " - Threshold ", nodes[2]),
-			 color = paste0("MRT of ", state))
+			 color = paste0("Occupancy of ", state))
 
 	if (!is.null(outFile)) {
 		n_panels <- length(unique(df$ParamType))
@@ -2244,7 +2275,7 @@ plot_mrt_vs_switches <- function(nets, noiseType, resultsFolder, dt = 0.01,
         geom_point(alpha = 0.4, size = 1, color = "#e41a1c") +
         facet_grid(rows = vars(Network), cols = vars(NoiseLevel)) +
         theme_Publication() +
-        labs(x = paste0("MRT (", stateClass, ")"), y = "Mean switches per parameter set (normalized)",
+        labs(x = paste0("Occupancy (", stateClass, ")"), y = "Mean switches per parameter set (normalized)",
              title = paste0(noiseType, " noise — ", stateClass))
 
     if (!is.null(outFile)) {
@@ -2293,7 +2324,7 @@ plot_mrt_vs_switches_heatmap <- function(nets, noiseType, resultsFolder, dt = 0.
         theme_Publication() +
         theme(legend.key.width = unit(0.4, "cm"), legend.key.height = unit(1.2, "cm"),
               legend.text = element_text(size = rel(0.7))) +
-        labs(x = paste0("MRT (", stateClass, ")"), y = "Mean switches per parameter set (normalized)",
+        labs(x = paste0("Occupancy (", stateClass, ")"), y = "Mean switches per parameter set (normalized)",
              title = paste0(noiseType, " noise — ", stateClass))
 
     if (!is.null(outFile)) {

@@ -321,7 +321,7 @@ mrt_plot <- function(net, noiseType, resultsFolder, dt = 0.01,
                       facet_var = "ParamType",
                       style = c("errorbar", "boxplot", "violin"),
                       topOriginal = NULL, topStates = NULL,
-                      y_label = "Average MRT", log_y = FALSE, angle_x = 60,
+                      y_label = "Average occupancy", log_y = FALSE, angle_x = 60,
                       outFile = NULL, width = 6, height = 5) {
     style <- match.arg(style)
 

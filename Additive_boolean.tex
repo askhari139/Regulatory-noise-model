@@ -7,7 +7,7 @@ Boolean limit, where the exact stationary distribution can be computed in closed
 form for both the deterministic (fixed-$\lambda$) and stochastic (fluctuating-$\lambda$)
 cases.
  
-\subsection{The two $\lambda$ extremes are not symmetric}
+\subsection{The two $\lambda$ extremes differ in their dependence on the regulator}
 \label{sec:asymmetry}
  
 For an inhibitory edge, the shifted Hill function entering the production term is
@@ -20,22 +20,24 @@ which is \emph{exactly affine in $\lambda$} for fixed regulator level $x$. At th
 noise amplitude $\sigma=1$ the clamped $\lambda$ walk is confined to the two
 boundaries of its range, $\lambda\in\{\lambda_{\min},\lambda_{\max}\}$ with
 $\lambda_{\min}\approx 0.01$ and $\lambda_{\max}=1$. Evaluating
-Eq.~\eqref{eq:hshift} at these two limits exposes a structural asymmetry:
+Eq.~\eqref{eq:hshifts} at these two limits exposes a structural asymmetry:
 \begin{align}
   \lambda = 1: \quad & H^{S}(x,1) = H^{-}(x)+H^{+}(x) = 1
     && \text{(independent of } x\text{)},\\
   \lambda \approx 0.01: \quad & H^{S}(x,0.01) \approx H^{-}(x)
     && \text{(depends on } x\text{)}.
 \end{align}
-The $\lambda=1$ boundary abolishes regulation \emph{unconditionally}: the target
-is produced at its full rate regardless of the regulator's expression. The
-$\lambda\approx 0$ boundary imposes repression only \emph{conditionally}: it
-lowers the target's production rate only when the regulator $x$ is high, and has
+The $\lambda=1$ boundary abolishes regulation independently of the regulator:
+the target is produced at its full rate whatever the regulator's expression. The
+$\lambda\approx 0$ boundary imposes repression only when the regulator is
+expressed: it lowers the target's production rate only when $x$ is high, and has
 essentially no effect when the regulator is low ($H^{-}(x)\!\approx\!1$).
-An excursion toward de-repression therefore always ``fires,'' whereas an
-excursion toward repression fires only when the partner node happens to be
-expressed. This unconditional-up / conditional-down asymmetry is the microscopic
-origin of the enhancement derived below.
+An excursion toward derepression therefore always takes effect, whereas an
+excursion toward repression takes effect only when the partner node happens to be
+expressed. The Boolean reduction below makes the consequence of this
+regulator-dependence asymmetry exact in the high-noise limit, where $\lambda$
+alternates between its two bounds faster than expression relaxes (main text,
+Section~\ref{sec:timescale} and the derepression paragraphs of the Results).
  
 \subsection{Boolean reduction}
  
@@ -124,7 +126,7 @@ $\pi_{01}=\pi_{10}=\tfrac12\pi_{11}$, hence $\tfrac{9}{4}\pi_{11}=1$ and
   \label{eq:piann}
 \end{equation}
 The mean residence time in the double-positive state is
-$\mathrm{MRT}(11)=\pi_{11}=4/9$.
+$\mathrm{occupancy}(11)=\pi_{11}=4/9$.
  
 \subsection{Every state flows toward $11$ under fluctuating $\lambda$}
 \label{sec:column}
@@ -168,9 +170,9 @@ single-positive states. This is a purely structural effect: the two calculations
 use an identical, symmetric $\lambda$ ensemble confined to the same boundaries,
 and differ only in whether $\lambda$ is quenched (Eq.~\eqref{eq:pidet}) or
 annealed (Eq.~\eqref{eq:piann}). The gain reflects the asymmetry of
-Section~\ref{sec:asymmetry}---de-repression fires unconditionally while
-repression fires only conditionally---so that mixing over $\lambda$ favours the
-state in which both nodes are high.
+Section~\ref{sec:asymmetry}---derepression takes effect whatever the regulator's
+state, whereas repression requires the regulator to be expressed---so that mixing
+over $\lambda$ favours the state in which both nodes are high.
  
 \paragraph{Remark.} The small stationary occupancy of $00$
 ($\pi_{00}=1/9$) arises from the synchronous discrete update, in which the

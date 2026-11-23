@@ -53,8 +53,10 @@ end
         λ * exp10(sigma_eff * ξ)          # log10 λ ← log10 λ + σ_eff ξ; clamping λ = clamping log λ
     elseif mode === :Geometric
         # The fold-change term that full regulation removes (λ for inhibition, 1/λ for
-        # activation) is multiplied by (1 + σξ). Its target 0 lies outside the bounds, so λ
-        # reflects off the full-strength bound instead of absorbing there. A factor ≤ 0 sends
+        # activation) is multiplied by (1 + σξ). Its target 0 lies outside the bounds, so λ is
+        # clamped at the full-strength bound (not reflected); the bound is not absorbing, since a
+        # later factor > 1 moves λ back. log λ drifts by -σ²/2 per update, so λ piles up near
+        # that bound (stationary density ∝ 1/μ², independent of σ; SPEC §3). A factor ≤ 0 sends
         # the edge to full strength. `target` is λ_max for activation edges (> 1), λ_min otherwise.
         f = 1 + sigma * ξ
         target > 1 ? (f <= 0 ? hi : λ / f) : λ * f
